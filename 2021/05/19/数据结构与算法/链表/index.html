@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>链表 | LittleBugYang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="反转链表这种题应该是链表题里面最简单的了，但是我还是花了一两个小时才完全搞懂。 原因在于我自己的图形建模把自己给坑了。没有弄懂 head 和 head-&gt;next 的区别，导致在变换的时候乱了阵脚，混淆了这两者。 判断单向链表是否有环这个问题要求 O(1) 的空间复杂度下完成，刚开始的时候，我看成 O(1) 的时间复杂度了，确实把我吓了一跳…… 不过 O(1) 的空间复杂度也着实难倒我了，后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表">
+<meta property="og:url" content="https://littlebugyang.github.io/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/index.html">
+<meta property="og:site_name" content="LittleBugYang&#39;s Blog">
+<meta property="og:description" content="反转链表这种题应该是链表题里面最简单的了，但是我还是花了一两个小时才完全搞懂。 原因在于我自己的图形建模把自己给坑了。没有弄懂 head 和 head-&gt;next 的区别，导致在变换的时候乱了阵脚，混淆了这两者。 判断单向链表是否有环这个问题要求 O(1) 的空间复杂度下完成，刚开始的时候，我看成 O(1) 的时间复杂度了，确实把我吓了一跳…… 不过 O(1) 的空间复杂度也着实难倒我了，后">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://littlebugyang.github.io/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/image-20210419133205313.png">
+<meta property="article:published_time" content="2021-05-19T14:16:29.000Z">
+<meta property="article:modified_time" content="2021-05-19T14:16:29.000Z">
+<meta property="article:author" content="LittleBugYang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://littlebugyang.github.io/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/image-20210419133205313.png">
+  
+    <link rel="alternate" href="/atom.xml" title="LittleBugYang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LittleBugYang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://littlebugyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数据结构与算法/链表" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/" class="article-date">
+  <time class="dt-published" datetime="2021-05-19T14:16:29.000Z" itemprop="datePublished">2021-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      链表
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h2><p>这种题应该是链表题里面最简单的了，但是我还是花了一两个小时才完全搞懂。</p>
+<p>原因在于我自己的图形建模把自己给坑了。没有弄懂 head 和 head-&gt;next 的区别，导致在变换的时候乱了阵脚，混淆了这两者。</p>
+<h2 id="判断单向链表是否有环"><a href="#判断单向链表是否有环" class="headerlink" title="判断单向链表是否有环"></a>判断单向链表是否有环</h2><p>这个问题要求 O(1) 的空间复杂度下完成，刚开始的时候，我看成 O(1) 的时间复杂度了，确实把我吓了一跳……</p>
+<p>不过 O(1) 的空间复杂度也着实难倒我了，后来睡觉前忍不住查了一下，才知道原来用追及问题可以解决。</p>
+<p>要在 O(1) 空间复杂度下完成，也就是说不能用额外的空间去记录遍历过程中遇到过的节点，否则就成了 O(n) 的空间复杂度了。也就是说该程序的记忆能力是有限的，所以根据内存地址判等进而判定存在环是不可取的，我当时确实想到了这点，但是没有放过自己，还是在这条路上死磕了。</p>
+<p><strong>这种题可以转化成追及问题，设立一个快指针和一个慢指针，快的一次走一个节点，慢的两次才走一个节点，如果有环，那么该两指针迟早在起点之后相遇。</strong></p>
+<h3 id="判断单向链表中环的长度"><a href="#判断单向链表中环的长度" class="headerlink" title="判断单向链表中环的长度"></a>判断单向链表中环的长度</h3><p>这个问题是我查是否有环时衍生出来的问题，睡前也是一直在想。</p>
+<p>后来还是苏之前做过的公务员的追及问题启发了我：快慢指针第一次相遇时，快指针比慢指针多走的路程，恰好是环的长度（错的），但是后来进行分析之后，尝试说服我自己，才发现这是错误的分析。</p>
+<p>于是我又尝试分析：快慢指针第一次相遇时，快指针比慢指针多走的路程，是否恰好是环的长度倍数？经过画图，我确认这个猜想是对的。</p>
+<p>但是仅有长度的倍数还不足，我现在拥有的条件是：速度差和路程差，直接除只能得到时间差（搞错了，其实是时间）。</p>
+<p>于是，我还是忍不住，又去凌晨看过的文章中找，发现他们的证明过程有点漏洞，于是我就没有继续看下去了。总之，看起来像是：要想判断单向链表中环的长度之前，还要判断单向链表中环的起点在哪。</p>
+<h3 id="判断单向链表中环的起点"><a href="#判断单向链表中环的起点" class="headerlink" title="判断单向链表中环的起点"></a>判断单向链表中环的起点</h3><p>这个我看了几个网站，都发现他们的证明不是出乎我的想象范围，就是被别的网友说明有问题，看来到时候我还是在外网看看吧。</p>
+<p>做完判断单向链表是否有环的题目，下一题就是查找链表环入口节点的题，这下逃不掉了，但是我依旧是没有头绪，只能够看讨论区。讨论区推荐的这个解释是可以的，我完全能看懂。如果我当初死磕这道题，我可以预想到的是，我根本就得不到这样的解题思路。</p>
+<p><img src="image-20210419133205313.png" alt="image-20210419133205313"></p>
+<p>这里的解释就没有像之前那样子说出“相遇时慢指针肯定没有走完一圈”这种话，可信很多。</p>
+<p>但我后来自己解释了一番，发现“相遇时慢指针肯定没有走完一圈”这一说法是正确的！而这也成为上图证明公式的依据之一。</p>
+<p>这个道理看起来简单，但是我自己动手推了一下，连化简都这么难，主要是导出 a 的等价表达式时，等号另一边要有 (b+c)，因为 (b+c) 代表着一个环的长度。</p>
+<p>所以，这道题的核心是：将一个同样慢的指针在链表头开始前进的同时，先前的慢指针也从与快指针相遇的地方开始前进，直到这两个同样慢的指针相遇时，其所在的地点恰是环的入口。</p>
+<p>刚刚发现自己的写法有问题：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">nullptr</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *slow, *fast;</span><br><span class="line">        slow = head;</span><br><span class="line">        fast = head-&gt;next;</span><br><span class="line">        <span class="keyword">bool</span> slowMove = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span> (fast != <span class="literal">nullptr</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (fast == slow)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            slowMove = !slowMove;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (slowMove)</span><br><span class="line">            &#123;</span><br><span class="line">                slow = slow-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样会导致很奇怪的事情发生，总之有时候在相遇时，会发现慢指针这轮是要走出去的。如果是设置快指针一次性走两步，而慢指针一次走一步，应该不会有这种情况发生。</p>
+<p>又小改了几次，发现还是无法在规定时间内运行结束，看来我还是要用 VSCode debug 了。</p>
+<p>还没等到用 VSCode debug，我又发现了一个问题：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        ListNode *slow, *fast;</span><br><span class="line">        fast = head-&gt;next;</span><br><span class="line">        slow = head;</span><br><span class="line">        <span class="keyword">bool</span> slowMove = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span> (fast != <span class="literal">nullptr</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (fast == slow)</span><br><span class="line">            &#123; <span class="comment">// 有环</span></span><br><span class="line">                <span class="keyword">if</span> (!slowMove)</span><br><span class="line">                &#123;</span><br><span class="line">                    slow = slow-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ListNode *slow2 = head;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (slow2 == slow)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">return</span> slow;</span><br><span class="line">                    &#125;</span><br><span class="line">                    slow2 = slow2-&gt;next;</span><br><span class="line">                    slow = slow-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            slowMove = !slowMove;</span><br><span class="line">            <span class="keyword">if</span> (slowMove)</span><br><span class="line">            &#123;</span><br><span class="line">                slow = slow-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 跳出 while 则是无环</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>while(true) 的循环内，我定义了 slow2，这也太 sb 了，这样 slow2 就会一直在头部啊，怪不得不能够退出循环。</p>
+<p>看来这注定是一篇日记，而不是博文了。我有预感，等下的题目还是没有调试模式，所以我还是要用 VSCode 设置好 debug：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/languages/cpp">https://code.visualstudio.com/docs/languages/cpp</a></li>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/cpp/cpp-debug">https://code.visualstudio.com/docs/cpp/cpp-debug</a></li>
+</ul>
+<p>但是没用到上面两个网站的知识，我点了“C++(GDB/LLDB)”和“g++.exe”之后，VSCode 就自动帮我生成了 tasks.json 和 launch.json……我一点东西都没有学到嘛~</p>
+<h2 id="删除链表的倒数第n个节点"><a href="#删除链表的倒数第n个节点" class="headerlink" title="删除链表的倒数第n个节点"></a>删除链表的倒数第n个节点</h2><p>我是这样算：</p>
+<ul>
+<li>先统计共有几个节点</li>
+<li>设置好哨兵之后，再用数学方法计算出（简单的相减）下次需要经过的节点数</li>
+<li>然后再对接、删除、返回</li>
+</ul>
+<p>但是我看到有更好做法：</p>
+<ul>
+<li>倒数第 n 个意味着，删除节点的位置与末尾的位置相差 n - 1。</li>
+<li>可以用一前一后指针，前指针先走 n - 1 步，然后两者再同时前进</li>
+<li>当前指针到达末端的时候，后指针也就到达了要删除的地方。</li>
+</ul>
+<p>该方法只需要遍历两次，确实很厉害。由于删除的时候，后节点（back）需要在被删除节点的前一位置；而前节点最后是指向 nullptr 的，这样一来，前节点扣后节点则在位置上相差了 n+1，也就是：前指针先走 n+1 步。（有点绕，没有图确实讲不清楚）</p>
+<h2 id="两个链表的第一个公共结点"><a href="#两个链表的第一个公共结点" class="headerlink" title="两个链表的第一个公共结点"></a>两个链表的第一个公共结点</h2><p>两个单向链表如果有公共结点，那么一定是 Y 字型的。</p>
+<p>我的做法是：</p>
+<ul>
+<li>分别计算两条链的长度，计算其差。</li>
+<li>得到长度差 n 后，从较长的链表出发，先走 n 步</li>
+<li>之后较短链与较长链同时出发，每走一步都判断地址是否相等。</li>
+</ul>
+<h2 id="两个链表生成相加链表"><a href="#两个链表生成相加链表" class="headerlink" title="两个链表生成相加链表"></a>两个链表生成相加链表</h2><p>这道题我用了三次反转链表，而且还破坏了原来的链表结构。</p>
+<h2 id="单链表的排序"><a href="#单链表的排序" class="headerlink" title="单链表的排序"></a>单链表的排序</h2><p>我用了选择排序，居然超时了，妈的。</p>
+<p>看了讨论，网友们说如果用链表做可能会超时，而直接改值是可以更快的。那我就尝试改一下值吧。</p>
+<p>看来关于排序问题，我还是不太行。该题待完成。</p>
+<h2 id="约瑟夫问题"><a href="#约瑟夫问题" class="headerlink" title="约瑟夫问题"></a>约瑟夫问题</h2><p>这个问题，我肯定不会用模拟的方法做，肯定是要结合一些数学策略的。</p>
+<p>看了：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/3857719?fr=aladdin">https://baike.baidu.com/item/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/3857719?fr=aladdin</a></p>
+<p>看了：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cmmdc/p/7216726.html">https://www.cnblogs.com/cmmdc/p/7216726.html</a></p>
+<p>百度百科的讲解简直就是一坨屎，而博客园的还好，只不过是有一些错误，而且用词也不准确。</p>
+<p>到时候我再写一篇。</p>
+<h2 id="删除有序链表中重复出现的元素"><a href="#删除有序链表中重复出现的元素" class="headerlink" title="删除有序链表中重复出现的元素"></a>删除有序链表中重复出现的元素</h2><p>这个跟有序链表去重有点不一样。</p>
+<h2 id="重排链表"><a href="#重排链表" class="headerlink" title="重排链表"></a>重排链表</h2><p>牛客网 NC2。</p>
+<p>我想到的骚方法是：不停地 reverse 链表，取第一个元素。</p>
+<p>这样太暴力了，但是我又想了挺久，想不出什么好的办法。于是看了一下讨论，好家伙，我是第一次光看注释就能看懂其中心思想的：</p>
+<p>source: <a target="_blank" rel="noopener" href="https://www.nowcoder.com/profile/4013442">https://www.nowcoder.com/profile/4013442</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">// 快慢指针找到中间节点</span></span><br><span class="line">		...</span><br><span class="line">        <span class="comment">// 拆分链表，并反转中间节点之后的链表</span></span><br><span class="line">        ...</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 合并两个链表</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个思路的启发下，没有调试，没有运行测试，一次提交就过了，有点爽。</p>
+<h2 id="链表内指定区间反转"><a href="#链表内指定区间反转" class="headerlink" title="链表内指定区间反转"></a>链表内指定区间反转</h2><p>在这里，既便我设置了哨兵，但因为没有使用，所以又吃了没设哨兵的苦。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://littlebugyang.github.io/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/" data-id="ckovjrcog000j10xd92241620" data-title="链表" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Lenovo_500_FHD_Webcam
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/magicbook_2019/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">magicbook_2019</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/">electron</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%80%BB%E7%BB%93/">阅读官方文档总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/">阅读官方文档笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/">node</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/npm/">npm</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/">技术应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">硬件信息</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/%E2%80%9CLearning-JavaScript%E2%80%9D%E7%AC%94%E8%AE%B0/">“Learning JavaScript”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/YAML/">YAML</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/GitHub/">GitHub</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE/">软件设置</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/">概念</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/">约瑟夫问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/">词典</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/">Lenovo_500_FHD_Webcam</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">链表</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 LittleBugYang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

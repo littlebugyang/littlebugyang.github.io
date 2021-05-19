@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Chapter_13_Class_Inheritance | LittleBugYang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="从一个简单的基类开始12TableTennisPlayer::TableTennisPlayer (const string &amp; fn, const string &amp; ln, bool ht) : firstname(fn), lastname(ln), hasTable(ht) &amp;#123;&amp;#125;  上面的代码效果与以下相同： 123456TableTennisPlayer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter_13_Class_Inheritance">
+<meta property="og:url" content="https://littlebugyang.github.io/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_13_Class_Inheritance/index.html">
+<meta property="og:site_name" content="LittleBugYang&#39;s Blog">
+<meta property="og:description" content="从一个简单的基类开始12TableTennisPlayer::TableTennisPlayer (const string &amp; fn, const string &amp; ln, bool ht) : firstname(fn), lastname(ln), hasTable(ht) &amp;#123;&amp;#125;  上面的代码效果与以下相同： 123456TableTennisPlayer">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-19T14:16:29.000Z">
+<meta property="article:modified_time" content="2021-05-19T14:16:29.000Z">
+<meta property="article:author" content="LittleBugYang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="LittleBugYang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LittleBugYang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://littlebugyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-计算机语言/C++/“C++_Primer_Plus”笔记/Chapter_13_Class_Inheritance" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_13_Class_Inheritance/" class="article-date">
+  <time class="dt-published" datetime="2021-05-19T14:16:29.000Z" itemprop="datePublished">2021-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a>►<a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a>►<a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Chapter_13_Class_Inheritance
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="从一个简单的基类开始"><a href="#从一个简单的基类开始" class="headerlink" title="从一个简单的基类开始"></a>从一个简单的基类开始</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TableTennisPlayer::<span class="built_in">TableTennisPlayer</span> (<span class="keyword">const</span> string &amp; fn, <span class="keyword">const</span> string &amp; ln, <span class="keyword">bool</span> ht) </span><br><span class="line">: <span class="built_in">firstname</span>(fn), <span class="built_in">lastname</span>(ln), <span class="built_in">hasTable</span>(ht) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码效果与以下相同：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">TableTennisPlayer::<span class="built_in">TableTennisPlayer</span> (<span class="keyword">const</span> string &amp; fn, <span class="keyword">const</span> string &amp; ln, <span class="keyword">bool</span> ht)</span><br><span class="line">&#123;</span><br><span class="line">	firstname = fn;</span><br><span class="line">	lastname = ln;</span><br><span class="line">	hasTable = ht;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是前者效率更高。因为前者只使用了复制构造函数，而后者首先使用了默认的 string 构造函数（初始化了对象内三个变量），然后调用了 string 重载的赋值运算符。</p>
+<h2 id="派生一个类"><a href="#派生一个类" class="headerlink" title="派生一个类"></a>派生一个类</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RatedPlayer</span> :</span> <span class="keyword">public</span> TableTennisPlayer</span><br><span class="line">&#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>以上代表 RatedPlayer 派生自 TableTennisPlayer。</p>
+<p>冒号之后的类为基类。</p>
+<p>public 关键字代表这是一个公共派生（public derivation）。</p>
+<p>在公共派生下，基类的公共成员，变成了派生类的公共成员；而基类的私有成员也变成了派生类的一部分，只不过仅能被基类的公共方法和保护（protected）方法访问。</p>
+<p>派生类也需要自己的构造函数，还有数据成员和方法成员。</p>
+<h2 id="构造函数：访问考虑"><a href="#构造函数：访问考虑" class="headerlink" title="构造函数：访问考虑"></a>构造函数：访问考虑</h2><p>在派生类的构造函数执行之前，程序先调用基类的构造函数。相反地，当派生类到达生命周期末端的时候，派生类的析构函数先执行，然后基类的析构函数才被自动调用。</p>
+<p>可以使用成员初始化列表调用基类构造函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RatedPlayer::<span class="built_in">RatedPlayer</span>(<span class="keyword">unsigned</span> <span class="keyword">int</span> r, <span class="keyword">const</span> string &amp; fn, <span class="keyword">const</span> string &amp; ln, <span class="keyword">bool</span> ht) </span><br><span class="line">: <span class="built_in">TableTennisPlayer</span>(fn, ln, ht)</span><br><span class="line">&#123;</span><br><span class="line">	rating = r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若不提供基类的构造函数，则程序会自动调用其默认构造函数，也就是说：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RatedPlayer::<span class="built_in">RatedPlayer</span>(<span class="keyword">unsigned</span> <span class="keyword">int</span> r, <span class="keyword">const</span> string &amp; fn, <span class="keyword">const</span> string &amp; ln, <span class="keyword">bool</span> ht)</span><br><span class="line">&#123;</span><br><span class="line">	rating = r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等价于：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RatedPlayer::<span class="built_in">RatedPlayer</span>(<span class="keyword">unsigned</span> <span class="keyword">int</span> r, <span class="keyword">const</span> string &amp; fn, <span class="keyword">const</span> string &amp; ln, <span class="keyword">bool</span> ht) </span><br><span class="line">: <span class="built_in">TableTennisPlayer</span>()</span><br><span class="line">&#123;</span><br><span class="line">	rating = r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对基类的构造函数的调用与派生类的成员初始化可以同时进行：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RatedPlayer::<span class="built_in">RatedPlayer</span>(<span class="keyword">unsigned</span> <span class="keyword">int</span> r, <span class="keyword">const</span> TableTennisPlayer &amp; tp)</span><br><span class="line">: <span class="built_in">TableTennisPlayer</span>(tp), <span class="built_in">rating</span>(r)</span><br><span class="line">&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>派生类仅可以通过成员初始化列表和构造函数，传递参数给它的基类，而不能再往上传，除非基类把同样的参数再往上传给其基类。</p>
+<h2 id="使用派生类"><a href="#使用派生类" class="headerlink" title="使用派生类"></a>使用派生类</h2><h2 id="派生类和基类之间的特殊关系"><a href="#派生类和基类之间的特殊关系" class="headerlink" title="派生类和基类之间的特殊关系"></a>派生类和基类之间的特殊关系</h2><ul>
+<li>派生类可以使用基类非私有的方法</li>
+<li>基类指针和引用可以指向派生类对象<ul>
+<li>不需要显式强制类型转换</li>
+<li>反之不可</li>
+<li>但是该指针和引用只可以调用基类的方法</li>
+<li>结果是以基类为形参的函数可以同时接受基类或派生类对象的实参</li>
+<li>结果是可以用派生类对象初始化基类对象，隐式调用复制构造函数</li>
+</ul>
+</li>
+<li>可以把派生类对象赋值给基类变量，隐式调用重载赋值运算符方法</li>
+</ul>
+<h1 id="继承：一种“是……”的关系"><a href="#继承：一种“是……”的关系" class="headerlink" title="继承：一种“是……”的关系"></a>继承：一种“是……”的关系</h1><p>C++ 有三种继承：public，protected，和 private。</p>
+<p>Public 继承是最常见的形式，而且建立了 is-a 关系。</p>
+<p>意思是说，派生类对象，应该同时也是基类的对象。</p>
+<p>Public 继承不能建立以下关系：</p>
+<ul>
+<li>has-a</li>
+<li>is-like-a</li>
+<li>is-implemented-as-a</li>
+<li>uses-a</li>
+</ul>
+<h1 id="多态的公共继承"><a href="#多态的公共继承" class="headerlink" title="多态的公共继承"></a>多态的公共继承</h1><p>公共继承下，派生类对象可以直接使用基类的公共和保护方法，但是如果我们想让这些方法表现得不太一样呢？也就是说，让某个方法可以根据调用它的对象不同而表现不同。这种复杂的行为被称作：多态（polymorphic）。</p>
+<p>在 C++ 中，有两个关键机制可以实现多态公共继承：</p>
+<ul>
+<li>在派生类中重定义基类方法</li>
+<li>使用虚拟方法</li>
+</ul>
+<h2 id="开发-Brass-类和-BrassPlus-类"><a href="#开发-Brass-类和-BrassPlus-类" class="headerlink" title="开发 Brass 类和 BrassPlus 类"></a>开发 Brass 类和 BrassPlus 类</h2><p>为实现多态，可定义虚拟方法（virtual method）。</p>
+<p>使用关键字 virtual 的话，程序基于引用或者指针所指向的对象类型，调用不同方法。</p>
+<p>不使用关键字 virtual 的话，程序基于引用或者指针的类型，调用方法。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Brass <span class="title">dom</span><span class="params">(<span class="string">&quot;Dominic Banker&quot;</span>, <span class="number">11224</span>, <span class="number">4183.45</span>)</span></span>;</span><br><span class="line"><span class="function">BrassPlus <span class="title">dot</span><span class="params">(<span class="string">&quot;Dorothy Banker&quot;</span>, <span class="number">12118</span>, <span class="number">2592.00</span>)</span></span>;</span><br><span class="line">Brass &amp; b1_ref = dom;</span><br><span class="line">Brass &amp; b2_ref = dot;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 没有使用 virtual</span></span><br><span class="line">b1_ref.<span class="built_in">ViewAcct</span>(); <span class="comment">// use Brass::ViewAcct()</span></span><br><span class="line">b2_ref.<span class="built_in">ViewAcct</span>(); <span class="comment">// use Brass::ViewAcct()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用了 virtual</span></span><br><span class="line">b1_ref.<span class="built_in">ViewAcct</span>(); <span class="comment">// use Brass::ViewAcct()</span></span><br><span class="line">b2_ref.<span class="built_in">ViewAcct</span>(); <span class="comment">// use BrassPlus::ViewAcct()</span></span><br></pre></td></tr></table></figure>
+
+<p>如果要在派生类中重定义一个基类方法，通常的做法是，把基类方法声明为 virtual。这样一来，派生类中的方法也会自动转化成 virtual，不过在派生类中也显式写出来会更好。</p>
+<p>而且，通常基类要声明一个 virtual 的析构函数。这是为了保证派生对象被销毁时，析构函数能够按正确的顺序被调用。</p>
+<h3 id="类实现"><a href="#类实现" class="headerlink" title="类实现"></a>类实现</h3><p>virtual 关键字只需要在类声明中书写，在函数定义中不需要。</p>
+<p>尽管使用了 virtual 关键字，派生类还是可以使用基类的方法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BrassPlus::ViewAcct</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Brass::<span class="built_in">ViewAcct</span>(); <span class="comment">// display base portion</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在派生类中使用作用域解析符，调用基类方法，是一种标准技术。如果不使用作用域解析符的话，编译器会认为调用 ViewAcct() 是在调用自己，这样会形成递归。</p>
+<p>在没有在派生类重定义方法时，调用基类的方法不需要作用域解析符。</p>
+<p><code>cout.setf()</code> 方法除了可以设置输出格式之外，还可以返回设置之前的输出格式。</p>
+<h3 id="使用-Brass-和-BrassPlus-类"><a href="#使用-Brass-和-BrassPlus-类" class="headerlink" title="使用 Brass 和 BrassPlus 类"></a>使用 Brass 和 BrassPlus 类</h3><h3 id="展示虚拟方法行为"><a href="#展示虚拟方法行为" class="headerlink" title="展示虚拟方法行为"></a>展示虚拟方法行为</h3><p>如果想要管理一系列的 Brass 和 BrassPlus 对象，通常的做法是维护一个数组。但是数组需要元素属于同一类型，Brass 和 BrassPlus 对象明显无法处于同一数组。但是我们可以利用派生类和基类之间的特殊关系，用 Brass 指针指向 Brass 和 BrassPlus 对象，维护 Brass 指针数组即可：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Brass * p_clients[CLIENTS];</span><br><span class="line">p_clients[i]-&gt;<span class="built_in">ViewAcct</span>();</span><br></pre></td></tr></table></figure>
+
+<p>以上，在调用 ViewAcct() 的时候，要看类声明中，ViewAcct() 是否使用了 virtual 关键字。</p>
+<p>如果没有使用 virtual 关键字，则默认调用基类的方法；如果使用了 virtual 关键字，则使用指针所指向对象的类所定义的方法。</p>
+<h3 id="对虚拟析构函数的需求"><a href="#对虚拟析构函数的需求" class="headerlink" title="对虚拟析构函数的需求"></a>对虚拟析构函数的需求</h3><p>如果基类的析构函数不加上 virtual 关键字，则在销毁派生类对象时，就会调用基类的析构函数，而不会调用派生类的，这样一来，派生类对象无法被正常销毁。</p>
+<p>加上 virtual 关键字之后，销毁派生类对象时，就会调用派生类的析构函数，而派生类的析构函数结束后，基类的析构函数又会被自动调用，这样就以正确顺序完成了析构函数的调用。</p>
+<h1 id="静态和动态绑定"><a href="#静态和动态绑定" class="headerlink" title="静态和动态绑定"></a>静态和动态绑定</h1><p>在源代码中，把函数调用转译成一段代码的行为，称作绑定函数名（binding the function name）。</p>
+<p>在 C 中，每个函数名都对应着特定的函数；在 C++ 中，由于函数重载，该任务会变得难一点。但这些始终都是在编译期间就能完成的任务，称作静态绑定（static binding），或者早绑定（early binding）。</p>
+<p>然而，virtual 方法的出现，使得情况变得更加复杂，编译器必须确保：在程序运行的时候，方法名可以对应正确的虚拟方法。这种绑定就叫作动态绑定（dynamic binding），或者迟绑定（late binding）。</p>
+<h2 id="指针和引用类型兼容性"><a href="#指针和引用类型兼容性" class="headerlink" title="指针和引用类型兼容性"></a>指针和引用类型兼容性</h2><p>在 C++ 中，动态绑定与指针和引用调用的方法有关。</p>
+<p>将派生类的指针或引用转换为基类的指针或引用，称之为向上转型（upcasting）；相反，则称之为向下转型（downcasting）。</p>
+<p>向上转型在公共继承的时候，是允许的，不需要显式强制类型转换。向上转型具有传递性，比如说，从 BrassPlus 派生出 BrassPlusPlus，那么 Brass 的引用和指针，可以指向 Brass，BrassPlus，BrassPlusPlus 的对象。</p>
+<p>向下转型必须要有显式强制类型转换，而且使用有风险。这种限制与 is-a 关系相符，大多数情况下，is-a 关系是不对称的。</p>
+<p>下面看一个向上转型的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fr</span><span class="params">(Brass &amp; rb)</span></span>; <span class="comment">// uses rb.ViewAcct()</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fp</span><span class="params">(Brass * pb)</span></span>; <span class="comment">// uses pb-&gt;ViewAcct()</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fv</span><span class="params">(Brass b)</span></span>; <span class="comment">// uses b.ViewAcct()</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">Brass <span class="title">b</span><span class="params">(<span class="string">&quot;Billy Bee&quot;</span>, <span class="number">123432</span>, <span class="number">10000.0</span>)</span></span>;</span><br><span class="line">	<span class="function">BrassPlus <span class="title">bp</span><span class="params">(<span class="string">&quot;Betty Beep&quot;</span>, <span class="number">232313</span>, <span class="number">12345.0</span>)</span></span>;</span><br><span class="line">	<span class="built_in">fr</span>(b); <span class="comment">// uses Brass::ViewAcct()</span></span><br><span class="line">	<span class="built_in">fr</span>(bp); <span class="comment">// uses BrassPlus::ViewAcct()</span></span><br><span class="line">	<span class="built_in">fp</span>(b); <span class="comment">// uses Brass::ViewAcct()</span></span><br><span class="line">	<span class="built_in">fp</span>(bp); <span class="comment">// uses BrassPlus::ViewAcct()</span></span><br><span class="line">	<span class="built_in">fv</span>(b); <span class="comment">// uses Brass::ViewAcct()</span></span><br><span class="line">	<span class="built_in">fv</span>(bp); <span class="comment">// uses Brass::ViewAcct()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在形参为引用或指针时，以不同的类型作为实参，最后都能成功调用相应的方法。但是以值传参时，就达不到这样的效果。</p>
+<h2 id="虚拟成员函数和动态绑定"><a href="#虚拟成员函数和动态绑定" class="headerlink" title="虚拟成员函数和动态绑定"></a>虚拟成员函数和动态绑定</h2><h3 id="为什么有两种绑定，为什么默认绑定为静态"><a href="#为什么有两种绑定，为什么默认绑定为静态" class="headerlink" title="为什么有两种绑定，为什么默认绑定为静态"></a>为什么有两种绑定，为什么默认绑定为静态</h3><p>为什么有两种绑定，为什么不动态到底：为了效率和概念模型。</p>
+<p>为了效率很容易理解。动态绑定需要在程序运行时占用更多的资源。</p>
+<p>概念模型这点有点模糊。其意思是，在设计类的时候，总有一些方法是仅需要基类拥有即可的，对这些方法使用静态绑定，意味着派生类不需要改写，实现代码与概念模型的统一。</p>
+<p>总的来说，就是在在派生类中重写的方法，就加上 virtual 关键字，否则，没有必要。当然，类的设计并不是线性的，很多方法并不是一眼就能看出来需不需要加 virtual 的。</p>
+<h3 id="虚拟函数是如何工作的"><a href="#虚拟函数是如何工作的" class="headerlink" title="虚拟函数是如何工作的"></a>虚拟函数是如何工作的</h3><p>C++ 规定了虚拟函数的行为，但是把其实现工作留给了编译器开发者。</p>
+<p>编译器处理虚拟函数中常用的方法是：在每个对象中添加一个隐藏的成员，该成员指向一个存放函数地址的数组。这个数组被称作虚拟函数表（virtual function table, vtbl），该表中存放着该类声明的所有虚拟函数。</p>
+<p>如果派生类给某个虚拟函数作了新定义，虚拟函数表则将该虚拟函数的名字绑定到新定义的代码；</p>
+<p>如果派生类没有给某个虚拟函数新定义，虚拟函数表则保持该函数名与原代码的绑定；</p>
+<p>如果派生类新增了一个虚拟函数，虚拟函数表则分配一个位置用于存放该函数名及代码地址。</p>
+<p>需要强调的是，无论给类新增一个还是一百个虚拟函数，类对象中新增的隐藏成员只有一个，那就是指向虚拟函数表的指针。</p>
+<p>结合例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Scientist</span>&#123;</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">show_name</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">show_all</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Physicist</span> :</span> <span class="keyword">public</span> Scientist</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show_all</span><span class="params">()</span></span>; <span class="comment">// redefined</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">show_field</span><span class="params">()</span></span>; <span class="comment">// new</span></span><br><span class="line">...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">Physicist <span class="title">adam</span><span class="params">(<span class="string">&quot;Adam Crusher&quot;</span>, <span class="string">&quot;nuclear structure&quot;</span>)</span></span>;</span><br><span class="line">Scientist * psc = &amp;adam;</span><br><span class="line">psc-&gt;<span class="built_in">show_all</span>();</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>psc 中有指向虚拟函数表的指针，根据指针找到虚拟函数表。</li>
+<li>在表中找到 showAll() 的函数地址</li>
+<li>根据函数地址跳转到需要执行的代码段</li>
+<li>执行代码</li>
+</ol>
+<p>总而言之，按以上方法实现使用虚拟方法，有以下的内存和执行时间开销：</p>
+<ul>
+<li>声明了虚拟方法后，该类的每个对象中都有变量，用于存储虚拟函数表的位置</li>
+<li>对于每个类，编译器都创建一张虚拟函数表</li>
+<li>对于每个函数调用，都需要查表这一额外步骤</li>
+</ul>
+<h3 id="关于虚拟方法，需要知道的事情"><a href="#关于虚拟方法，需要知道的事情" class="headerlink" title="关于虚拟方法，需要知道的事情"></a>关于虚拟方法，需要知道的事情</h3><p>一旦某类的某个函数被定义为虚拟函数，则该类的派生类，及派生类的派生类等，都将拥有这个虚拟函数。</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>构造函数不能够为虚拟函数。</p>
+<p>调用派生类构造函数后，派生类构造函数会调用基类构造函数，也就是说派生类和基类的构造函数各自不同，不存在继承关系。</p>
+<p>因为派生类不继承基类的构造函数，所以也就没有将构造函数定义为虚拟函数的必要。</p>
+<h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><p>如果某类是基类，则其析构函数应该是虚拟的。</p>
+<p>如果不定义基类的析构函数为虚拟函数，在用基类指针指向派生类对象后，用 delete 销毁基类指针，则只能调用基类的析构函数，而不能调用派生类的析构函数。比如说：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Employee * pe = <span class="keyword">new</span> Singer; <span class="comment">// legal because Employee is base for Singer</span></span><br><span class="line"><span class="keyword">delete</span> pe; <span class="comment">// ~Employee() or ~Singer()?</span></span><br></pre></td></tr></table></figure>
+
+<p>在静态绑定的情况下，<code>delete pe;</code> 只能够调用 <code>~Employee()</code>，这样一来，就只能销毁 Employee 的部分，而在 Singer 内部其他的析构工作就无法完成。而如果在基类中定义析构函数为虚拟函数的话，这里会实行动态绑定，调用 <code>~Singer()</code>，在 <code>~Singer()</code> 结束后，还会自动调用 <code>~Employee()</code>，以正确顺序完成销毁。</p>
+<p>所以，对于基类来说，尽管它不需要析构函数，它也要把自己的析构函数声明为虚拟函数。而对于派生类来说，声明析构函数为虚拟函数也不会产生错误，只不过动态绑定会损失一点性能而已。</p>
+<h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><p>友元不能够声明为虚拟函数，因为友元不是类成员。</p>
+<h3 id="无再定义"><a href="#无再定义" class="headerlink" title="无再定义"></a>无再定义</h3><p>如果派生类没有再定义函数，则该类会使用基类的函数定义；若派生类为长链继承中的一部分，则派生类会使用该函数最近一次定义的版本。</p>
+<h3 id="再定义隐藏了方法"><a href="#再定义隐藏了方法" class="headerlink" title="再定义隐藏了方法"></a>再定义隐藏了方法</h3><p>派生类中重定义虚拟方法，会导致覆盖基类的同名方法，而且，不同于函数重载，只要函数名相同，不管基类函数签名为何，都可以被覆盖：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dwelling</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">showperks</span><span class="params">(<span class="keyword">int</span> a)</span> <span class="keyword">const</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hovel</span> :</span> <span class="keyword">public</span> Dwelling</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">showperks</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中 <code>void showperks(int) const;</code> 被 <code>void showperks() const;</code> 覆盖了。也就是说，重定义继承而来的方法，并不是函数重载的变种。</p>
+<p>这样的特性导致两条编码准则：</p>
+<ol>
+<li><p>如果要重定义基类的方法，必须要确保派生类的原型与之完全匹配。</p>
+<ol>
+<li>只有一种情况除外：原型返回类型为该类的引用或指针时。这种情况下，派生类函数返回类型可以与基类函数返回类型不同，只要换成派生类的引用或指针即可。比如说，基类方法为 <code>Dwelling &amp; build (int);</code> 时，为覆盖之，派生类可以为 <code>Hovel &amp; build(int);</code>。</li>
+</ol>
+</li>
+<li><p>如果该被重定义的基类方法被重载了，则重定义时，要重定义其所有重载版本的函数。</p>
+<ol>
+<li><p>如果重定义函数是属实无奈，重定义后不需要做什么，那就直接调用原函数即可：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Hovel::showperks</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;Dwelling::<span class="built_in">showperks</span>();&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h1 id="访问控制：受保护"><a href="#访问控制：受保护" class="headerlink" title="访问控制：受保护"></a>访问控制：受保护</h1><p>在面对外部访问的时候，protected 跟 private 一样，其域内的成员无法被访问；在面对派生类访问的时候，protected 域内的成员可以被直接访问。</p>
+<p>尽管可以在 protected 内声明数据成员，但是最好只通过基类方法来访问基类数据。</p>
+<p>protected 访问权限对成员函数来说是大有用处的，它给予了派生类访问非公共内部函数的权限。</p>
+<h1 id="抽象基类"><a href="#抽象基类" class="headerlink" title="抽象基类"></a>抽象基类</h1><p>当我们为两个类建模关系的时候，很有可能这两个类的属性和行为互有交叉，尽管在概念上它们可以被称作 is-a 关系，但是落实到代码的时候，总是会觉得不对劲。这时，可以使用 C++ 的抽象基类（Abstract Base Class，ABC），把两个概念类的共同属性行为放到抽象类中，再从这个抽象类继承出两个具体类（concrete classes）。</p>
+<p>只要声明中有纯虚函数（pure virtual function），该类就是抽象基类。</p>
+<p>声明某函数为纯虚函数，只需要在原型后面加上 <code>= 0</code> 即可：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseEllipse</span> // <span class="title">abstract</span> <span class="title">base</span> <span class="keyword">class</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Area</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>; <span class="comment">// a pure virtual function</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>抽象基类没有对应的对象。也就是说，不能够使用抽象基类生成对象，抽象基类，只能作为基类存在。抽象基类至少有一个纯虚拟函数。</p>
+<p>C++ 允许纯虚拟函数拥有定义，尽管纯虚拟函数的目的就是使该函数在基类中不需要定义。</p>
+<h2 id="应用抽象类概念"><a href="#应用抽象类概念" class="headerlink" title="应用抽象类概念"></a>应用抽象类概念</h2><h2 id="抽象基类哲学"><a href="#抽象基类哲学" class="headerlink" title="抽象基类哲学"></a>抽象基类哲学</h2><p>有一种学术观点，称：具体类，应该是那些绝不会充当基类角色的类。</p>
+<p>ABC 要求其纯虚拟函数在任何具体派生类中被覆写，强制要求派生类遵守 ABC 所设定的接口。</p>
+<h1 id="继承和动态内存分配"><a href="#继承和动态内存分配" class="headerlink" title="继承和动态内存分配"></a>继承和动态内存分配</h1><p>继承关系是如何跟动态内存分配交互的呢？比如说，如果基类使用了动态内存分配，而且重定义了赋值运算符和复制构造函数，这会怎样影响到派生类的实现呢？</p>
+<p>现假设下面的类为基类：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">baseDMA</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">char</span> * label;</span><br><span class="line">	<span class="keyword">int</span> rating;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">baseDMA</span>(<span class="keyword">const</span> <span class="keyword">char</span> * l = <span class="string">&quot;null&quot;</span>, <span class="keyword">int</span> r = <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">baseDMA</span>(<span class="keyword">const</span> baseDMA &amp; rs);</span><br><span class="line">	<span class="keyword">virtual</span> ~<span class="built_in">baseDMA</span>();</span><br><span class="line">	baseDMA &amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> baseDMA &amp; rs);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="派生类不使用-new"><a href="#派生类不使用-new" class="headerlink" title="派生类不使用 new"></a>派生类不使用 new</h2><p>派生类为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">lacksDMA</span> :</span><span class="keyword">public</span> baseDMA</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">char</span> color[<span class="number">40</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>是否需要额外的析构函数：没有需要做些什么。</p>
+<p>是否需要额外的复制构造函数：对于派生类对象中的基类部分，默认的派生类复制构造函数会调用基类的复制构造函数进行复制；至于剩余的派生类的成员，暂时看来也没有什么好操心的。</p>
+<p>是否需要额外的赋值运算符：同理，默认的赋值运算符函数会调用基类的赋值运算符函数进行赋值，此处剩余的派生类的成员没有什么需果特别处理的。</p>
+<h2 id="派生类使用-new"><a href="#派生类使用-new" class="headerlink" title="派生类使用 new"></a>派生类使用 new</h2><p>派生类为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">hasDMA</span> :</span><span class="keyword">public</span> baseDMA</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">char</span> * style; <span class="comment">// use new in constructors</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在这种情况下，派生类必须自定义析构函数、复制构造函数，还有赋值运算符重载函数。</p>
+<ul>
+<li><p>析构函数：派生类管好自己就行，执行完会执行基类的。</p>
+</li>
+<li><p>复制构造函数：要利用成员初始化列表调用基类的复制构造函数，再处理派生类的复制，否则，将调用基类的默认构造函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hasDMA::<span class="built_in">hasDMA</span>(<span class="keyword">const</span> hasDMA &amp; hs): <span class="built_in">baseDMA</span>(hs) &#123;...&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>赋值运算符函数：通过作用域解析符调用基类的赋值运算符函数，再处理派生类的赋值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hasDMA &amp; hasDMA::<span class="keyword">operator</span>=(<span class="keyword">const</span> hasDMA &amp; hs)</span><br><span class="line">&#123;</span><br><span class="line">	...</span><br><span class="line">	baseDMA::<span class="keyword">operator</span>=(hs); <span class="comment">// copy base portion</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>总而言之，当基类和派生类都用到了动态内存分配的时候，派生类的析构函数、复制构造函数、还有赋值运算符函数，都必须使用基类的析构函数（自动调用）、复制构造函数（成员初始化列表）、还有赋值运算符函数（作用域解析符），来处理派生类从基类继承过来的成员。</p>
+<h2 id="应用了动态分配内存和友元的继承示例"><a href="#应用了动态分配内存和友元的继承示例" class="headerlink" title="应用了动态分配内存和友元的继承示例"></a>应用了动态分配内存和友元的继承示例</h2><p>对上面提到的 baseDMA，lacksDMA，和 hasDMA 重载 <code>&lt;&lt;</code> 运算符，则需要定义友元函数。因为友元函数只能访问声明该友元的类的私有成员，所以，为了能够访问不同类的私有成员，输出不同内容，以上每个类声明中都必须有该友元函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// class baseDMA</span></span><br><span class="line"><span class="keyword">friend</span> std::ostream &amp;<span class="keyword">operator</span>&lt;&lt;(std::ostream &amp;os, <span class="keyword">const</span> baseDMA &amp;rs);</span><br><span class="line"></span><br><span class="line"><span class="comment">// class lacksDMA</span></span><br><span class="line"><span class="keyword">friend</span> std::ostream &amp;<span class="keyword">operator</span>&lt;&lt;(std::ostream &amp;os, <span class="keyword">const</span> lacksDMA &amp;rs);</span><br><span class="line"></span><br><span class="line"><span class="comment">// class hasDMA</span></span><br><span class="line"><span class="keyword">friend</span> std::ostream &amp;<span class="keyword">operator</span>&lt;&lt;(std::ostream &amp;os, <span class="keyword">const</span> hasDMA &amp;rs);</span><br></pre></td></tr></table></figure>
+
+<p>但是有些内容是共有的，都存放在了 baseDMA 这个基类中，而 lacksDMA 和 hasDMA 的友元不能访问 baseDMA 的私有成员；而且，友元不是成员函数，所以不能够使用作用域解析符来调用 baseDMA 的函数。这时就需要用到强制类型转换，而且是向上转型，以 hasDMA 的重载为例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">std::ostream &amp; <span class="keyword">operator</span>&lt;&lt;(std::ostream &amp; os, <span class="keyword">const</span> hasDMA &amp; hs)</span><br><span class="line">&#123;</span><br><span class="line">	os &lt;&lt; (<span class="keyword">const</span> baseDMA &amp;) hs;</span><br><span class="line">	os &lt;&lt; <span class="string">&quot;Style: &quot;</span> &lt;&lt; hs.style &lt;&lt; endl;</span><br><span class="line"><span class="keyword">return</span> os;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="类设计回顾"><a href="#类设计回顾" class="headerlink" title="类设计回顾"></a>类设计回顾</h1><h2 id="编译器为你生成的成员函数"><a href="#编译器为你生成的成员函数" class="headerlink" title="编译器为你生成的成员函数"></a>编译器为你生成的成员函数</h2><h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3><p>把初始化和赋值分清楚：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Star sirius;</span><br><span class="line">Star alpha = sirius; <span class="comment">// initialization (one notation)</span></span><br><span class="line">Star dogstar;</span><br><span class="line">dogstar = sirius; <span class="comment">// assignment</span></span><br></pre></td></tr></table></figure>
+
+<p>一个语句创建了一个新对象，则为初始化；一个语句修改了已存在的对象的值，则为赋值。</p>
+<h2 id="其他类方法注意事项"><a href="#其他类方法注意事项" class="headerlink" title="其他类方法注意事项"></a>其他类方法注意事项</h2><h3 id="构造函数注意事项"><a href="#构造函数注意事项" class="headerlink" title="构造函数注意事项"></a>构造函数注意事项</h3><p>构造函数与其他函数不同的是，构造函数创建对象。这也是为什么构造函数不能被继承的原因。</p>
+<p>继承，意味着派生类对象可以使用基类的方法。但是如果连构造函数都要继承的话，那么该对象甚至还要靠基类的构造函数创建自身，而与之相矛盾的是，调用派生类对象构造函数之后，才能调用基类的构造函数，由此生成基类对象。</p>
+<h3 id="使用-const"><a href="#使用-const" class="headerlink" title="使用 const"></a>使用 const</h3><p>如果一个函数定义了自己找形参为指向常量的引用或指针，则该函数不能将此函数传递给其他函数，除非这个函数保证不修改该参数值。</p>
+<h2 id="公共继承注意事项"><a href="#公共继承注意事项" class="headerlink" title="公共继承注意事项"></a>公共继承注意事项</h2><h3 id="不能继承的东西"><a href="#不能继承的东西" class="headerlink" title="不能继承的东西"></a>不能继承的东西</h3><p>构造函数不能被继承。但是 C++11 提供了允许构造函数继承的机制。当然，默认行为还是构造函数没有被继承。</p>
+<p>构造函数不能被继承。</p>
+<p>赋值运算符不能被继承。但是赋值运算符的函数签名在每个类中都不一样，因为该重载函数有一个形参为类类型。</p>
+<h3 id="赋值运算符注意事项"><a href="#赋值运算符注意事项" class="headerlink" title="赋值运算符注意事项"></a>赋值运算符注意事项</h3><p>能否将一个基类对象赋值给派生类对象呢？答案是：也许能。</p>
+<ul>
+<li>如果派生类定义了单参数构造函数，参数为基类对象，则可以利用该层转化实现赋值；</li>
+<li>如果派生类定义了赋值运算符，专门处理基类对象赋值给派生类对象，则可以；</li>
+<li>如果以上两点都没有的话，那么要实现该目的，只能使用强制类型转换（向下转换）。</li>
+</ul>
+<h3 id="私有-vs-受保护成员"><a href="#私有-vs-受保护成员" class="headerlink" title="私有 vs 受保护成员"></a>私有 vs 受保护成员</h3><h3 id="虚拟函数注意事项"><a href="#虚拟函数注意事项" class="headerlink" title="虚拟函数注意事项"></a>虚拟函数注意事项</h3><p>声明函数为虚拟函数可以在其派生类重定义该函数。</p>
+<p>不声明函数为虚拟函数，也可以在派生类重定义函数。但是至少地，对函数使用 virtual 关键字，说明你不想该函数被重定义。</p>
+<p>观察下面两段代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(<span class="keyword">const</span> Brass &amp; rba)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	rba.<span class="built_in">ViewAcct</span>();</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inadequate</span><span class="params">(Brass ba)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ba.<span class="built_in">ViewAcct</span>();</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">BrassPlus <span class="title">buzz</span><span class="params">(<span class="string">&quot;Buzz Parsec&quot;</span>, <span class="number">00001111</span>, <span class="number">4300</span>)</span></span>;</span><br><span class="line"><span class="built_in">show</span>(buzz);</span><br><span class="line"><span class="built_in">inadequate</span>(buzz);</span><br></pre></td></tr></table></figure>
+
+<p>show 所输出的是 BrassPlus 版本的 ViewAcct()，动态绑定成功；</p>
+<p>inadequate 所接收的是 BrassPlus，而其形参为 Brass，通过自动的向上转型，形参中仅有 Brass 的部分，所以自然而然，输出的是 Brass 版本的 ViewAcct()。</p>
+<h3 id="使用基类方法时的观察"><a href="#使用基类方法时的观察" class="headerlink" title="使用基类方法时的观察"></a>使用基类方法时的观察</h3><h2 id="类函数总结"><a href="#类函数总结" class="headerlink" title="类函数总结"></a>类函数总结</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://littlebugyang.github.io/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_13_Class_Inheritance/" data-id="ckovjrcpi001v10xda18yer0j" data-title="Chapter_13_Class_Inheritance" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_12_Classes_and_Dynamic_Memory_Allocation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Chapter_12_Classes_and_Dynamic_Memory_Allocation
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_14_Reusing_Code_in_C++/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Chapter_14_Reusing_Code_in_C++</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/">electron</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%80%BB%E7%BB%93/">阅读官方文档总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/">阅读官方文档笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/">node</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/npm/">npm</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/">技术应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">硬件信息</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/%E2%80%9CLearning-JavaScript%E2%80%9D%E7%AC%94%E8%AE%B0/">“Learning JavaScript”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/YAML/">YAML</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/GitHub/">GitHub</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE/">软件设置</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/">概念</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/">约瑟夫问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/">词典</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/">Lenovo_500_FHD_Webcam</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">链表</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 LittleBugYang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

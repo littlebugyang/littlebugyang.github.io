@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>第01章：引论 | LittleBugYang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="操作系统是软件，实现了用户与硬件的交互。 与用户交互的程序有两种：  一种是基于文本的交互程序，称作**外壳**（shell）； 一种是基于图形的交互程序，称作**图形用户界面**（Graphical User Iterface，GUI）。  以上两种程序都不是操作系统的一部分，但是它们都依赖于操作系统而运作。他们的关系如下图所示。  从上面这幅图还可以看到计算机的两种运行模式：**内核态（ker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第01章：引论">
+<meta property="og:url" content="https://littlebugyang.github.io/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC01%E7%AB%A0%EF%BC%9A%E5%BC%95%E8%AE%BA/index.html">
+<meta property="og:site_name" content="LittleBugYang&#39;s Blog">
+<meta property="og:description" content="操作系统是软件，实现了用户与硬件的交互。 与用户交互的程序有两种：  一种是基于文本的交互程序，称作**外壳**（shell）； 一种是基于图形的交互程序，称作**图形用户界面**（Graphical User Iterface，GUI）。  以上两种程序都不是操作系统的一部分，但是它们都依赖于操作系统而运作。他们的关系如下图所示。  从上面这幅图还可以看到计算机的两种运行模式：**内核态（ker">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://littlebugyang.github.io/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC01%E7%AB%A0%EF%BC%9A%E5%BC%95%E8%AE%BA/image-20210513194007486.png">
+<meta property="og:image" content="https://littlebugyang.github.io/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC01%E7%AB%A0%EF%BC%9A%E5%BC%95%E8%AE%BA/image-20210515154539071.png">
+<meta property="og:image" content="https://littlebugyang.github.io/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC01%E7%AB%A0%EF%BC%9A%E5%BC%95%E8%AE%BA/image-20210515231905151.png">
+<meta property="og:image" content="https://littlebugyang.github.io/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC01%E7%AB%A0%EF%BC%9A%E5%BC%95%E8%AE%BA/image-20210515235526303.png">
+<meta property="article:published_time" content="2021-05-19T14:16:28.000Z">
+<meta property="article:modified_time" content="2021-05-19T14:16:28.000Z">
+<meta property="article:author" content="LittleBugYang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://littlebugyang.github.io/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC01%E7%AB%A0%EF%BC%9A%E5%BC%95%E8%AE%BA/image-20210513194007486.png">
+  
+    <link rel="alternate" href="/atom.xml" title="LittleBugYang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LittleBugYang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://littlebugyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-操作系统/《现代操作系统》阅读笔记/第01章：引论" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC01%E7%AB%A0%EF%BC%9A%E5%BC%95%E8%AE%BA/" class="article-date">
+  <time class="dt-published" datetime="2021-05-19T14:16:28.000Z" itemprop="datePublished">2021-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>►<a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      第01章：引论
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>操作系统是软件，实现了用户与硬件的交互。</p>
+<p>与用户交互的程序有两种：</p>
+<ul>
+<li>一种是基于文本的交互程序，称作**<u>外壳</u>**（shell）；</li>
+<li>一种是基于图形的交互程序，称作**<u>图形用户界面</u>**（Graphical User Iterface，GUI）。</li>
+</ul>
+<p>以上两种程序都不是操作系统的一部分，但是它们都依赖于操作系统而运作。他们的关系如下图所示。</p>
+<p><img src="image-20210513194007486.png" alt="image-20210513194007486"></p>
+<p>从上面这幅图还可以看到计算机的两种运行模式：**<u>内核态</u><strong>（kernel mode）和</strong><u>用户态</u>**（user mode）。</p>
+<p>内核态：</p>
+<ul>
+<li>别名：**<u>管态</u><strong>、</strong><u>核心态</u>**；</li>
+<li>权限：具有对所有硬件的完全访问权，可以执行机器能够运行的任何指令；</li>
+</ul>
+<p>用户态：</p>
+<ul>
+<li>权限：只能使用机器指令中的一个子集。所以，那些会影响机器的控制的指令在用户态的程序中是禁止的。</li>
+</ul>
+<h1 id="1-1-WHAT-IS-AN-OPERATING-SYSTEM"><a href="#1-1-WHAT-IS-AN-OPERATING-SYSTEM" class="headerlink" title="1.1 WHAT IS AN OPERATING SYSTEM?"></a>1.1 WHAT IS AN OPERATING SYSTEM?</h1><h2 id="1-1-1-The-Operating-System-as-an-Extended-Machine"><a href="#1-1-1-The-Operating-System-as-an-Extended-Machine" class="headerlink" title="1.1.1 The Operating System as an Extended Machine"></a>1.1.1 The Operating System as an Extended Machine</h2><h2 id="1-1-2-The-Operating-System-as-a-Resource-Manager"><a href="#1-1-2-The-Operating-System-as-a-Resource-Manager" class="headerlink" title="1.1.2 The Operating System as a Resource Manager"></a>1.1.2 The Operating System as a Resource Manager</h2><h1 id="1-2-HISTORY-OF-OPERATING-SYSTEMS"><a href="#1-2-HISTORY-OF-OPERATING-SYSTEMS" class="headerlink" title="1.2 HISTORY OF OPERATING SYSTEMS"></a>1.2 HISTORY OF OPERATING SYSTEMS</h1><h2 id="1-2-1-The-First-Generation-1945-55-Vacuum-Tubes"><a href="#1-2-1-The-First-Generation-1945-55-Vacuum-Tubes" class="headerlink" title="1.2.1 The First Generation (1945-55): Vacuum Tubes"></a>1.2.1 The First Generation (1945-55): Vacuum Tubes</h2><h2 id="1-2-2-The-Second-Generation-1955-65-Transistors-and-Batch-Systems"><a href="#1-2-2-The-Second-Generation-1955-65-Transistors-and-Batch-Systems" class="headerlink" title="1.2.2 The Second Generation (1955-65): Transistors and Batch Systems"></a>1.2.2 The Second Generation (1955-65): Transistors and Batch Systems</h2><h2 id="1-2-3-The-Third-Generation-1965-1980-ICs-and-Multiprogramming"><a href="#1-2-3-The-Third-Generation-1965-1980-ICs-and-Multiprogramming" class="headerlink" title="1.2.3 The Third Generation (1965-1980): ICs and Multiprogramming"></a>1.2.3 The Third Generation (1965-1980): ICs and Multiprogramming</h2><p>UNIX 的诞生和开源，使得多个机构发展了自己的、互不兼容的 UNIX 版本，导致混乱。为了使编写的程序能够在任何版本的 UNIX 上运行，IEEE 提出了一个 UNIX 的标准，称作 POSIX。目前大多数 UNIX 版本都支持 POSIX。</p>
+<h2 id="1-2-4-The-Fourth-Generation-1980-Present-Personal-Computers"><a href="#1-2-4-The-Fourth-Generation-1980-Present-Personal-Computers" class="headerlink" title="1.2.4 The Fourth Generation (1980-Present): Personal Computers"></a>1.2.4 The Fourth Generation (1980-Present): Personal Computers</h2><h2 id="1-2-5-The-Fifth-Generation-1990-Present-Mobile-Computers"><a href="#1-2-5-The-Fifth-Generation-1990-Present-Mobile-Computers" class="headerlink" title="1.2.5 The Fifth Generation (1990-Present): Mobile Computers"></a>1.2.5 The Fifth Generation (1990-Present): Mobile Computers</h2><h1 id="1-3-COMPUTER-HARDWARE-REVIEW"><a href="#1-3-COMPUTER-HARDWARE-REVIEW" class="headerlink" title="1.3 COMPUTER HARDWARE REVIEW"></a>1.3 COMPUTER HARDWARE REVIEW</h1><h2 id="1-3-1-Processors"><a href="#1-3-1-Processors" class="headerlink" title="1.3.1 Processors"></a>1.3.1 Processors</h2><h3 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h3><p>如果要得到操作系统的服务，用户程序必须使用系统调用（system call）以陷入内核并调用操作系统。</p>
+<p>TRAP 指令把计算机从用户态切换成内核态，并启用操作系统。当有关工作完成之后，在系统调用后面的指令把控制权返回给用户程序。在这里，读者可以把它看成是一个特别的过程调用，该调用具有从用户态切换到内核态的额外属性。</p>
+<p>需要注意的是，除了用于执行系统调用的指令外，还有其他可使计算机陷入内核的触发条件。其他的多数陷入是由硬件引起的，用于警告异常情况的发生，如试图被零除或浮点数下溢等。在所有的情况下，操作系统都会得到控制权并决定如何处理异常情况：</p>
+<ul>
+<li>有时，程序不得不因错误而停止；</li>
+<li>有时，可以忽略错误（比如说，下溢数可以被置为零）；</li>
+<li>最后，若程序已经提前告知它希望处理某类错误，那么操作系统会把控制权返还给该程序，任其自行处理。</li>
+</ul>
+<h3 id="多线程和多核芯片"><a href="#多线程和多核芯片" class="headerlink" title="多线程和多核芯片"></a>多线程和多核芯片</h3><p>To do.</p>
+<h2 id="1-3-2-Memory"><a href="#1-3-2-Memory" class="headerlink" title="1.3.2 Memory"></a>1.3.2 Memory</h2><h2 id="1-3-3-Disks"><a href="#1-3-3-Disks" class="headerlink" title="1.3.3 Disks"></a>1.3.3 Disks</h2><h2 id="1-3-4-I-O-Devices"><a href="#1-3-4-I-O-Devices" class="headerlink" title="1.3.4 I/O Devices"></a>1.3.4 I/O Devices</h2><p>To do.</p>
+<h2 id="1-3-5-Buses"><a href="#1-3-5-Buses" class="headerlink" title="1.3.5 Buses"></a>1.3.5 Buses</h2><h2 id="1-3-6-Booting-the-Computer-启动计算机"><a href="#1-3-6-Booting-the-Computer-启动计算机" class="headerlink" title="1.3.6 Booting the Computer 启动计算机"></a>1.3.6 Booting the Computer 启动计算机</h2><p><em>额外参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/enlaihe/article/details/84955026">https://blog.csdn.net/enlaihe/article/details/84955026</a></em></p>
+<p><em>从上面这个参考的文章中可以看出，启动计算机是一个较复杂的过程，这里主要记录本书中所提及到的，并且以 MBR 为例。</em></p>
+<p>从按下电源键，到用户可输入账号密码以登录系统，这个过程的执行主体有几个：</p>
+<ul>
+<li>**<u>基本输入输出系统</u>**（Basic Input Output System，BIOS），是主板上的程序：<ul>
+<li>BIOS 内含底层 I/O 软件，可执行读键盘、写屏幕、进行磁盘 I/O 和其他过程；</li>
+<li>BIOS 存放在**<u>闪存</u>**（flash RAM）中，是非易失性的；</li>
+<li>BIOS 如果有错，是可以通过操作系统更新的。</li>
+</ul>
+</li>
+<li>操作系统，这是 BIOS 要唤醒的最终对象，其对 BIOS 可读可写。</li>
+</ul>
+<p>回到“启动计算机的过程”的内容。接通电源后，后面的过程可以分为以下步骤：</p>
+<ol>
+<li>BIOS 检查硬件设备。</li>
+<li>BIOS 决定启动设备。</li>
+<li>引导加载程序进行引导。</li>
+<li>操作系统检查设备驱动程序。</li>
+<li>操作系统完成后续工作。</li>
+</ol>
+<h3 id="BIOS-检查硬件设备"><a href="#BIOS-检查硬件设备" class="headerlink" title="BIOS 检查硬件设备"></a>BIOS 检查硬件设备</h3><p>计算机启动时，BIOS 开始运行：</p>
+<ul>
+<li>首先检查所安装的 RAM 数量，键盘和其他基本设备是否已安装并正常响应；</li>
+<li>接着，开始扫描 PCIe 和 PCI 总线，并找出连在上面的所有设备；</li>
+<li>如果现有的设备和系统上次启动时的不同，那么 BIOS 会为新的设备再作配置。</li>
+</ul>
+<h3 id="BIOS-决定启动设备"><a href="#BIOS-决定启动设备" class="headerlink" title="BIOS 决定启动设备"></a>BIOS 决定启动设备</h3><p>接着，BIOS 读取存储在 CMOS 存储器中的设备清单，决定启动设备。用户可以在系统刚启动时进入 BIOS 配置界面，进行对设备清单的修改。</p>
+<p>如果存在 CD-ROM（有时是 USB），则系统试图从中启动；如果失败，系统将从硬盘启动。</p>
+<p>总之，计算机会按照某种顺序检查设备是否为启动设备。以 MBR 为例，计算机会查看该设备的第一个扇区的最后两个节点是否为 <code>0x55</code> 和 <code>0xAA</code>。若然，则该设备可用于启动，然后进入下一个步骤。</p>
+<h3 id="引导加载程序进行引导"><a href="#引导加载程序进行引导" class="headerlink" title="引导加载程序进行引导"></a>引导加载程序进行引导</h3><p>依旧以 MBR 为例，MBR 可分为三个部分：</p>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第 1-446 字节</td>
+<td>调用操作系统的机器码</td>
+</tr>
+<tr>
+<td>第 447-510 字节</td>
+<td>分区表</td>
+</tr>
+<tr>
+<td>第 511-512 字节</td>
+<td>主引导记录签名（0x55 和 0xAA）</td>
+</tr>
+</tbody></table>
+<p>该设备上的第一个扇区被读入内存后，计算机正是根据 MBR 的主引导记录签名才能确认该设备可启动。</p>
+<p>我们可以把 MRB 中的“调用操作系统的机器码”看作是一级**<u>引导加载程序</u>**（boot loader）。该段程序会对位于该启动扇区末尾的分区表进行检查，以确定哪个分区是活动的。</p>
+<p>然后，一级引导加载程序会从活动分区中读出二级引导加载程序，其会读入操作系统，并启动之。</p>
+<h3 id="操作系统检查设备驱动程序"><a href="#操作系统检查设备驱动程序" class="headerlink" title="操作系统检查设备驱动程序"></a>操作系统检查设备驱动程序</h3><p>操作系统在启动之后，会询问 BIOS 以获得硬件配置信息。</p>
+<p>对于每种设备，操作系统都会检查其设备驱动程序是否存在。如果没有，操作系统会要求用户插入由设备供应商提供的 CD-ROM，其中通常含有该设备的驱动程序；或者会要求用户从网络上下载驱动程序。</p>
+<h3 id="操作系统完成后续工作"><a href="#操作系统完成后续工作" class="headerlink" title="操作系统完成后续工作"></a>操作系统完成后续工作</h3><p>操作系统一旦发现全部的设备驱动程序都已准备就绪，就将它们调入内核；然后初始化有关表格，创建必需的**<u>后台进程</u>**（background process），并启动登录程序或 GUI。</p>
+<h1 id="1-4-THE-OPERATING-SYSTEM-ZOO"><a href="#1-4-THE-OPERATING-SYSTEM-ZOO" class="headerlink" title="1.4 THE OPERATING SYSTEM ZOO"></a>1.4 THE OPERATING SYSTEM ZOO</h1><h2 id="1-4-1-Mainframe-Operating-Systems"><a href="#1-4-1-Mainframe-Operating-Systems" class="headerlink" title="1.4.1 Mainframe Operating Systems"></a>1.4.1 Mainframe Operating Systems</h2><h2 id="1-4-2-Server-Operating-Systems"><a href="#1-4-2-Server-Operating-Systems" class="headerlink" title="1.4.2 Server Operating Systems"></a>1.4.2 Server Operating Systems</h2><h2 id="1-4-3-Multiprocessor-Operating-Systems"><a href="#1-4-3-Multiprocessor-Operating-Systems" class="headerlink" title="1.4.3 Multiprocessor Operating Systems"></a>1.4.3 Multiprocessor Operating Systems</h2><h2 id="1-4-4-Personal-Computer-Operating-Systems"><a href="#1-4-4-Personal-Computer-Operating-Systems" class="headerlink" title="1.4.4 Personal Computer Operating Systems"></a>1.4.4 Personal Computer Operating Systems</h2><h2 id="1-4-5-Handheld-Computer-Operating-Systems"><a href="#1-4-5-Handheld-Computer-Operating-Systems" class="headerlink" title="1.4.5 Handheld Computer Operating Systems"></a>1.4.5 Handheld Computer Operating Systems</h2><h2 id="1-4-6-Embedded-Operating-Systems"><a href="#1-4-6-Embedded-Operating-Systems" class="headerlink" title="1.4.6 Embedded Operating Systems"></a>1.4.6 Embedded Operating Systems</h2><h2 id="1-4-7-Sensor-Node-Operating-Systems"><a href="#1-4-7-Sensor-Node-Operating-Systems" class="headerlink" title="1.4.7 Sensor-Node Operating Systems"></a>1.4.7 Sensor-Node Operating Systems</h2><h2 id="1-4-8-Real-Time-Operating-Systems"><a href="#1-4-8-Real-Time-Operating-Systems" class="headerlink" title="1.4.8 Real-Time Operating Systems"></a>1.4.8 Real-Time Operating Systems</h2><h2 id="1-4-9-Smart-Card-Operating-Systems"><a href="#1-4-9-Smart-Card-Operating-Systems" class="headerlink" title="1.4.9 Smart Card Operating Systems"></a>1.4.9 Smart Card Operating Systems</h2><h1 id="1-5-OPERATING-SYSTEM-CONCEPTS"><a href="#1-5-OPERATING-SYSTEM-CONCEPTS" class="headerlink" title="1.5 OPERATING SYSTEM CONCEPTS"></a>1.5 OPERATING SYSTEM CONCEPTS</h1><h2 id="1-5-1-Processes"><a href="#1-5-1-Processes" class="headerlink" title="1.5.1 Processes"></a>1.5.1 Processes</h2><h2 id="1-5-2-Address-Spaces"><a href="#1-5-2-Address-Spaces" class="headerlink" title="1.5.2 Address Spaces"></a>1.5.2 Address Spaces</h2><h2 id="1-5-3-Files"><a href="#1-5-3-Files" class="headerlink" title="1.5.3 Files"></a>1.5.3 Files</h2><h2 id="1-5-4-Input-Output"><a href="#1-5-4-Input-Output" class="headerlink" title="1.5.4 Input/Output"></a>1.5.4 Input/Output</h2><h2 id="1-5-5-Protection"><a href="#1-5-5-Protection" class="headerlink" title="1.5.5 Protection"></a>1.5.5 Protection</h2><h2 id="1-5-6-The-Shell"><a href="#1-5-6-The-Shell" class="headerlink" title="1.5.6 The Shell"></a>1.5.6 The Shell</h2><h2 id="1-5-7-Ontogeny-Recapitulates-Phylogeny"><a href="#1-5-7-Ontogeny-Recapitulates-Phylogeny" class="headerlink" title="1.5.7 Ontogeny Recapitulates Phylogeny"></a>1.5.7 Ontogeny Recapitulates Phylogeny</h2><h1 id="1-6-SYSTEM-CALLS"><a href="#1-6-SYSTEM-CALLS" class="headerlink" title="1.6 SYSTEM CALLS"></a>1.6 SYSTEM CALLS</h1><p>任何单 CPU 计算机一次只能执行一条指令。如果一个进程正在用户态运行一个用户程序，并且需要一个系统服务（比如，从一个文件读数据），那么它就必须执行一个<strong>陷阱指令</strong>（trap instruction），将控制转移到操作系统。</p>
+<p>操作系统得到控制权后，通过检查参数，找到寻求系统调用的进程。然后，操作系统执行系统调用，并把控制权返回给系统调用之后的指令。</p>
+<p>在某种意义上，进行系统调用就像进行一个特殊的<strong>过程调用</strong>（procedure calling），但是只有系统调用可以进入内核，而过程调用则不能。</p>
+<p>下面来看一个系统调用的例子——read：</p>
+<ul>
+<li><p>描述：读取文件。</p>
+</li>
+<li><p>参数：3 个。第 1 个参数指定文件；第 2 个参数指向接收文件内容的缓冲区；第 3 个参数给定了欲读入的字节数。</p>
+</li>
+<li><p>调用方式：C 程序中调用<strong>库过程</strong>（library procedure）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">count = read(fd, buffer, nbytes);</span><br></pre></td></tr></table></figure></li>
+<li><p>返回值：实际上已读入内容的字节数。如果该系统调用不成功，则返回值为 -1。</p>
+</li>
+</ul>
+<p>如果系统调用不成功，则调用失败产生的错误码会被放入一个名为 <code>errno</code> 的全局变量中，程序应该检查该全局变量以得知系统调用是否成功。</p>
+<p>看完系统调用 read 的功能等概述后，我们来看一下该系统调用的调用过程的示意图：</p>
+<p><img src="image-20210515154539071.png" alt="image-20210515154539071"></p>
+<p>需要注意的是，根据我的观察，我猜测图中用户空间的横条代表函数调用栈。下面是对该示意图的解释：</p>
+<ol>
+<li>在实际调用 read 这个库过程（library procedure）之前，要先做好准备。图中的第 (1)~(3) 步是该准备的内容：把参数推入栈中。<ul>
+<li>实参分别为：fd、&amp;buffer、nbytes。历史原因导致编译器参数入栈的顺序是反过来的，所以先入栈的是 nbytes，接着是 &amp;buffer，最后才是 fd。</li>
+</ul>
+</li>
+<li>参数都被推入栈中后，接下来的第 (4) 步才真正调用了 read 这个库过程。</li>
+<li>库过程可能是由汇编语言编写的。通常库过程会按照操作系统的意愿，把系统调用的编号放在某个地方，图中的第 (5) 步表示的就是这个过程：把 read 这个系统调用的编号放入寄存器中。</li>
+<li>库过程在用户空间把编号放好后，随即执行一条 TRAP 指令，使计算机从用户模式转变到内核模式，并且在内核中某固定位置执行指令，该步骤对应图中的第 (6) 步。<ul>
+<li>TRAP 指令与其他过程调用指令很相似，因为它们后面都跟随着一个来自其他地方的指令，而且返回的地址都保存好了，以供之后使用。</li>
+<li>但是 TRAP 指令毕竟是与其他过程调用指令不同的：TRAP 会使得运行模式转化成内核模式；TRAP 指令不能跳转到任意位置。在不同的体系结构下，TRAP 指令可能只能跳到单一的固定地址；也有可能以 TRAP 指令自身携带的 8 位字段为索引，在内存中的一张表格上找到需要跳转到的地址。</li>
+</ul>
+</li>
+<li>在内核空间执行指令时，内核代码检查系统调用编号，找到编号对应的<strong>系统调用处理器</strong>（system-call handler），也就是图中的第 (7) 步。<ul>
+<li>通常情况下，编号就是某张表的索引，表项是指向不同系统调用处理器的指针。</li>
+</ul>
+</li>
+<li>找到系统调用处理器之后，系统调用的任务就会被分派给该处理器，对应图中的第 (8) 步。</li>
+<li>系统调用处理器接下来会执行系统调用的指令，在完成工作后，其可能会把控制权返回给用户空间中的库调用过程，也就是图中的第 (9) 步。<ul>
+<li>之所以说“可能交还控制权”，是因为该系统调用可能会阻塞调用者。比如说，如果某系统调用尝试读键盘，但是此时却没有任何输入，那调用者只好被阻塞。在这种情况下，操作系统会寻求其他的可运行进程。等到有效输入到达后，调用者才会引起系统的注意，解除阻塞状态。</li>
+</ul>
+</li>
+<li>控制权回到库调用过程后，控制权又会像普通的过程调用返回那样，返回到发起调用的地方，这对应了图中的第 (10) 步。</li>
+<li>第 10 步过后，read 的系统调用已经完成了。但是该调用所用到的参数还在栈中，所以第 (11) 步是清理栈，只需要移动一下栈指针（Stack Pointer，SP），确保刚刚推入的参数都在栈外即可。</li>
+<li>至此，read 系统调用的调用过程结束。</li>
+</ol>
+<p>POSIX 过程调用与系统调用并不是一对一的。POSIX 标准定义了系统必需提供的过程，但是它并没有定义哪些过程是系统调用，而哪些又是库调用等等。如果一个过程不需要系统调用就可以完成，那么出于性能考虑，在用户空间中就可以完成执行。</p>
+<h2 id="1-6-1-System-Calls-for-Process-Management"><a href="#1-6-1-System-Calls-for-Process-Management" class="headerlink" title="1.6.1 System Calls for Process Management"></a>1.6.1 System Calls for Process Management</h2><h2 id="1-6-2-System-Calls-for-File-Management"><a href="#1-6-2-System-Calls-for-File-Management" class="headerlink" title="1.6.2 System Calls for File Management"></a>1.6.2 System Calls for File Management</h2><h2 id="1-6-3-System-Calls-for-Directory-Management"><a href="#1-6-3-System-Calls-for-Directory-Management" class="headerlink" title="1.6.3 System Calls for Directory Management"></a>1.6.3 System Calls for Directory Management</h2><h2 id="1-6-4-Miscellaneous-System-Calls"><a href="#1-6-4-Miscellaneous-System-Calls" class="headerlink" title="1.6.4 Miscellaneous System Calls"></a>1.6.4 Miscellaneous System Calls</h2><h2 id="1-6-5-The-Windows-Win32-API"><a href="#1-6-5-The-Windows-Win32-API" class="headerlink" title="1.6.5 The Windows Win32 API"></a>1.6.5 The Windows Win32 API</h2><h1 id="1-7-OPERATING-SYSTEM-STRUCTURE"><a href="#1-7-OPERATING-SYSTEM-STRUCTURE" class="headerlink" title="1.7 OPERATING SYSTEM STRUCTURE"></a>1.7 OPERATING SYSTEM STRUCTURE</h1><h2 id="1-7-1-Monolithic-Systems"><a href="#1-7-1-Monolithic-Systems" class="headerlink" title="1.7.1 Monolithic Systems"></a>1.7.1 Monolithic Systems</h2><h2 id="1-7-2-Layered-Systems"><a href="#1-7-2-Layered-Systems" class="headerlink" title="1.7.2 Layered Systems"></a>1.7.2 Layered Systems</h2><h2 id="1-7-3-Microkernels"><a href="#1-7-3-Microkernels" class="headerlink" title="1.7.3 Microkernels"></a>1.7.3 Microkernels</h2><h2 id="1-7-4-Client-Server-Model"><a href="#1-7-4-Client-Server-Model" class="headerlink" title="1.7.4 Client-Server Model"></a>1.7.4 Client-Server Model</h2><h2 id="1-7-5-Virtual-Machines"><a href="#1-7-5-Virtual-Machines" class="headerlink" title="1.7.5 Virtual Machines"></a>1.7.5 Virtual Machines</h2><h3 id="VM-370"><a href="#VM-370" class="headerlink" title="VM/370"></a>VM/370</h3><p>IBM 的 VM/370 是一套分时系统。其核心为<strong>虚拟机监控程序</strong>（virtual machine monitor）。</p>
+<p>该虚拟机监控程序在裸机（bare hardware）上运行，而且有多道程序功能，向上层提供若干台虚拟机。</p>
+<p>VM/370 与别的操作系统不同的地方是：其提供的虚拟机不是扩展计算机，而恰是裸机的复制品。</p>
+<p>VM/370 所提供的每台虚拟机都是与真实的硬件相同的，每台虚拟机都可以运行任何操作系统，就像直接在裸机上运行操作系统那样。</p>
+<p>有些人会在 VM/370 上运行 OS/360 或者其他大型的批处理、事务处理操作系统，而其他人则运行单用户的可交互系统，称作会话监控系统（Conversational Monitor System，CMS），后者在程序员群体中很流行。下图所示的是 VM/370 上运行 CMS：</p>
+<p><img src="image-20210515231905151.png" alt="image-20210515231905151"></p>
+<p>CMS 程序执行系统调用的时候，调用陷入（trap）到该虚拟机的操作系统上，而不是陷入到 VM/370。之后 CMS 会发出普通的硬件指令，这些指令会陷入到 VM/370 中，然后由 VM/370 执行。</p>
+<h3 id="虚拟机再发明"><a href="#虚拟机再发明" class="headerlink" title="虚拟机再发明"></a>虚拟机再发明</h3><p>虚拟化的另一个用途是：终端用户想要同时运行两个或以上的操作系统。这种情况可以用下图的 (a) 来表示。在这里，“虚拟机监控程序”这个术语被重命名为<strong>第一类虚拟机管理程序</strong>（type 1 hypervisor）。</p>
+<p><img src="image-20210515235526303.png" alt="image-20210515235526303"></p>
+<p>在一些早期的研究项目中，通过将翻译过的大块代码存放在内部缓存中，下次再执行时复用，研究人员提高了像 Bochs 这样的解释器（interpreter）的性能。在这种性能的突破下，衍生出了与第一类虚拟机管理程序不同的<strong>第二类虚拟机管理程序</strong>（type 2 hypervisor），如上图中 (b) 所示。但是这样的改进还不足以让这类型的虚拟机运行在商业环境下。</p>
+<p>后来，第二类虚拟机管理程序中被添加入了分担重任的内核模块，正如上图中 (c) 所示。但是本书作者宁愿称之为第 1.7 类虚拟机管理程序，因为这样的程序并不完全是在用户模式下运行的程序。</p>
+<p>第二类虚拟机管理程序最显著的特征是：利用了<strong>宿主操作系统</strong>（host operating system），及其文件系统等。而第一类虚拟机管理程序是没有宿主可依赖的，因此它们必须在原始的硬件上自行管理。</p>
+<p>有宿主操作系统，就会有客户操作系统（guest operating system）。该客户操作系统可从 CD-ROM 等存储介质中读取，并安装在虚拟硬盘上。而虚拟硬盘对于宿主操作系统来说，只不过是在其文件系统上的一个大文件罢了。</p>
+<p>还有一种实现虚拟化的方法是：通过修改操作系统的方式，删除控制指令。这并不是真正的虚拟化，而是<strong>半虚拟化</strong>（paravirtualization）。</p>
+<h3 id="Java-虚拟机"><a href="#Java-虚拟机" class="headerlink" title="Java 虚拟机"></a>Java 虚拟机</h3><p>JVM（Java Virtual Machine）是 Sun 公司发明 Java 程序设计语言的同时所发明的虚拟机。Java 编译器生成代码后，输入到 JVM 中，可由 JVM 解释器执行。</p>
+<p>JVM 有非常简单的、只需要解释的体系结构（但是对于我来说很难），JVM 代码可以被传送到任何有 JVM 解释器的计算机上，并在此计算机上执行。</p>
+<h2 id="1-7-6-Exokernels"><a href="#1-7-6-Exokernels" class="headerlink" title="1.7.6 Exokernels"></a>1.7.6 Exokernels</h2><h1 id="1-8-THE-WORLD-ACCORDING-TO-C"><a href="#1-8-THE-WORLD-ACCORDING-TO-C" class="headerlink" title="1.8 THE WORLD ACCORDING TO C"></a>1.8 THE WORLD ACCORDING TO C</h1><h2 id="1-8-1-The-C-Language"><a href="#1-8-1-The-C-Language" class="headerlink" title="1.8.1 The C Language"></a>1.8.1 The C Language</h2><h2 id="1-8-2-Header-Files"><a href="#1-8-2-Header-Files" class="headerlink" title="1.8.2 Header Files"></a>1.8.2 Header Files</h2><h2 id="1-8-3-Large-Programming-Projects"><a href="#1-8-3-Large-Programming-Projects" class="headerlink" title="1.8.3 Large Programming Projects"></a>1.8.3 Large Programming Projects</h2><h2 id="1-8-4-The-Model-of-Run-Time"><a href="#1-8-4-The-Model-of-Run-Time" class="headerlink" title="1.8.4 The Model of Run Time"></a>1.8.4 The Model of Run Time</h2><h1 id="1-9-RESEARCH-ON-OPERATING-SYSTEMS"><a href="#1-9-RESEARCH-ON-OPERATING-SYSTEMS" class="headerlink" title="1.9 RESEARCH ON OPERATING SYSTEMS"></a>1.9 RESEARCH ON OPERATING SYSTEMS</h1><h1 id="1-10-OUTLINE-OF-THE-REST-OF-THIS-BOOK"><a href="#1-10-OUTLINE-OF-THE-REST-OF-THIS-BOOK" class="headerlink" title="1.10 OUTLINE OF THE REST OF THIS BOOK"></a>1.10 OUTLINE OF THE REST OF THIS BOOK</h1><h1 id="1-11-METRIC-UNITS"><a href="#1-11-METRIC-UNITS" class="headerlink" title="1.11 METRIC UNITS"></a>1.11 METRIC UNITS</h1><p>本书使用两种不同的单位来分别代表容量和速度：</p>
+<ul>
+<li>容量：1KB=$2^{10}$B，1MB=$2^{20}$B，1GB=$2^{30}$B……（“B”代表字节）</li>
+<li>速度：1Kb/s=$10^3$b/s，1Mb/s=$10^6$b/s，1Gb/s=$10^9$b/s（“b”代表比特）</li>
+</ul>
+<h1 id="1-12-SUMMARY"><a href="#1-12-SUMMARY" class="headerlink" title="1.12 SUMMARY"></a>1.12 SUMMARY</h1><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>不得不说，这第 1 章的内容就已经多到我看不下去了，这还是中文版的书籍。我大二的时候就不应该惯着自己读英文版的，这看起来哪里还有继续阅读的动力啊，真是失策！</p>
+<p>笔记用**<u>粗体加下划线</u>**表示专用名的翻译。</p>
+<p>后来看了一下第 1 章的课后习题，我 tm 震惊了，这是给人做的吗？作者真的希望读者读完他写的第 1 章就会做这些题目？除了做 11 题这种算硬盘读取时间的硬核题目，还有第 8 题这种与一些图像知识相关的，这……好吧，只要你不把自己定位为一本入门书，确实没什么毛病。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://littlebugyang.github.io/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC01%E7%AB%A0%EF%BC%9A%E5%BC%95%E8%AE%BA/" data-id="ckovjrcov000y10xd97za1vcn" data-title="第01章：引论" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          树
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC03%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">第03章</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/">electron</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%80%BB%E7%BB%93/">阅读官方文档总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/">阅读官方文档笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/">node</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/npm/">npm</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/">技术应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">硬件信息</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/%E2%80%9CLearning-JavaScript%E2%80%9D%E7%AC%94%E8%AE%B0/">“Learning JavaScript”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/YAML/">YAML</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/GitHub/">GitHub</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE/">软件设置</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/">概念</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/">约瑟夫问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/">词典</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/">Lenovo_500_FHD_Webcam</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">链表</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 LittleBugYang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>LittleBugYang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Just blogs.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LittleBugYang&#39;s Blog">
+<meta property="og:url" content="https://littlebugyang.github.io/index/page/35/index.html">
+<meta property="og:site_name" content="LittleBugYang&#39;s Blog">
+<meta property="og:description" content="Just blogs.">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="LittleBugYang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="LittleBugYang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LittleBugYang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://littlebugyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-计算机语言/C++/“C++_Primer_Plus”笔记/Chapter_15_Friends_Exceptions_and_More" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_15_Friends_Exceptions_and_More/" class="article-date">
+  <time class="dt-published" datetime="2021-05-19T14:16:29.000Z" itemprop="datePublished">2021-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a>►<a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a>►<a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_15_Friends_Exceptions_and_More/">Chapter_15_Friends_Exceptions_and_More</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h1><p>类也可以为友元，也就是友元类。友元类的所有方法，都可以访问原类的私有和受保护成员。</p>
+<p>类自己决定哪个函数、哪个成员函数、哪个类为友元，友元关系并不能从类外部决定，所以友元的存在并不违反 OOP 的 Hide the Data 的原则。</p>
+<h2 id="友元类"><a href="#友元类" class="headerlink" title="友元类"></a>友元类</h2><p>现欲构建电视类（Tv）和遥控器类（Remote），我们需要厘清这两者的关系。首先，它们不是 is-a 的关系：很明显电视不是遥控器，反过来也不可能；其次，has-a 的关系也不太成立：遥控器不拥有单独的电视，遥控器可以用于遥控多台电视机，反过来，电视机可以被多个遥控器遥控。</p>
+<p>它们之间的交互更像是友元关系：遥控器需要访问电视的信息，或者修改电视的信息，而电视机不需要对遥控器进行操作，这是一个单向的数据流，非常适合使用友元。把遥控器类设置为电视类的友元类，即可完美建模该问题。</p>
+<p>友元声明可以在类的任何范围：public、private、protected，效果都是一样的。</p>
+<p>因为 Remote 类提到了 Tv 类，所以在声明 Remote 类之前，最好已经存在 Tv 类了。最简单的方法就是声明 Remote 之前声明 Tv，也可以用前向声明（forward declaration）的方法。</p>
+<p>在 C++ 中，如果要实现 toggle 的效果，则首先要保证变量的两个变化的值为 true/false，或者 0/1，对于这样的代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">onoff</span><span class="params">()</span> </span>&#123;state = (state == On) ? Off : On;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">onoff</span><span class="params">()</span> </span>&#123;state = (state == On) ? Off : On;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就可以用 <code>void onoff() &#123;state ^= 1;&#125;  </code> 来代替。</p>
+<p>如果不使用友元的话，要实现 Tv 和遥控器的交互，则可能需要中间类把这两者作为成员，然后由中间类统一调配行为。但是这样的代码建模是不能够真实地反映 Tv 和遥控器的交互的。</p>
+<h2 id="友元成员函数"><a href="#友元成员函数" class="headerlink" title="友元成员函数"></a>友元成员函数</h2><p>如果观察遥控类方法的实现，就可以发现，大多数方法都是调用了 Tv 类的公共方法，换言之，没有怎么访问到 Tv 的私有或受保护成员，即便是非友元也可以做到同样的效果。</p>
+<p>在遥控类中，只有一个方法用到了 Tv 的私有成员：<code>void set_chan(Tv &amp;t, int c) &#123; t.channel = c; &#125;</code></p>
+<p>如果我们不把整个 Remote 看作友元，而把 Remote::set_chan 看作友元呢？这样是可行的，这样的友元，就称为“友元成员函数”，这里的成员函数指的是：该友元函数为其他类的成员函数，并非声明该友元的类的成员函数。</p>
+<p>该例子中，声明友元成员函数的方法为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tv</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">Remote::set_chan</span><span class="params">(Tv &amp; t, <span class="keyword">int</span> c)</span></span>;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>应用以上方法，编译器需要在 Tv 进行声明前得知 Remote 类有成员函数名为 set_chan，则 Remote 类的成员声明应该在 Tv 之前。但是之前有说到，声明 Remote 类之前，应该已经有 Tv 类了，因为 Remote 类中大量使用了 Tv 的引用作为参数。于是这里就出现了矛盾，前者需要 Remote 在 Tv 前，而后者需要 Remote 在 Tv 后。</p>
+<p>这时可以使用前向声明，如果 Remote 类需要 Tv 类在前，为其提供引用参数的依据，则可以：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tv</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Remote</span> &#123;</span>...&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tv</span> &#123;</span>...&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这样，即便 Remote 的方法中使用到 Tv 的引用，编译器也能找到 Tv 的来源。而 Tv 类中声明友元成员函数的工作，可以等到 Remote 类的声明完成后再进行。</p>
+<p>这时，又出现了新的问题：Remote 类声明中，有行内方法用到 Tv 类方法，如 <code>bool volup(Tv &amp;t) &#123; return t.volup(); &#125;</code> 等，比比皆是，但是 Tv 类中相关方法的声明却还在 Remote 的后头。这时，可以暂缓 Remote 类方法的定义，只留下原型：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tv</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Remote</span></span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">volup</span><span class="params">(Tv &amp;t)</span></span>;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tv</span> &#123;</span>...&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Remote::volup</span><span class="params">(Tv &amp;t)</span></span>&#123;...&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>在 Tv 类声明完成后，再对类内方法作定义。如果还是想保留行内函数的特性，可以使用 inline 关键字：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">Remote::volup</span><span class="params">(Tv &amp;t)</span></span>&#123;...&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，行内函数有内部联系（internal linkage），这意味着函数定义必须和使用该函数的代码，处于同一文件里。所以，把行内函数的定义放在头文件中，使用该类方法的代码在包括该类头文件的同时，也会包括入行内函数的定义，这样就确保函数定义会跟使用函数的地方处于同一文件。</p>
+<p>在把整个 Remote 类作为友元的情况下，之所以不需要前向声明，是因为 Tv 类内的友元声明已经相当于类声明了：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tv</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Remote</span>;</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他友好关系"><a href="#其他友好关系" class="headerlink" title="其他友好关系"></a>其他友好关系</h2><p>假设随着科技的发展，电视可以反馈信息给遥控器，这时，就不再是单向数据流了，而需要双向数据流，也就需要双向的友好关系。</p>
+<p>现在，需要保持之前 Remote 对 Tv 的控制，又要实现 Tv 对 Remote 的控制，则可以将它们设置为互为好友。需要注意的是，对于那些用到了尚未声明的方法的成员函数，必须将其设置为函数原型，将其定义滞后。如果不定义为行内函数，则需要放到另外一个实现的文件中：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tv</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Remote</span>;</span> <span class="comment">// 前向声明</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">buzz</span><span class="params">(Remote &amp; r)</span></span>; <span class="comment">// 需要用到 Remote 的方法，其定义滞后</span></span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Remote</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Tv</span>;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> Bool <span class="title">volup</span><span class="params">(Tv &amp; t)</span> </span>&#123; t.<span class="built_in">volup</span>(); &#125; <span class="comment">// Tv 已经声明，可以直接定义</span></span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 若非 inline，则放到另外的文件</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Tv::buzz</span><span class="params">(Remote &amp; r)</span> <span class="comment">// 此时 Remote 才声明完，可以定义 Tv 中用到 Remote 的方法的成员函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="共享友元"><a href="#共享友元" class="headerlink" title="共享友元"></a>共享友元</h2><p>有这样一种情况：某个函数需要访问两个不同类的私有数据。逻辑上说，该函数需同时为这两个类的成员函数，但是这是不可能的。所以可以求助于友元函数，若函数为其中一个类的成员函数，同时为另一个类的友元函数，则可以实现目标。但是更普适的做法是，该函数同时作为两个类的友元函数，也就是该函数作为这两个类的共享友元。</p>
+<p>现假设需要一个函数 sync 用于同步两台设备的时钟，两台设备分别是 Analyzer 和 Probe 的对象，则可以作以下声明：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Analyzer</span>;</span> <span class="comment">// 前向声明</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Probe</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">sync</span><span class="params">(Analyzer &amp; a, <span class="keyword">const</span> Probe &amp; p)</span></span>; <span class="comment">// sync a to p</span></span><br><span class="line">	<span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">sync</span><span class="params">(Probe &amp; p, <span class="keyword">const</span> Analyzer &amp; a)</span></span>; <span class="comment">// sync p to a</span></span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Analyzer</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">sync</span><span class="params">(Analyzer &amp; a, <span class="keyword">const</span> Probe &amp; p)</span></span>; <span class="comment">// sync a to p</span></span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">sync</span><span class="params">(Probe &amp; p, <span class="keyword">const</span> Analyzer &amp; a)</span></span>; <span class="comment">// sync p to a</span></span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">sync</span><span class="params">(Analyzer &amp; a, <span class="keyword">const</span> Probe &amp; p)</span></span></span><br><span class="line"><span class="function"></span>&#123;...&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">sync</span><span class="params">(Probe &amp; p, <span class="keyword">const</span> Analyzer &amp; a)</span></span></span><br><span class="line"><span class="function"></span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上例子，<code>void sync(Analyzer &amp;, const Probe &amp;);</code> 和 <code>void sync(Probe &amp;, const Analyzer &amp;);</code> 都是共享友元。如果是从第三方获取时钟的话，各类设置一个友元即可。</p>
+<h1 id="嵌套类"><a href="#嵌套类" class="headerlink" title="嵌套类"></a>嵌套类</h1><p>在另一个类中声明的类，被称作嵌套类。</p>
+<p>对于包含类的外界来说，嵌套类只能在使用作用域解析符和嵌套类被声明在公共部分的情况下，被使用。</p>
+<p>使用嵌套类的原因通常是：辅助包含类的实现，避免名字冲突。</p>
+<h2 id="嵌套类和访问"><a href="#嵌套类和访问" class="headerlink" title="嵌套类和访问"></a>嵌套类和访问</h2><p>对嵌套类来说，有两种访问。首先，嵌套类声明的位置控制了嵌套类的作用域（scope）；其次，嵌套类也有 public、private、protected 等访问控制。</p>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>嵌套类在作用域方面，其实就像包含类的成员一样：</p>
+<ul>
+<li><p>如果在 private 部分，则包含类内可见，而外部不可见，派生类不可见；</p>
+</li>
+<li><p>如果在 protected 部分，则包含类内可见，而外部不可见，派生类可见；</p>
+</li>
+<li><p>如果在 public 部分，则包含类内可见，派生类可见，外部可见，不过外部需要额外的作用域解析符才能够访问：</p>
+<ul>
+<li>```c++<br>class Team<br>{<br>public:<pre><code>class Coach &#123; ... &#125;;
+...
+</code></pre>
+};// 外部调用<br>Team::Coach forhire;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">以上作用域注意事项同样适用于嵌套的结构体和枚举。</span><br><span class="line"></span><br><span class="line">### 访问控制</span><br><span class="line"></span><br><span class="line">public、private、protected 等访问控制对嵌套类来说，跟其他正常类是一样的。</span><br><span class="line"></span><br><span class="line">需要注意的一点是，包含类对嵌套类的访问也是受 public 等关键字限制的，也就是说，即便是包含类也仅能够显式地调用嵌套类的公共成员。</span><br><span class="line"></span><br><span class="line">## 在模板中嵌套</span><br><span class="line"></span><br><span class="line"># 异常</span><br><span class="line"></span><br><span class="line">程序发生运行时错误的情况下，很有可能会停止运行。为了恰当处理错误，而不让程序停止，C++ 引入了异常处理。</span><br><span class="line"></span><br><span class="line">一些初级的应对错误的情况：</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">2.0 * x * y / (x + y)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>在评估以上表达式的时候，如果刚好 x 和 y 是相反数，则会出现除以零的情况。这是我们不想看到的，有许多新的编译器会生成代表无穷大的浮点数来替代该结果；cout 则输出 INF 等字样；有的程序直接崩溃；最好的方法是，不依赖于编译器的处理方法，提供一个适用于所有系统的处理方法。</p>
+<h2 id="调用-abort"><a href="#调用-abort" class="headerlink" title="调用 abort()"></a>调用 abort()</h2><p>一种通用的处理方法是：调用 abort() 函数。</p>
+<p>abort() 函数来源于 cstdlib 头文件。</p>
+<p>其作用是：发送终止程序的信息到标准错误流中，接着直接结束程序。这种结束是不需要返回到 main 函数再退出的，而且会返回一个基于实现环境而异的值，给该程序的调用者。</p>
+<p>abort() 是否刷新文件缓冲区取决于实现环境，而可以确定会刷新文件缓冲区的是调用 exit() 函数。但是调用 exit() 函数不会输出信息。</p>
+<p>尽管我们可以通过 if 语句检查是否存在除以零的运行时错误：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a == -b)</span><br><span class="line">&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;untenable arguments to hmean()\n&quot;</span>;</span><br><span class="line">    std::<span class="built_in">abort</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是这对程序员来说，还是太麻烦了。而且依赖于程序员作这些检查，也是不可靠的。</p>
+<h2 id="返回错误码"><a href="#返回错误码" class="headerlink" title="返回错误码"></a>返回错误码</h2><p>相比起直接结束程序，返回错误码是一个更加灵活的方法。比如说，从输入中读取字符的函数返回 ASCII 值作为正常字符，而返回 EOF 作为输入错误。但是对于计算数学问题的代码来说，任何数值都是可行的，没有什么特殊值是可以用作表示错误的。</p>
+<p>这时，可以考虑给函数添加参数，使用时，传入指针或引用，若出现错误，则函数内部则修改该参数，则外界即可得知计算是否出错：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">hmean</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b, <span class="keyword">double</span> * ans)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a == -b)</span><br><span class="line">    &#123;</span><br><span class="line">        *ans = DBL_MAX;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        *ans = <span class="number">2.0</span> * a * b / (a + b);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子用 double 类型变量作为存放答案的地方，而用返回值表示是否计算成功。人们偏向于传入指针而不是引用，因为指针可以让人更清晰地看到，ans 的与众不同，也就快速反应得知该变量用于存放答案。</p>
+<h2 id="异常机制"><a href="#异常机制" class="headerlink" title="异常机制"></a>异常机制</h2><p>我们现在可使用异常机制来处理问题。处理异常有三个步骤：</p>
+<ul>
+<li>抛出异常</li>
+<li>使用处理器（handler）捕获异常</li>
+<li>使用 try 块</li>
+</ul>
+<p><code>throw</code> 关键字表示抛出异常。</p>
+<p>程序使用异常处理器（ exception handler）来捕获异常。<code>catch</code> 关键字表示捕获异常，而异常处理器以 <code>catch</code> 关键字开头，紧随其后的是类型声明（type declaration），该声明表明捕获的异常类型。异常处理器也被称作 catch 块（catch block）。</p>
+<p>try 块表明了异常可能会出现的地方，其后紧跟着一个或多个 catch 块。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">hmean</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">throw</span> <span class="string">&quot;bad hmean() arguments: a = -b not allowed&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	z = <span class="built_in">hmean</span>(x,y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in"><span class="keyword">catch</span></span> (<span class="keyword">const</span> <span class="keyword">char</span> * s)</span><br><span class="line">&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行 throw 语句有点像是执行 return 语句，但是与 return 语句不同的是，throw 语句执行后并不会只返回其调用者，而是一路返回，直到它回到一个 try 块。</p>
+<p>catch 块看起来像是个函数定义，但当然不是。<code>catch</code> 后的 <code>const char * s</code> 表明该处理器匹配一个为字符串的异常。捕获到异常后，程序将执行 catch 块内的语句，接着退出该块。</p>
+<p>若 try 中的语句没有抛出异常，则程序接下来会跳过所有紧跟其后的 catch 块。</p>
+<p>如果抛出的异常没有 catch 块捕获呢？默认情况下，程序最终会调用 <code>abort()</code> 函数，但是这一行为是可以修改的。</p>
+<h2 id="使用对象为异常"><a href="#使用对象为异常" class="headerlink" title="使用对象为异常"></a>使用对象为异常</h2><p>函数可以抛出对象作为异常。这样做的一个很重要的优点是，我们可以使用不同的异常类型，用以分辨不同的抛出异常的函数和情况。</p>
+<h2 id="当异常规格遇上-C-11"><a href="#当异常规格遇上-C-11" class="headerlink" title="当异常规格遇上 C++11"></a>当异常规格遇上 C++11</h2><p>异常规格（exception specification）是 C++98 中加入的特性，在 C++11 中被弃用。</p>
+<p>异常规格长这个样子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">harm</span><span class="params">(<span class="keyword">double</span> a)</span> <span class="title">throw</span><span class="params">(bad_thing)</span></span>; <span class="comment">// may throw bad_thing exception</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">marm</span><span class="params">(<span class="keyword">double</span>)</span> <span class="title">throw</span><span class="params">()</span></span>; <span class="comment">// doesn&#x27;t throw an exception</span></span><br></pre></td></tr></table></figure>
+
+<p>原型后面的 throw() 的部分，就是异常规格，其不仅在函数原型中出现，在函数定义的时候也要用上。</p>
+<p>首先，我们不需要一个特殊的语法来告知开发者，该函数会抛出异常，这用注释就可以完成；其次，该语法需要编译器添加代码用以在运行时检测该函数内部是否真的抛出了异常，耗费资源。为了解决这两个问题，C++11 引入了新的关键字 <code>noexcept</code>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">marm</span><span class="params">()</span> <span class="keyword">noexcept</span></span>; <span class="comment">// this function doesn&#x27;t throw an exception</span></span><br></pre></td></tr></table></figure>
+
+<p>人们认为，明确某函数不会抛出异常后，可以帮助编译器优化代码。</p>
+<p>另外，还有 <code>noexcept()</code> 运算符，可以返回结果，表明其操作数是否会抛出异常。</p>
+<h2 id="栈展开"><a href="#栈展开" class="headerlink" title="栈展开"></a>栈展开</h2><p>现假设函数通过抛出的异常终结，而不是通过返回调用终结。程序开始释放掉栈中的内存，但是该动作并不是停止于栈中第一个返回地址（函数返回才在这里停止），而是一直到某个地址中含有 try 块，释放操作才停止。此时控制权交由异常处理器。这个过程，就叫作栈展开。</p>
+<p>throw 机制的一个很重要的特性是：跟函数返回一样，栈上的所有自动类对象的析构函数都被调用了。但与函数返回不同的是，函数返回只处理那些被该函数放到栈中的对象，但是 throw 语句处理 try 块和 throw 语句之间的所有被函数们放到栈中的对象。如果没有这个特性，throw 就不会调用那些被中间函数放到栈中的对象的析构函数。</p>
+<p>throw 机制中允许异常的再抛出：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in"><span class="keyword">catch</span></span> (bad_hmean &amp;bg)</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">throw</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 catch 块中单独一个 throw 语句可以将当前处理的异常再抛出。如此，该异常将回到下一个可以处理该异常的 try-catch 组合。</p>
+<h2 id="更多异常特点"><a href="#更多异常特点" class="headerlink" title="更多异常特点"></a>更多异常特点</h2><p>抛出异常语句处理栈中对象的方法，与函数返回语句不同，另外，抛出异常与函数返回不同的地方还在于：抛出异常时，编译器总是创建暂时的拷贝，尽管异常处理器已经明确了接收引用。</p>
+<p>编译器这样做的原因有两个：</p>
+<ol>
+<li>抛出异常后，该抛出异常的函数中的对象，包括该异常本身，就要被销毁了。如果抛出异常像普通函数调用那样返回函数引用，那么到时候异常处理器只能接收到一个引用了 nothing 的变量。</li>
+<li>基类的引用可以同时指向派生类的对象。如果抛出的是一个派生类的异常对象，那么在形参设置为基类引用的情况下，异常处理器可以正常捕获该异常，并且利用多态；如果形参设置为基类对象，虽然异常处理器也可以正常捕获，但是派生类的基类部分之外的内容会被剥离。</li>
+</ol>
+<p>如果抛出的异常类是有类继承关系的，那么为了可以精细处理异常，我们可以在 try 块后，从最派生的类开始，一路 catch 到基类：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">bad_1</span> &#123;</span>...&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">bad_2</span> :</span> <span class="keyword">public</span> bad_1 &#123;...&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">bad_3</span> :</span> <span class="keyword">public</span> bad <span class="number">2</span> &#123;...&#125;;</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">duper</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span> (oh_no)</span><br><span class="line">    	<span class="keyword">throw</span> <span class="built_in">bad_1</span>();</span><br><span class="line">    <span class="keyword">if</span> (rats)</span><br><span class="line">    	<span class="keyword">throw</span> <span class="built_in">bad_2</span>();</span><br><span class="line">    <span class="keyword">if</span> (drat)</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">bad_3</span>();</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="built_in">duper</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in"><span class="keyword">catch</span></span>(bad_3 &amp;be)</span><br><span class="line">&#123; ... &#125;</span><br><span class="line"><span class="built_in"><span class="keyword">catch</span></span>(bad_2 &amp;be)</span><br><span class="line">&#123; ... &#125;</span><br><span class="line"><span class="built_in"><span class="keyword">catch</span></span>(bad_1 &amp;be)</span><br><span class="line">&#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p>有时候，我们并不知道 try 块中调用的函数会抛出什么类型的异常，则在 catch 块中可以用省略号表示：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in"><span class="keyword">catch</span></span> (...) &#123; <span class="comment">// statements &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们通常会把这种捕获所有异常的 catch 块放到 try-catch 组合的最后，其角色有点像是 switch 语句中的 default。</p>
+<h2 id="异常类"><a href="#异常类" class="headerlink" title="异常类"></a>异常类</h2><p>在头文件 exception.h 或者 except.h 中，定义了一个 exception 类，C++ 以此为基类。</p>
+<p>我们可以在 C++ 中继承此类，重定义其虚拟方法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;exception&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">bad_hmean</span> :</span> <span class="keyword">public</span> std::exception</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="title">what</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">&quot;bad arguments to hmean()&quot;</span>; &#125;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="stdexcept-异常类"><a href="#stdexcept-异常类" class="headerlink" title="stdexcept 异常类"></a>stdexcept 异常类</h3><p>stdexcept 头文件定义了几个异常类。该文件定义了 <code>logic_error</code> 和 <code>runtime_error</code> 类，这两个都是从 <code>exception</code> 处继承而来。</p>
+<h3 id="bad-alloc-异常和-new"><a href="#bad-alloc-异常和-new" class="headerlink" title="bad_alloc 异常和 new"></a>bad_alloc 异常和 new</h3><p>在以前，如果使用 new 无法完成内存分配的话，则 new 会返回一个空指针。但是现在的话，失败于分配内存时，new 会抛出一个 <code>bad_alloc</code> 异常，头文件 <code>new</code> 中就声明了这个类，该类是继承于 <code>exception</code> 类的。</p>
+<h3 id="Null-指针和-new"><a href="#Null-指针和-new" class="headerlink" title="Null 指针和 new"></a>Null 指针和 new</h3><p>由于还是很多旧代码是把 new 在分配内存失败时返回 NULL 为前提的，所以当前的标准也提供了一种仍然返回空指针的 new 形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> * pi = <span class="built_in"><span class="keyword">new</span></span> (std::nothrow) <span class="keyword">int</span>;</span><br><span class="line"><span class="keyword">int</span> * pa = <span class="built_in"><span class="keyword">new</span></span> (std::nothrow) <span class="keyword">int</span>[<span class="number">500</span>];</span><br></pre></td></tr></table></figure>
+
+<p>如果内存分配失败的话，pi 和 pa 则为空指针。</p>
+<h2 id="异常，类，和继承"><a href="#异常，类，和继承" class="headerlink" title="异常，类，和继承"></a>异常，类，和继承</h2><h2 id="异常误入歧途时"><a href="#异常误入歧途时" class="headerlink" title="异常误入歧途时"></a>异常误入歧途时</h2><p>异常被抛出后，可能会造成两种问题：意外异常（unexpected exception）和未捕获异常（uncaught exception）。</p>
+<p>意外异常是由异常规格引起的。在 C++11 之前，C++98 引入 异常规格，规定了函数可能抛出的异常。若抛出的异常类型与规格中的不同，则会导致意外异常现象的发生。在默认情况下，程序会中止。</p>
+<p>未捕获异常是由 try-catch 组合的缺失导致的。异常被抛出后，如果没有合适的 catch 块能够捕获这个异常，或者根本就没有 try 块，那么该异常就会被当作未捕获异常。在默认情况下，程序会中止。</p>
+<p>我们可以修改程序的应对方法，以在遇上这两种异常时，选择停止运行之外的出路。</p>
+<h3 id="处理未捕获异常"><a href="#处理未捕获异常" class="headerlink" title="处理未捕获异常"></a>处理未捕获异常</h3><p>未捕获异常不是直接引起中止命令的。程序在遇到未捕获异常时，首先调用 <code>terminate()</code> 函数，该函数在默认状况下会调用 <code>abort()</code> 函数。我们可以通过注册函数，达到修改 <code>terminate()</code> 函数行为的目的。注册函数的话，需要调用 <code>set_terminate()</code> 函数。<code>set_terminate()</code> 和 <code>terminate()</code> 都是在头文件 <code>exception</code> 中声明的。注册过程如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*terminate_handler)</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">terminate_handler <span class="title">set_terminate</span><span class="params">(terminate_handler f)</span> <span class="title">throw</span><span class="params">()</span></span>; <span class="comment">// C++98</span></span><br><span class="line"><span class="function">terminate_handler <span class="title">set_terminate</span><span class="params">(terminate_handler f)</span> <span class="keyword">noexcept</span></span>; <span class="comment">// C++11</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">terminate</span><span class="params">()</span></span>; <span class="comment">// C++98</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">terminate</span><span class="params">()</span> <span class="keyword">noexcept</span></span>; <span class="comment">// C++11</span></span><br></pre></td></tr></table></figure>
+
+<p>typedef 语句使得 <code>terminate_handler</code> 成为了指针的类型名，该指针指向没有参数，也没有返回值的函数。</p>
+<p><code>set_terminate()</code> 函数把某无参数也无返回值的函数的名字，作为其参数，并返回该被注册的函数的地址。如果 <code>set_terminate()</code> 被调用了多次，则 <code>terminate()</code> 会调用最近一次被注册的函数。</p>
+<p>应用处理未捕获异常方法：</p>
+<ol>
+<li><p>包含头文件 exception</p>
+</li>
+<li><p>定义函数，用于被 terminate() 调用：</p>
+<ol>
+<li>```c++<br>void myQuit()<br>{<pre><code>cout &lt;&lt; &quot;...&quot;;
+exit(5);
+</code></pre>
+}<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 在程序开头，调用 set_terminate() 函数：</span><br><span class="line"></span><br><span class="line">   1. ```c++</span><br><span class="line">      set_terminate(myQuit);</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>这样一来，如果有未捕获异常，则可以根据 myQuit() 输出相关信息，并返回指定退出码了。</p>
+</li>
+</ol>
+<h3 id="处理意外异常"><a href="#处理意外异常" class="headerlink" title="处理意外异常"></a>处理意外异常</h3><p>假设函数原型如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Argh</span><span class="params">(<span class="keyword">double</span>, <span class="keyword">double</span>)</span> <span class="title">throw</span><span class="params">(out_of_bounds)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>并且如此使用该函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	x = <span class="built_in">Argh</span>(a, b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in"><span class="keyword">catch</span></span>(out_of_bounds &amp; ex)</span><br><span class="line">&#123;...&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>原则上，Argh 的异常规格还应该包括 Argh 内调用的函数所抛出的异常。比如说，如果 Argh() 内部调用了 Duh()，而 Duh() 抛出异常 <code>retort</code>，则 retort 也应该出现在 Argh 的异常规格中，当然也应该出现在 Duh 的异常规格中。但是这种方法太难了，普通人根本难以面面俱到，这也是 C++11 要弃用该特性的一大原因。</p>
+<p>出现意外异常时，程序调用 <code>unexpected()</code> 函数，该函数转而调用 <code>terminate()</code>，而接着 <code>terminate()</code> 在默认状况下会调用 <code>abort()</code>。</p>
+<p>我们可以用 <code>set_unexpected()</code> 函数来修改 <code>unexpected()</code> 函数的行为。这两者都是在头文件 exception 中的。修改过程如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*unexpected_handler)</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">unexpected_handler <span class="title">set_unexpected</span><span class="params">(unexpected_handler f)</span> <span class="title">throw</span><span class="params">()</span></span>; <span class="comment">// C++98</span></span><br><span class="line"><span class="function">unexpected_handler <span class="title">set_unexpected</span><span class="params">(unexpected_handler f)</span> <span class="keyword">noexcept</span></span>; <span class="comment">// C++11</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unexpected</span><span class="params">()</span></span>; <span class="comment">// C++98</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unexpected</span><span class="params">()</span> <span class="keyword">noexcept</span></span>; <span class="comment">// C+0x</span></span><br></pre></td></tr></table></figure>
+
+<p>但是，我们给提供给 set_unexpected() 的函数，要比我们提供给 set_terminate() 的要更规范。具体来说，unexpected_handler 函数可以有如下选择：</p>
+<ul>
+<li>调用 terminate()（这是默认行为）、abort()、exit()，结束程序</li>
+<li>抛出异常</li>
+</ul>
+<p>unexpected_handler 抛出异常的结果，取决于“该被抛出的异常”和“当时抛出意外异常的函数的异常规格”：</p>
+<ul>
+<li>若新抛出的异常与原异常规格匹配，则程序正常运行（继续找能够处理这个新异常的 catch 块）。这种方法替换了意外异常类型为期望异常。</li>
+<li>若新抛出的异常与原异常规格不匹配，且原异常规格中没有 <code>std::bad_exception</code> 类型，则程序调用 <code>terminate()</code>。</li>
+<li>若新抛出的异常与原异常规格不匹配，但原异常规格中有 <code>std::bad_exception</code> 类型，则新异常类型被替换成 <code>std::bad_exception</code>。</li>
+</ul>
+<p>应用处理意外异常方法：</p>
+<ol>
+<li><p>包含头文件 exception</p>
+</li>
+<li><p>定义用于替换意外异常为 bad_exception 类型的函数：</p>
+<ol>
+<li>```c++<br>void myUnexpected()<br>{<pre><code>throw std::bad_exception(); //or just throw;
+</code></pre>
+}<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 在程序开头，调用 set_unexpected() 函数：</span><br><span class="line"></span><br><span class="line">   1. ```c++</span><br><span class="line">      set_unexpected(myUnexpected);</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>最后，把 bad_exception 包含在异常规格和 catch 块里：</p>
+<ol>
+<li>```c++<br>double Argh(double, double) throw(out_of_bounds, bad_exception);<br>…<br>try {<pre><code>x = Argh(a, b);
+</code></pre>
+}<br>catch(out_of_bounds &amp; ex)<br>{…}<br>catch(bad_exception &amp; ex)<br>{…}<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 异常警告</span><br><span class="line"></span><br><span class="line">使用异常会有这样的劣势：</span><br><span class="line"></span><br><span class="line">- 增加程序体积</span><br><span class="line">- 减缓程序运行速度</span><br><span class="line">- 异常规格与模板不能很好地结合，因为模板函数可以抛出不同种异常</span><br><span class="line">- 异常与动态内存分配不能很好地结合</span><br><span class="line"></span><br><span class="line">关于异常与动态内存分配的问题，看以下例子：</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">void test2(int n)</span><br><span class="line">&#123;</span><br><span class="line">    double * ar = new double[n];</span><br><span class="line">    ...</span><br><span class="line">    if (oh_no)</span><br><span class="line">    	throw exception();</span><br><span class="line">    ...</span><br><span class="line">    delete [] ar;</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<p>由于 throw 语句只会促使程序释放自动对象变量，所以当 throw 语句执行时，指针 <code>ar</code> 本身是被销毁了，但是其指向的内存模块还是存在的，而且无法访问，造成内存泄露。这种泄露是可以避免的，其中一种方法就是，在 throw 出后，立马就捕获，处理完后再抛出：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (oh_no)</span><br><span class="line">		<span class="keyword">throw</span> <span class="built_in">exception</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in"><span class="keyword">catch</span></span>(exception &amp; ex)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">delete</span> [] ar;</span><br><span class="line">	<span class="keyword">throw</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样做当然是可行的，但是还是很容易出错，因为程序员们很容易就忘记要写这些烦人的语句。</p>
+<p>另一种方法就是使用智能指针。</p>
+<h1 id="运行时类型识别"><a href="#运行时类型识别" class="headerlink" title="运行时类型识别"></a>运行时类型识别</h1><p>运行时类型识别（runtime type identification）的目的是，给程序提供一个标准的方法，在运行时得知对象的类型。</p>
+<h2 id="RTTI-是为了什么"><a href="#RTTI-是为了什么" class="headerlink" title="RTTI 是为了什么"></a>RTTI 是为了什么</h2><h2 id="RTTI-如何工作"><a href="#RTTI-如何工作" class="headerlink" title="RTTI 如何工作"></a>RTTI 如何工作</h2><p>C++ 有三种组件支持 RTTI：</p>
+<ol>
+<li><code>dynamic_cast</code> 运算符，从一个基类指针生成派生类指针，如果转换失败，则返回 0、空指针。</li>
+<li><code>typeid</code> 运算符，返回标识某个对象的类型的值。</li>
+<li><code>type_info</code> 结构体，存放某个类型的信息。</li>
+</ol>
+<p>RTTI 只可以应用于有虚拟函数的类。</p>
+<h3 id="dynamic-cast-运算符"><a href="#dynamic-cast-运算符" class="headerlink" title="dynamic_cast 运算符"></a>dynamic_cast 运算符</h3><p>dynamic_cast 运算符应该是最经常使用的 RTTI 组件。该运算符不告知某指针指向什么类型的对象，而是告知该指针变量是否可以安全地被赋予某类型对象的地址。</p>
+<p>安全赋指针予对象的地址，需要满足以下两个条件之一：</p>
+<ul>
+<li>指针所指向的类型与该对象类型一致</li>
+<li>指针所指向的类型是该对象类型的直接或间接基类</li>
+</ul>
+<p>使用方法为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dynamic_cast</span>&lt;Type *&gt;(pt)</span><br></pre></td></tr></table></figure>
+
+<p>如果指针 pt 所指向的类型恰好是 Type，又或者说 pt 所指向的类型是 Type 的直接或间接基类，则该转化成功，上面表达式返回新地址；否则返回 0，空指针。</p>
+<p>dynamic_cast 也可用于引用。与用于指针不同的是，引用中没有什么值是可以对应空指针类型的，所以使用引用作为 dynamic_cast 的操作数时，没有特殊值用于表示转化失败，而是通过抛出 bad_cast 异常表示失败。该异常继承自 exception 类，被定义在 typeinfo 头文件中。</p>
+<p>使用方法为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;typeinfo&gt;</span></span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Superb &amp; rs = <span class="keyword">dynamic_cast</span>&lt;Superb &amp;&gt;(rg);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in"><span class="keyword">catch</span></span> (bad_cast &amp;) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="typeid-运算符和-type-info-类"><a href="#typeid-运算符和-type-info-类" class="headerlink" title="typeid 运算符和 type_info 类"></a>typeid 运算符和 type_info 类</h3><p>typeid 运算符可用于判断两个对象是否为同一类型。其接收两种参数：类名和值为对象的表达式。</p>
+<p>typeid 运算符返回 type_info 对象的引用。由于 type_info 类已经重载了 == 和 != 运算符，所以可以直接用这两个运算符来判断两个对象是否相等：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in"><span class="keyword">typeid</span></span>(Manificent) == <span class="built_in"><span class="keyword">typeid</span></span>(*pg)</span><br></pre></td></tr></table></figure>
+
+<p>如果上面的 pg 是一个空指针，那么程序将抛出 bad_typeid 异常。该异常继承于 exception 类，在头文件 typeinfo 中声明。</p>
+<p>type_info 类有成员函数 name()，通常来说，该函数返回该类的名字：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="built_in"><span class="keyword">typeid</span></span>(*pg).<span class="built_in">name</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="滥用-RTTI"><a href="#滥用-RTTI" class="headerlink" title="滥用 RTTI"></a>滥用 RTTI</h2><p>如果你发现自己在一大串的 if-else 语句中使用 typeid 运算符，那么就要考虑一下是否可以使用 dynamic_cast 了。</p>
+<h1 id="类型转换运算符"><a href="#类型转换运算符" class="headerlink" title="类型转换运算符"></a>类型转换运算符</h1><p>C++ 有如下四种类型转换运算符：</p>
+<ol>
+<li><p>dynamic_cast:</p>
+<ol>
+<li>```c++<br>dynamic_cast <type-name> (expression)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. const_cast</span><br><span class="line"></span><br><span class="line">   1. ```c++</span><br><span class="line">      const_cast &lt;type-name&gt; (expression)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>static_cast</p>
+<ol>
+<li>```c++<br>static_cast <type-name> (expression)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. reinterpret_cast</span><br><span class="line"></span><br><span class="line">   1. ```c++</span><br><span class="line">      reinterpret_cast &lt;type-name&gt; (expression)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h2 id="dynamic-cast"><a href="#dynamic-cast" class="headerlink" title="dynamic_cast"></a>dynamic_cast</h2><p>dynamic_cast 运算符一般用于将派生类指针转换为基类指针，其主要目的是确保某虚拟函数调用是可用的。（这听起来很奇怪，因为你给的例子是将基类指针转换为派生类指针的……）</p>
+<h2 id="const-cast"><a href="#const-cast" class="headerlink" title="const_cast"></a>const_cast</h2><p>const_cast 运算符仅仅是用于改变某值的 const 或者 volatile 属性，也就是让某 const 的变量类型转换为非 const 的类型，让某 volatile 的变量类型转换为非 volatile 的类型。但是，前提是转换前和转换后，除了 const/volatile 有所变化，其他的必须相同。举例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">High bar;</span><br><span class="line"><span class="keyword">const</span> High * pbar = &amp;bar;</span><br><span class="line">High * pb = <span class="keyword">const_cast</span>&lt;High *&gt; (pbar); <span class="comment">// 可行</span></span><br><span class="line"><span class="keyword">const</span> Low * pl = <span class="keyword">const_cast</span>&lt;<span class="keyword">const</span> Low *&gt; (pbar); <span class="comment">// 不可行</span></span><br></pre></td></tr></table></figure>
+
+<p>我们关注上面最后两句。第一句试图把 <code>const High *</code> 转换为 <code>High *</code>，这是可行的，因为这两者的区别只在于 <code>const</code>；第二句试图把 <code>const High *</code> 转换为 <code>const Low *</code>，这是不可行的，因为除了 <code>const</code> 之外，<code>High *</code> 和 <code>Low *</code> 并不相同。</p>
+<p>使用这个运算符的场景往往在于：我们想要某个变量在大部分合下为常量，但是可在极个别场合下修改。上面的代码也可以通过 C 中常用的强制类型转换达成，但是这同时也会使得类型发生变化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">High bar;</span><br><span class="line"><span class="keyword">const</span> High * pbar = &amp;bar;</span><br><span class="line">High * pb = (High *) (pbar); <span class="comment">// 可行</span></span><br><span class="line">Low * pl = (Low * ) (pbar); <span class="comment">// 也可行</span></span><br></pre></td></tr></table></figure>
+
+<p>因为这种同时改变类型和 const 属性的方法可能会导致意想不到的程序偏差，所以使用 const_cast 运算符会更安全。</p>
+<p>下面应用 const_cast 运算符：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> * pt, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> * pc;</span><br><span class="line">    pc = <span class="keyword">const_cast</span>&lt;<span class="keyword">int</span> *&gt;(pt);</span><br><span class="line">    *pc += n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pop1 = <span class="number">38383</span>;</span><br><span class="line">    <span class="keyword">const</span> in pop2 = <span class="number">2000</span>;</span><br><span class="line">    <span class="built_in">change</span>(*pop1, <span class="number">-103</span>); <span class="comment">// 可行</span></span><br><span class="line">    <span class="built_in">change</span>(&amp;pop2, <span class="number">-103</span>); <span class="comment">// 可能不可行</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于 pop2 是声明为常量的，所以编译器可能会保护其不被修改。那么问题来了，const_cast 有什么卵用？难道只能在形参里面装个样子吗？</p>
+<h2 id="static-cast"><a href="#static-cast" class="headerlink" title="static_cast"></a>static_cast</h2><p>该运算符用于可以隐式转换的两个类型。既然是基于隐式转换，则其当然是可以完成一些隐式转换做不到的事情：支持单向隐式转换的反向转换。</p>
+<p>如果单向隐式转换是可行的，则 static_cast 不仅可以执行该单向隐式转换，且可以执行反向的隐式转换。</p>
+<p>在继承类的多态中，static_cast 相当于 upcast+downcast。</p>
+<h2 id="reinterpret-cast"><a href="#reinterpret-cast" class="headerlink" title="reinterpret_cast"></a>reinterpret_cast</h2><p>reinterpret_cast 运算符用于固有的有风险类型转换。</p>
+<p>有时程序员需要做一些依赖于实现环境的事情，使用该运算符可以使这种行为的回溯得更简单。（是不是可以理解为：如果出了问题就找该运算符？）</p>
+<p>通常来说，这样的类型转换是用于低级的、依赖于实现环境的编程，而且不可移植。</p>
+<p>The reinterpret_cast operator doesn’t allow just anything. 我不知道这句话是什么意思，所以我直接抄下来了。我们可以把一个指针类型转换成整型类型，如果后者足够大，可以存放一个指针的表示形式的话；但是我们不能把一个指针类型转换成更小的整型类型，又或者是浮点数型。还有一个限制，我们不能把函数指针转换为数据指针，反过来也不行。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://littlebugyang.github.io/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_15_Friends_Exceptions_and_More/" data-id="ckovjrcpj001x10xd3s1pgnio" data-title="Chapter_15_Friends_Exceptions_and_More" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/index/page/34/">&laquo; Prev</a><a class="page-number" href="/index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/index/page/33/">33</a><a class="page-number" href="/index/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/index/page/36/">36</a><a class="page-number" href="/index/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/index/page/123/">123</a><a class="extend next" rel="next" href="/index/page/36/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/">electron</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%80%BB%E7%BB%93/">阅读官方文档总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/">阅读官方文档笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/">node</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/npm/">npm</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/">技术应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">硬件信息</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/%E2%80%9CLearning-JavaScript%E2%80%9D%E7%AC%94%E8%AE%B0/">“Learning JavaScript”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/YAML/">YAML</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/GitHub/">GitHub</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE/">软件设置</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/">概念</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/">约瑟夫问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/">词典</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/">Lenovo_500_FHD_Webcam</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">链表</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 LittleBugYang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

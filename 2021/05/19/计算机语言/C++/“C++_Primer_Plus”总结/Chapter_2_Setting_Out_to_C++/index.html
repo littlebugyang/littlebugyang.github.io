@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Chapter_2_Setting_Out_to_C++ | LittleBugYang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="示例程序12345678910111213141516#include &lt;iostream&gt;using std::cout;double sqrt(double);int main()&amp;#123;    double x &#x3D; sqrt(6.25);    return 0;&amp;#125;double sqrt(double n)&amp;#123;    &#x2F;&#x2F; to be continued.&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter_2_Setting_Out_to_C++">
+<meta property="og:url" content="https://littlebugyang.github.io/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E6%80%BB%E7%BB%93/Chapter_2_Setting_Out_to_C++/index.html">
+<meta property="og:site_name" content="LittleBugYang&#39;s Blog">
+<meta property="og:description" content="示例程序12345678910111213141516#include &lt;iostream&gt;using std::cout;double sqrt(double);int main()&amp;#123;    double x &#x3D; sqrt(6.25);    return 0;&amp;#125;double sqrt(double n)&amp;#123;    &#x2F;&#x2F; to be continued.&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-19T14:16:29.000Z">
+<meta property="article:modified_time" content="2021-05-19T14:16:29.000Z">
+<meta property="article:author" content="LittleBugYang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="LittleBugYang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LittleBugYang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://littlebugyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-计算机语言/C++/“C++_Primer_Plus”总结/Chapter_2_Setting_Out_to_C++" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E6%80%BB%E7%BB%93/Chapter_2_Setting_Out_to_C++/" class="article-date">
+  <time class="dt-published" datetime="2021-05-19T14:16:29.000Z" itemprop="datePublished">2021-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a>►<a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a>►<a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Chapter_2_Setting_Out_to_C++
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> std::cout;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">double</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> x = <span class="built_in">sqrt</span>(<span class="number">6.25</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">double</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// to be continued.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>C++ 大小写<strong>敏感</strong>。</p>
+<h1 id="预处理器"><a href="#预处理器" class="headerlink" title="预处理器"></a>预处理器</h1><h2 id="预处理指令"><a href="#预处理指令" class="headerlink" title="预处理指令"></a>预处理指令</h2><p><code>#include &lt;iostream&gt;</code> 是一条<strong>预处理器指令（preprocessor directive）</strong>。</p>
+<p>预处理器是一个程序，它可以<strong>在主要的编译工作开始之前，对源文件预处理</strong>。</p>
+<p>典型的预处理器操作：在编译开始之前，<strong>添加或者替换</strong>源代码中的文件。</p>
+<p>下面的预处理器指令，使 iostream 的内容替换了该指令本身：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span> <span class="comment">// a preprocessor directive</span></span></span><br></pre></td></tr></table></figure>
+
+<p>原来的源代码文件并没有被修改，但是<strong>生成了一个由源代码和 iostream 组合而成的复合文件</strong>，该文件被传递到了下一个编译阶段。</p>
+<h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><p>像 iostream 这样的文件被称作<strong>包含文件（include file）</strong>或者<strong>头文件（header file）</strong>，因为它们总是在文件的头部被包含进程序里。</p>
+<p>在 C 中，也可以使用 iostream 的功能，只不过要包含的头文件变成了 <code>iostream.h</code>。</p>
+<p>现在，后缀 <code>.h</code> 的头文件被保留为 C 的头文件，C++ 程序也可以使用 C-Style 的头文件；而 C++ 则使用<strong>没有后缀</strong>的头文件。</p>
+<p>原有的 C 的头文件，在<strong>去掉</strong> <code>.h</code> 的后缀后，再在名字前面<strong>加上“c”</strong>（来自 C 语言），就成了符合 C++ 标准命名的头文件。比如说：<code>cmath</code></p>
+<h1 id="using-指令"><a href="#using-指令" class="headerlink" title="using 指令"></a>using 指令</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码意为使用 std 命名空间。std 命名空间中包含了 C++ 编译器的标准组件：类、函数和变量等。</p>
+<p>添加 using 指令（using directive），可以省下写前缀的工夫。</p>
+<p>using 指令会使命名空间中的所有名字都可用，方便，但是<strong>风险高</strong>。</p>
+<p>可以考虑使用 using 声明（using declaration）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> std::cout;</span><br><span class="line"><span class="keyword">using</span> std::endl;</span><br><span class="line"><span class="keyword">using</span> std::cin;</span><br></pre></td></tr></table></figure>
+
+<p>这样仅会让 <code>cout</code>、<code>endl</code>、<code>cin</code> 生效。</p>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p>C++ 注释以 <code>//</code> 开头，这是在 C++ 中引入的注释方法。</p>
+<p>C 语言注释以 <code>/* ... */</code> 为界；C++ 也允许这种注释方法。</p>
+<p>在 C99 中，单行注释 <code>//</code> 也被引入到 C 语言中。</p>
+<h1 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h1><p>在 C++ 中，每条<strong>完整指令（instruction）</strong>被称作<strong>语句（statement）</strong>。</p>
+<h2 id="终结符"><a href="#终结符" class="headerlink" title="终结符"></a>终结符</h2><p>每个语句必须以<strong>分号（semicolon）</strong> <code>;</code> 终结。</p>
+<p>C++ 中，<code>;</code> 为<strong>终结符（terminator）</strong>。</p>
+<h2 id="分割符"><a href="#分割符" class="headerlink" title="分割符"></a>分割符</h2><p>与终结符类似的，还有<strong>分割符（separator）</strong>。</p>
+<p>在 Pascal 语言中，编译器以分号分割语句。在某些特定场景下，程序员还可以<strong>去掉分号</strong>。因为分号在 Pascal 中只是一个分割符，当后面没有需要再区分为另一条语句的字符时，便不再需要分号。</p>
+<p>在 FORTRAN 语言中，编译器以回车（carriage return）分割语句，即：<strong>一行即为一条语句</strong>。</p>
+<h2 id="终结符和分割符"><a href="#终结符和分割符" class="headerlink" title="终结符和分割符"></a>终结符和分割符</h2><p>终结符和分割符两者的区别是：前者是<strong>语句的一部分</strong>，而后者只是语句之间的<strong>标记（marker）</strong>。</p>
+<p>这导致的结果是：在 C/C++ 的源码中，语句的分号<strong>在任何情况下都必须保留</strong>。</p>
+<p>而且，C++ 把源代码中的回车当作空格或制表符，也就是说，在 C++ 的源代码中，空格和回车可以互换。这同时也意味着，C++ 可以把一个语句分成好几行，或者把好几个语句放在同一行。 </p>
+<h2 id="标记"><a href="#标记" class="headerlink" title="标记"></a>标记</h2><p>不可分割的元素为<strong>标记（token）</strong>。通常来说，标记之间必须有<strong>空白符（white space）</strong>，也就是空格、制表符或者回车。单字符的标记如括号和逗号等，是不需要用空白符分隔的。</p>
+<h2 id="声明语句"><a href="#声明语句" class="headerlink" title="声明语句"></a>声明语句</h2><p>在计算机中存储信息，必须要做的是：明确存储位置和存储大小。在 C++ 中，用声明语句（declaration statement）就可以做到明确存储大小和提供访问位置的标签。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> carrorts = <span class="number">34</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的语句，就把 carrots 标签与一个整型数据绑定了，从此，carrots 指代其所代表的整型变量。</p>
+<p>那么为什么变量必须要被声明呢？在一些语言中，变量是不需要声明的，要用的时候直接写就行了。但是当我们写错变量名的时候，不带声明的变量使用，很容易让人忽略拼写错误。</p>
+<p>C++ 中，只要在<strong>使用变量前，声明该变量</strong>即可，而不需要像一些其他语言那样，提前把所有变量都声明好。</p>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p><code>int main()</code> 为函数头部（function header），在大括号（braces） <code>&#123;&#125;</code> 内部的为函数体（function body）。</p>
+<p><code>&#123;&#125;</code> 在 ISO 标准中被称作<strong>“braces”</strong>。</p>
+<p>通常情况下，C++ 的函数是被另一个函数所激活的，或者说被调用的（called）。</p>
+<p>被调用函数的头部包含了调用函数（calling function）与被调用函数（called function）之间所使用的接口：</p>
+<ul>
+<li>函数返回类型（function return type）：描述信息类型，该信息从被调用函数返回给调用函数</li>
+<li>参数列表（argument list or parameter list）：描述信息个数和类型，此信息从调用函数流向被调用函数</li>
+</ul>
+<h2 id="main-函数"><a href="#main-函数" class="headerlink" title="main 函数"></a>main 函数</h2><p>main 函数也是被调用的，调用者为 <strong>startup code</strong>，该段代码是编译器添加的，作为程序与操作系统的中介。</p>
+<h3 id="头部"><a href="#头部" class="headerlink" title="头部"></a>头部</h3><p>main 函数通常来说，<strong>没有 argument</strong>。</p>
+<p>C++ 中 main 函数都有返回类型（或者 void）。而一些经典 C 的代码中，main 函数没有返回类型：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main()</span><br><span class="line">&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在经典 C 中，省去返回类型等价于 main 函数返回类型为整型，但是 C++ 取消了这种设定。</p>
+<p>在参数列表里面输入 <code>void</code>，可显式说明该函数不接收参数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;&#125; <span class="comment">// equivalent to int main()&#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 C++ 中，这跟<strong>参数列表留空</strong>没有区别。</p>
+<p>但是在 C 中，参数列表留空意味着开发者<strong>没有明确告知是否接收参数</strong>。</p>
+<p>还有开发者使用这样的 main 函数头部：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种写法与前面提到的标准写法相比，在逻辑上是一致的，但是这种变种写法不是 C++ 标准，因此在某些系统上可能会<strong>无法通过编译</strong>。</p>
+<h3 id="返回语句"><a href="#返回语句" class="headerlink" title="返回语句"></a>返回语句</h3><p>ISO C++ 标准给部分不想在 main 函数最后加上 <code>return 0;</code> 语句的开发者们让步，规定：即便在编译器到达 main 函数末尾处之前都没有遇到返回语句，编译器也要能够保证最终效果与人工写上 <code>return 0;</code> 的一致。这个规定<strong>仅限于 main 函数</strong>。</p>
+<h3 id="名字"><a href="#名字" class="headerlink" title="名字"></a>名字</h3><p>为什么是 main 函数，而不是 Main 函数或其他的？应该<strong>仅仅是规定</strong>。</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>运行 C++ 程序的时候，执行操作<strong>总是从 main 函数开始</strong>。如果源代码没有 main 函数的话，编译器会报错。</p>
+<p>但是这也有例外。比如说：</p>
+<ul>
+<li>在 Windows 下编程会用到动态链接库（dynamic link library，DLL）模块，这些模块包含了 Windows 程序能用的代码。DLL 模块不是一个单独程序，所以它们是不需要 main 函数的。</li>
+<li>在特殊环境下编程，比如说给机器人的控制芯片编程时，可能不需要 main 函数</li>
+<li>在某些特殊环境下，编程环境提供的程序框架调用非标准的函数，比如说 <code>_tmain();</code>，在这种情况下，实际上是有一个隐藏的 main 函数调用了 <code>_tmain()</code> 的。</li>
+</ul>
+<h2 id="函数原型"><a href="#函数原型" class="headerlink" title="函数原型"></a>函数原型</h2><p>调用函数的示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="built_in">sqrt</span>(<span class="number">6.25</span>);</span><br></pre></td></tr></table></figure>
+
+<p>代码中的 6.25 是参数，具体来说是<strong>实参（actual argument）</strong>。</p>
+<p>关于 sqrt 函数，其有一个函数原型（function prototype）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">double</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>sqrt 函数是有返回值的函数。下面是一个不带任何返回值的函数原型：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bucks</span><span class="params">(<span class="keyword">double</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>函数原型的参数列表中，<strong>可忽略参数名</strong>；但是有参数名时，程序的<strong>可读性强</strong>。</p>
+<p>函数原型应该<strong>在函数第一次被调用之前就声明好</strong>。</p>
+<p>函数原型仅仅定义了函数的接口，与函数定义是不同的。</p>
+<p>在一些其他的编程语言中，function 这个术语是专门给有返回值的函数的，而把那些没有返回值的函数称作 procedure 或者是 subroutine。但是在 C++ 中，这两种函数，都称作 function。</p>
+<p>main 函数也是有返回值的，其实可以看作是操作系统在调用程序的 main 函数，所以 main 函数的返回值并不是返回给程序中的哪一部分，而是返回给<strong>操作系统</strong>。许多操作系统可以利用返回值作为退出值（exit value），判断程序是否正常退出。通常来说，0 返回值代表程序成功运行，非 0 值代表程序在运行时出现了问题。</p>
+<p>另外，main 函数看似一个预留的关键字，但事实上 <strong>main 不是关键字</strong>，因为这不是编程语言的一部分，这只是一个必须的函数名。但是开发者<strong>最好还是不要用 main 来命名变量</strong>。</p>
+<h2 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h2><p>函数定义（function definition）是包含了指示函数运作的代码的。</p>
+<p>函数头部中的参数都是形式参数（formal parameter），是用来承载传递过来的参数值的新变量：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">simon</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中 n 是新变量，只不过其值与传递过来的实参一致。</p>
+<h2 id="函数使用"><a href="#函数使用" class="headerlink" title="函数使用"></a>函数使用</h2><p>程序员们有时候把函数称作黑盒。</p>
+<p>就算被调用函数不需要参数，在调用该函数的时候，也<strong>不能够省略掉括号</strong>。</p>
+<p>sqrt 函数的实现可以通过调用库函数来实现。既然是调用库函数，则编译器会搜寻库文件以查找代码所使用的函数。不同的编译器找的库文件不同，如果编译器提示找不到 <code>_sqrt</code>（编译器通常在函数名字前加下划线），那么很有可能是这个编译器需要显示连接库文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CC sqrt.C -lm</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户自定义函数"><a href="#用户自定义函数" class="headerlink" title="用户自定义函数"></a>用户自定义函数</h2><p>C++ 不允许用户在函数定义内嵌套另一个函数定义。</p>
+<p>然而在 Pascal 这样的语言中，这是被允许的。</p>
+<h1 id="cin，cout，和-endl"><a href="#cin，cout，和-endl" class="headerlink" title="cin，cout，和 endl"></a>cin，cout，和 endl</h1><h2 id="cin"><a href="#cin" class="headerlink" title="cin"></a>cin</h2><p>就像 C++ 把输出看作是流出程序的字符流一样，C++ 把输入看作是流入程序的字符流。</p>
+<p>iostream 定义了 cin 为代表输入流的对象。</p>
+<p><code>cin</code> 使用 <code>&gt;&gt;</code> 操作符，从输入流中提取字符。</p>
+<p>那么，下面这条语句，就代表着输入流的字符流向了变量 <code>carrots</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> carrots = <span class="number">0</span>;</span><br><span class="line">cin &gt;&gt; carrots;</span><br></pre></td></tr></table></figure>
+
+<p>另外，<code>cin</code> 还可以进行一定的转化工作，根据操作符 <code>&gt;&gt;</code> 右边的变量类型，把字符串转化为相对应的数值，比如说上面代码中，<code>cin</code> 会把输入的字符尝试转化为整型数，交给 <code>carrots</code>。</p>
+<h2 id="cout"><a href="#cout" class="headerlink" title="cout"></a>cout</h2><p>iostream 中对 <code>&lt;&lt;</code> 操作符做了很好的重载，所以我们可以像下面一样连锁着使用 <code>cout</code>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="string">&quot;Now you have &quot;</span> &lt;&lt; carrots &lt;&lt; <span class="string">&quot; carrots.&quot;</span> &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<h2 id="endl"><a href="#endl" class="headerlink" title="endl"></a>endl</h2><p>endl 在使用的过程中，跟“\n”在显示效果上没有什么区别。</p>
+<p>但是 endl 有一点不同，endl除了写“\n”进外，还调用 flush 函数，刷新缓冲区，把缓冲区里的数据写入文件或屏幕。</p>
+<p>也就是说，使用 endl 可以保证换行效果立刻显示在屏幕上；而当使用“\n”时，系统可能先把“\n”暂存在缓冲区中，等待时机再输出。</p>
+<p>来源：<a target="_blank" rel="noopener" href="https://www.educative.io/edpresso/what-is-the-difference-between-endl-and-n-in-cpp">https://www.educative.io/edpresso/what-is-the-difference-between-endl-and-n-in-cpp</a></p>
+<h2 id="对类的一点接触"><a href="#对类的一点接触" class="headerlink" title="对类的一点接触"></a>对类的一点接触</h2><p>类（class）是用户自定义的数据类型。</p>
+<p>之前我们把 <code>carrots</code> 定义为 int 类型，在这种情况下，<code>carrots</code> 有着 int 类型的属性；常用的 <code>cout</code>，在 iostream 中被定义为 ostream 类的对象，有着 ostream 类型的属性；类似地，<code>cin</code> 的具有 istream 类的属性的对象。</p>
+<p>关于 ostream 和 istream 的定义，是写在 iostream 里的，而不在编译器里，所以，我们甚至可以修改 iostream 的内容，但是这是很危险的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://littlebugyang.github.io/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E6%80%BB%E7%BB%93/Chapter_2_Setting_Out_to_C++/" data-id="ckovjrcqj003810xd3fujgfzf" data-title="Chapter_2_Setting_Out_to_C++" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E6%80%BB%E7%BB%93/Chapter_1_Getting_Started_with_C++/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Chapter_1_Getting_Started_with_C++
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E6%80%BB%E7%BB%93/Chapter_4_Compound_Types/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Chapter_4_Compound_Types</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/">electron</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%80%BB%E7%BB%93/">阅读官方文档总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/">阅读官方文档笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/">node</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/npm/">npm</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/">技术应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">硬件信息</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/%E2%80%9CLearning-JavaScript%E2%80%9D%E7%AC%94%E8%AE%B0/">“Learning JavaScript”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/YAML/">YAML</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/GitHub/">GitHub</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE/">软件设置</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/">概念</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/">约瑟夫问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/">词典</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/">Lenovo_500_FHD_Webcam</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">链表</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 LittleBugYang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

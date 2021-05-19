@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>LittleBugYang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Just blogs.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LittleBugYang&#39;s Blog">
+<meta property="og:url" content="https://littlebugyang.github.io/index/page/81/index.html">
+<meta property="og:site_name" content="LittleBugYang&#39;s Blog">
+<meta property="og:description" content="Just blogs.">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="LittleBugYang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="LittleBugYang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LittleBugYang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://littlebugyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-计算机语言/C++/“C++_Primer_Plus”总结/Chapter_1_Getting_Started_with_C++" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E6%80%BB%E7%BB%93/Chapter_1_Getting_Started_with_C++/" class="article-date">
+  <time class="dt-published" datetime="2021-05-19T14:16:29.000Z" itemprop="datePublished">2021-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a>►<a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a>►<a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E6%80%BB%E7%BB%93/Chapter_1_Getting_Started_with_C++/">Chapter_1_Getting_Started_with_C++</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="关于-C-的特性"><a href="#关于-C-的特性" class="headerlink" title="关于 C++ 的特性"></a>关于 C++ 的特性</h1><p>C++ 的三种编程类别的集大成者：</p>
+<ol>
+<li>以 C 语言为代表的面向过程编程（procedural programming）</li>
+<li>以类（class）为代表的面向对象编程（object-oriented programming）</li>
+<li>以 C++ 模板（template）为代表的泛式编程（generic programming）</li>
+</ol>
+<h1 id="C-的发展历史"><a href="#C-的发展历史" class="headerlink" title="C++ 的发展历史"></a>C++ 的发展历史</h1><h2 id="在-C-之前"><a href="#在-C-之前" class="headerlink" title="在 C++ 之前"></a>在 C++ 之前</h2><p>更笼统地说，在高级编程语言诞生之前，程序员们使用的是汇编语言（assembly language）。汇编语言是特定于电脑处理器（CPU）的，也就是说，要让汇编语言写成的程序，在另一台用着不同处理器的电脑上运行，程序需要重新编写，而且，是用另外一种汇编语言。</p>
+<p>于是为了提高程序的可移植性，专家们研究出了高级编程语言。其中，Ritchie 结合了低级语言和高级语言的特性，集合了硬件高效访问、普遍性和可移植性等特点，创造出了 C 语言。</p>
+<p>C 语言是面向过程的，这意味着 C 语言着重程序的算法（algorithm）端，而算法则是程序使用的方法。算法与数据一起，构成了程序：Data + Algorithms = Program。</p>
+<p>而科学家们还建立了一种编程风格：结构化编程（structured programming），主要用于避免程序员们写出难以理解的程序。</p>
+<p>接着，结构化编程衍生出了自顶向下（top-down）的设计模式，C 语言提供了许多特性用以辅助用户进行结构化编程，当然也有助于实现自顶向下，具体的实现方法是：把任务分解成更小的、更可控的子任务。</p>
+<h2 id="C-的诞生"><a href="#C-的诞生" class="headerlink" title="C++ 的诞生"></a>C++ 的诞生</h2><p>与 C 语言一样，C++ 诞生于贝尔实验室。20世纪80年代，Bjarne Stroustrup 在这里研发出了 C++ 编程语言。</p>
+<p>与 C 语言的着重算法、面向过程不同，面向对象编程着重于数据，而 C++ 正是面向对象编程的典型编程语言。</p>
+<p>尽管 C++ 是面向对象编程的程序语言，强调数据的重要性，但是 C++ 的另一重大特性：泛式编程，却强调对某种特定数据类型的脱离。</p>
+<p>C++ 是 C 的超集，也就是说任何有效的 C 程序同时也是有效的 C++ 程序。C++ 程序可以使用 C 的软件库。C++ 与 C 的这两层关系，大大提高了 C++ 在世界范围内的传播速度。</p>
+<p>C++ 的名字来源于 C 中的自增操作符 <code>++</code>。</p>
+<h2 id="C-的统一"><a href="#C-的统一" class="headerlink" title="C++ 的统一"></a>C++ 的统一</h2><p>移植程序的第一道门槛是硬件，而第二道门槛则是编程语言的不统一。</p>
+<p>第二道门槛并不是皆使用同一种编程语言，如：C++，即可解决。此处的语言不统一，指的是 C++ 的使用群体内部没有达成统一的 C++ 使用标准。</p>
+<p>为了能够尽量让大家所使用的 C++ 是相互兼容的，相关组织参与到 C++ 的标准制定中：</p>
+<ol>
+<li>ANSI（American National Standards Institute）在 1990 年的时候创建了专门制定 C++ 标准的委员会。在此前，ANSI 已经创建过 C 语言的标准了。ISO（International Organization for Standardization）不久后也加入到给 C++ 制定标准的过程中。</li>
+<li>1998 年，在经过数年的努力后，关于 C++ 的国际标准出炉，ISO，IEC（International Electrotechnical Commision）和 ANSI 等都采用了这个标准。而人们也通常称这个标准为 C++98。该标准不仅总结了当时 C++ 的特性，而且还加入异常（exception）、运行时类型识别（runtime type identification, RTTI）、模板（template），还有标准模板库（standard template library, STL）。</li>
+<li>2003 年，C++ 标准的新版本出台，但这版本只是在 C++98 的基础上对其进行了一些修改，该标准被称作 C++03。由于 C++03 并没有更改语言特性，所以人们常用 C++98 指代 C++98/C++03。</li>
+<li>2011年，ISO 委员会推出 C++11 标准。该标准如 C++98 那般给这门编程语言添加了许多新特性。该标准的名字本应为 C++03 之后的 C++0x，其中 x 本应为 7 或 8，但是编程语言标准制订这件事，实在是太过于耗时耗力了，以至于人们只能把“0x”解释为 “16 进制整数”，从而可最大延伸至数字“15”。这样一来，标准的出台期限就可以拖到 2015 年。所以，从这个角度看，C++11在 2016 年之前出台，可看作是提前完成了目标。</li>
+<li>ISO 的 C++ 标准制订工作，同时推动了 ANSI C 的标准发展，因为 C++ 本来就被看作是 C 的超集——在理想状态下，任何有效的 C 程序都应该是有效的 C++ 程序。事实上，ANSI C 的确吸收了一些首先出现在 C++ 中的特性，比如说函数原型（function prototype），还有常量限定符（const type qualifier）。</li>
+<li>在 ANSI C 出台之前，社区已经出现了一个事实上的标准，其基于 Kernighan 和 Ritchie 的著作：“The C Programming Language”。这个标准也被冠以“K&amp;R C”的名字。在 ANSI C 出台之后，“K&amp;R C”也被称作“经典 C”。</li>
+<li>ANSI C 不仅定义了 C 语言，而且定义了标准 C 语言库，C++ 也使用了这个库。而且，ISO C++ 也提供了基于 C++ 类的标准库。</li>
+<li>上一个 C 语言的标准库是 C99。1999 年，ISO 采用了该标准，1 年后 ANSI 也采用了。</li>
+</ol>
+<h1 id="创建程序的机制"><a href="#创建程序的机制" class="headerlink" title="创建程序的机制"></a>创建程序的机制</h1><h2 id="从源码到可执行程序"><a href="#从源码到可执行程序" class="headerlink" title="从源码到可执行程序"></a>从源码到可执行程序</h2><p>在不同电脑环境和使用不同编译器（compiler）的情况下，从源码到可执行程序的过程大同小异。暂不论小异，大同在于它们都应该遵循以下步骤：</p>
+<ol>
+<li>创建源文件：使用文本编辑器编写源代码（source code），保存为源文件。</li>
+<li>编译源代码：使用编译器，将源文件中的源代码翻译成中间语言，这里的中间语言是机器语言（machine language），这是可以被主机直接使用的。这一过程生成的翻译结果是本程序的目标代码（object code）。</li>
+<li>链接目标代码：把目标代码与其他的代码链接起来，生成最终的可执行代码（executable code）。“其他代码”包括库代码（library code）和启动代码（startup code）。其中库代码是程序所使用到的 C++ 函数库中各类函数的目标代码；而启动代码是一小块为程序执行作准备的汇编代码。</li>
+</ol>
+<h2 id="源码扩展名"><a href="#源码扩展名" class="headerlink" title="源码扩展名"></a>源码扩展名</h2><p>包含源代码的文件是源文件。源文件名的后缀很重要，恰当的后缀名可以提高可阅读性，而更重要的是，让编译器也知道这是一个 C++ 的源文件。</p>
+<p>相对于 Windows 的大小写不敏感，Unix 系统是大小写敏感的，所以，在 Unix 系统下可以使用大写的“C”后缀来表示 C++ 源文件：<code>main.C</code>，同时，使用小写的“c”来表示 C 语言源文件：<code>main.c</code>。在其他一些 Unix 系统下，可以使用“cc”、“cxx”等后缀来表示 C++ 源文件。</p>
+<h2 id="不同环境下的具体创建程序方法"><a href="#不同环境下的具体创建程序方法" class="headerlink" title="不同环境下的具体创建程序方法"></a>不同环境下的具体创建程序方法</h2><p>Stroustrup在实现 C++ 的时候，并没有直接开发 C++-to-object code 的编译器，而是使用 C++-to-C 的编译器：cfront（for C front end），将 C++ 源码转化为 C 语言的源码，再将 C 语言的源码通过标准 C 语言编译器。虽然这种方法有点迂回，但是大大提高了 C++ 在 C 语言社区的传播速度。</p>
+<p>下面将介绍在不同环境下创建程序的更具体一步的方法。</p>
+<h3 id="Unix"><a href="#Unix" class="headerlink" title="Unix"></a>Unix</h3><ol>
+<li><p>一般来说，Unix 的 <code>CC</code> 命令可以调用 cfront，也就是 Stroustrup 在刚开始所使用的。该命令的两个字母均为大写，区别于用于编译 C 语言源代码的编译器命令 <code>cc</code>。</p>
+</li>
+<li><p>编译成功后，编译器会生成目标代码文件，其后缀名为 <code>.o</code>。</p>
+</li>
+<li><p>接下来，编译器会自动把目标代码文件传递到系统连接器。连接器会把目标代码与库代码结合，生成可执行文件。通常来说，可执行文件后缀名为 <code>.out</code>。如果编译的只有一个源文件，则编译器会在生成可执行文件后自动删除目标代码文件。</p>
+</li>
+<li><p>在命令行直接输入该可执行文件名即可运行之。</p>
+</li>
+<li><p>若需要编译多个文件，只需要在使用 <code>CC</code> 命令的时候把文件名都写上即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CC my.C precious.C</span><br></pre></td></tr></table></figure></li>
+<li><p>编译多个源文件会产生多个目标代码文件，编译器在生成可执行文件后不会删除这些目标代码，因为如果后面修改了其中一个或者个源文件，再次编译的时候，可以省下生成未修改源文件的目标代码的工作量。现假设只修改了 <code>my.C</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CC my.C precious.o</span><br></pre></td></tr></table></figure></li>
+<li><p>有时，还需要用户自行在命令行中添加 flag 以达到显式添加库文件的目的。比如说，为了访问数学库的函数，用户需要加上 <code>-lm</code>（link math）的 flag：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CC my.C -lm</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>Linux 操作系统大多数使用 g++，这是一款来自自由软件基金会（Free Software Foundation）的 GNU C++ 编译器。</p>
+<p>g++ 编译器的使用方法与标准的 Unix 编译器非常相似。</p>
+<h3 id="Command-Line-Compilers-for-Windows-Command-Prompt-Mode"><a href="#Command-Line-Compilers-for-Windows-Command-Prompt-Mode" class="headerlink" title="Command-Line Compilers for Windows Command Prompt Mode"></a>Command-Line Compilers for Windows Command Prompt Mode</h3><p>在 Windows 的命令行模式下，可以使用包含 GNU C++ 编译器的安装包，如 Cygwin 和 MinGW（Minimalist GNU for Windows），编译器的名字也为 g++。</p>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>在 Windows 的桌面环境下使用 IDE 可以给开发者提供更多选择：Compile，Build，Make，Build All，Link，Execute，Run，还有 Debug。</p>
+<ol>
+<li><p>Compile：编译当前打开的源文件。</p>
+</li>
+<li><p>Build or Make：编译项目文件里的所有源文件。这往往是一个增量过程，也就是说，在只改变部分文件的情况下，再次进行 Build or Make 只会对已修改文件重新编译。</p>
+</li>
+<li><p>Build All：通常指将所有源文件，从头开始进行编译。</p>
+</li>
+<li><p>Link：将编译过的代码与必要的库代码结合。</p>
+</li>
+<li><p>Run or Execute：运行程序。如果在运行程序之前，没有经过编译、连接等过程，则 IDE 会自动执行。</p>
+</li>
+<li><p>Debug：调试。提供可逐步运行程序的选项。在调试时，应该首先解决第一个出现的错误，因为后续的错误可能皆是由第一个错误引起的。</p>
+</li>
+<li><p>Release：有些编译器还会提供 Debug 和 Release 两种不同版本的可执行文件。Debug 版本的程序相较于 Release 版本添加了额外代码，提供更为细化的调试特性，这是以更大的程序体积和更慢的执行速度为代价的。</p>
+</li>
+<li><p>在 IDE 开发程序，经常会使用到辅助的窗口，展示调试信息，但是有时候窗口会飞速闪过，用户还没看清楚，窗口就被关闭了。这时可能需要在程序最后添加如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cin.<span class="built_in">get</span>();</span><br><span class="line">cin.<span class="built_in">get</span>();</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>第一个 <code>cin.get();</code> 会要求用户输入键盘信号，所以窗口会一直停留，直到用户按下 Enter 键。</p>
+<p>第二个 <code>cin.get();</code> 起作用的场景是：程序处理了 Enter 键之前的内容，却没有处理 Enter 键本身，会导致第一个 <code>cin.get();</code> 接收到 Enter 键的输入，从而到达返回语句，关闭窗口。这时，只需要第二个 <code>cin.get();</code> 就可以实现请求用户输入，暂停窗口。</p>
+</li>
+</ol>
+<h3 id="Macintosh"><a href="#Macintosh" class="headerlink" title="Macintosh"></a>Macintosh</h3><p>在 Mac OS X 操作系统上可以使用 Xcode 进行开发。</p>
+<p>Xcode 不仅提供了支持数种编程语言的 IDE，而且安装了一些编译器：g++ 和 clang。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>需要注意的是：某个编译器成功通过了某个程序的源文件，并不代表着该程序的源文件是有效的，比如说，该源文件使用了一些已经过时的 C++ 特性；反过来，某个编译器没有通过某程序的源文件，也不代表着该程序的源文件是无效的，比如说，该源文件使用了一些未被编译器实现的特性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://littlebugyang.github.io/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E6%80%BB%E7%BB%93/Chapter_1_Getting_Started_with_C++/" data-id="ckovjrcqi003710xd7k194n8l" data-title="Chapter_1_Getting_Started_with_C++" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/index/page/80/">&laquo; Prev</a><a class="page-number" href="/index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/index/page/79/">79</a><a class="page-number" href="/index/page/80/">80</a><span class="page-number current">81</span><a class="page-number" href="/index/page/82/">82</a><a class="page-number" href="/index/page/83/">83</a><span class="space">&hellip;</span><a class="page-number" href="/index/page/123/">123</a><a class="extend next" rel="next" href="/index/page/82/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/">electron</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%80%BB%E7%BB%93/">阅读官方文档总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/">阅读官方文档笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/">node</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/npm/">npm</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/">技术应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">硬件信息</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/%E2%80%9CLearning-JavaScript%E2%80%9D%E7%AC%94%E8%AE%B0/">“Learning JavaScript”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/YAML/">YAML</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/GitHub/">GitHub</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE/">软件设置</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/">概念</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/">约瑟夫问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/">词典</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/">Lenovo_500_FHD_Webcam</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">链表</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 LittleBugYang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

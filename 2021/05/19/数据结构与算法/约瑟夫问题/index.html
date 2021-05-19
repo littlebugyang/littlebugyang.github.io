@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>约瑟夫问题 | LittleBugYang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="题目描述编号为 1 到 n 的 n 个人围成一圈。从编号为 1 的人开始报数，报到 m 的人离开。 下一个人继续从 1 开始报数。 n-1 轮结束以后，只剩下一个人，问最后留下的这个人编号是多少？ 题目讲解这是一个一般化后的约瑟夫问题，原版中 m 是可变的。这里只讨论这个一般化后的。之前也在网上看过相关的解答了，但是都太水了，完全不能让我理解，所以我只能在这里整理一下，以便于我自己理解。 首先，我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="约瑟夫问题">
+<meta property="og:url" content="https://littlebugyang.github.io/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="LittleBugYang&#39;s Blog">
+<meta property="og:description" content="题目描述编号为 1 到 n 的 n 个人围成一圈。从编号为 1 的人开始报数，报到 m 的人离开。 下一个人继续从 1 开始报数。 n-1 轮结束以后，只剩下一个人，问最后留下的这个人编号是多少？ 题目讲解这是一个一般化后的约瑟夫问题，原版中 m 是可变的。这里只讨论这个一般化后的。之前也在网上看过相关的解答了，但是都太水了，完全不能让我理解，所以我只能在这里整理一下，以便于我自己理解。 首先，我">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-19T14:16:29.000Z">
+<meta property="article:modified_time" content="2021-05-19T14:16:29.000Z">
+<meta property="article:author" content="LittleBugYang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="LittleBugYang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LittleBugYang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://littlebugyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数据结构与算法/约瑟夫问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2021-05-19T14:16:29.000Z" itemprop="datePublished">2021-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      约瑟夫问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>编号为 1 到 n 的 n 个人围成一圈。从编号为 1 的人开始报数，报到 m 的人离开。</p>
+<p>下一个人继续从 1 开始报数。</p>
+<p>n-1 轮结束以后，只剩下一个人，问最后留下的这个人编号是多少？</p>
+<h1 id="题目讲解"><a href="#题目讲解" class="headerlink" title="题目讲解"></a>题目讲解</h1><p>这是一个一般化后的约瑟夫问题，原版中 m 是可变的。这里只讨论这个一般化后的。之前也在网上看过相关的解答了，但是都太水了，完全不能让我理解，所以我只能在这里整理一下，以便于我自己理解。</p>
+<p>首先，我们需要对题目描述的 <code>1, 2, 3, 4, 5, ... , n</code> 进行重新编号，因为在该问题中，这是一个环形的链表（或数组），取模运算可以很方便地计算跨过边界后的位置，而这个位置可能为 0，所以统一计数从 0 开始会简化流程，则相应地，“报到 m 的人离开”要改成“报到 m-1 的人要离开”。</p>
+<p>另外，还需要定义 <code>JOSP(n, m)</code> 为该题目中描述的以 n 和 m 为参数的约瑟夫问题；同时，JOSP(n, m) 代表着该问题的答案，也就是说，最后留下的这个人编号为 x，而 <code>x=JOSP(n, m)</code>。</p>
+<p>对于第一个剔出的元素，其位置（从 0 开始）应为 <code>(m-1) % n</code>；也就是说，其下个位置 ka，应该为新一轮报数的起始点，为 (m-1+1) % n，也就是 <code>ka = m % n</code>：</p>
+<table>
+<thead>
+<tr>
+<th align="center">第一轮前</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">…</th>
+<th align="center">n-2</th>
+<th align="center">n-1</th>
+<th>人数：n</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">第一轮后</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">…</td>
+<td align="center">ka-2</td>
+<td align="center">ka</td>
+<td align="center">…</td>
+<td align="center">n-1</td>
+<td align="center"></td>
+<td>人数：n-1</td>
+</tr>
+</tbody></table>
+<p>既然 ka-1 已经被剔除了，而且是从 ka 出发，那么很理所当然地可以把 ka 放在列表的最前列，而且我们可以给它们编上新的编号：</p>
+<table>
+<thead>
+<tr>
+<th align="center">第二轮前</th>
+<th align="center">ka</th>
+<th align="center">ka+1</th>
+<th align="center">ka+2</th>
+<th align="center">ka+3</th>
+<th align="center">…</th>
+<th align="center">n-1</th>
+<th align="center">…</th>
+<th align="center">(ka+n-2)%(n-1)</th>
+<th>人数：n-1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">第二轮前</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">n-2</td>
+<td>人数：n-1</td>
+</tr>
+</tbody></table>
+<p>而这种列表的方式可以一直持续到第 n-1 轮，也就是最终只剩下一个人。但是我们先来着重关注第一轮前后和第二轮前。</p>
+<p>通过对比第二轮前的新旧编号，我们可以很容易得知，它们两者之间是有数学关系的。假设第二轮的新编号为 xa，则其旧编号 ya，也就是在第一轮中的编号为：<br>$$<br>ya = (xa + ka ) % (n)<br>$$<br>在这里我们可以得知，给定在第二轮中的新编号，可以得出在第二轮中的旧编号，而该旧编号恰是第一轮中的原编号。</p>
+<p>由于第二轮换了新编号之后，我们可以发现这又成了另一个约瑟夫问题：<code>JOSP(n-1, m)</code>，因此我们可以很轻易地得出第二轮中被剔出的元素的位置为 <code>(m-1) % (n-1)</code>；其下个位置 kb，应该为新一轮报数的起始点，为 (m-1+1) % (n-1)，也就是 <code>kb = m % (n-1)</code>：</p>
+<table>
+<thead>
+<tr>
+<th align="center">第二轮前</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">…</th>
+<th align="center">…</th>
+<th align="center">…</th>
+<th align="center">…</th>
+<th align="center">…</th>
+<th align="center">n-2</th>
+<th>人数：n-1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">第二轮后</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">…</td>
+<td align="center">kb</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">n-2</td>
+<td align="center"></td>
+<td>人数：n-2</td>
+</tr>
+<tr>
+<td align="center">第三轮前</td>
+<td align="center">kb</td>
+<td align="center">kb+1</td>
+<td align="center">kb+2</td>
+<td align="center">…</td>
+<td align="center">n-2</td>
+<td align="center">…</td>
+<td align="center">(kb+n-3)%(n-2)</td>
+<td align="center"></td>
+<td>人数：n-2</td>
+</tr>
+<tr>
+<td align="center">第三轮前</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">n-3</td>
+<td align="center"></td>
+<td>人数：n-2</td>
+</tr>
+</tbody></table>
+<p>同理，此处第三轮的新编号 xb，其对应的旧编号 yb，也就是在第二轮中的编号为：<br>$$<br>yb = (xb+kb)%(n-1)<br>$$<br>得知该信息的用处在于：既然我们已经可以从后面的轮次中某位置的新编号推导出其前一轮的旧编号，那么我们直接去到最基本的情况，也就是 <code>JOSP(1, m)</code>，得出其最新的编号，再一层一层地推回来，不就可以得知 <code>JOSP(n, m)</code> 是多少了吗？</p>
+<p>根据上面的第一道数学公式，我们假设 JOSP(n, m) 中存活下来的那个元素，在第二轮的新编号下位置为 x，那么其在第一轮的编号位置为 y。根据题意，在第一轮的编号就是 JOSP(n, m) 的答案，而第二轮的新编号就是 JOSP(n-1, m) 的答案，可得：<br>$$<br>\text{JOSP}(n, m)=[\text{JOSP}(n-1, m)+ka]%(n)<br>$$<br>而其中，$ka=m%n$，则进一步可得：<br>$$<br>\begin{aligned}<br>\text{JOSP}(n, m)<br>&amp;=[\text{JOSP}(n-1, m)+(m% n)]%(n)\\<br>&amp;={[\text{JOSP}(n-2, m)+(m% (n-1))]%(n-1)+(m% n)}%(n)\\<br>&amp;=\cdots<br>\end{aligned}<br>$$<br>其展开的逆过程，即从 <code>JOSP(1, m)</code> 到 <code>JOSP(n, m)</code> 的过程为：<br>$$<br>\begin{aligned}<br>&amp;\text{JOSP}(1, m)\Rightarrow\\<br>[\text{JOSP}(1, m)+m%(1+1)]%(1+1)=&amp;\text{JOSP}(2, m)\Rightarrow\\<br>[\text{JOSP}(2, m)+m%(2+1)]%(2+1)=&amp;\text{JOSP}(3, m)\Rightarrow\\<br>&amp;\cdots\\<br>[\text{JOSP}(n-1, m)+m%(n)]%(n)=&amp;\text{JOSP}(n, m)<br>\end{aligned}<br>$$<br>从 <code>JOSP(1, m)</code> 到 <code>JOSP(n, m)</code> 共有 n-1 步，则循环 n-1 次即可。</p>
+<p>对于 <code>JOSP(2, m)</code>，其对应的场景为“两个人围成一圈，从编号为 0 的人开始报数，报到 m-1 的人离开”，出局的人位置为 (m-1)%2。</p>
+<p>则 C++ 代码可这样写：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ysf</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        x = (x + m % (i + <span class="number">1</span>)) % (i + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尽管题目描述相同，就这一段代码还是会有<a target="_blank" rel="noopener" href="https://www.nowcoder.com/profile/610395445">不同的版本</a>，比如说：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ysf</span>(<span class="params"> n ,  m </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">1</span> || m &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">let</span> last = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) last = (last + m) % i;</span><br><span class="line">    <span class="keyword">return</span> last + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就很神奇。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>看了：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/3857719?fr=aladdin">https://baike.baidu.com/item/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/3857719?fr=aladdin</a></p>
+<p>看了：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cmmdc/p/7216726.html">https://www.cnblogs.com/cmmdc/p/7216726.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://littlebugyang.github.io/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/" data-id="ckovjrcod000g10xdhbxog90s" data-title="约瑟夫问题" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          概念
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">词典</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/">electron</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%80%BB%E7%BB%93/">阅读官方文档总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/">阅读官方文档笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/">node</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/npm/">npm</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/">技术应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">硬件信息</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/%E2%80%9CLearning-JavaScript%E2%80%9D%E7%AC%94%E8%AE%B0/">“Learning JavaScript”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/YAML/">YAML</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/GitHub/">GitHub</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE/">软件设置</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/">概念</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/">约瑟夫问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/">词典</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/">Lenovo_500_FHD_Webcam</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">链表</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 LittleBugYang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

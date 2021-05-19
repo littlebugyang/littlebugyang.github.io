@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>LittleBugYang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Just blogs.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LittleBugYang&#39;s Blog">
+<meta property="og:url" content="https://littlebugyang.github.io/index/page/98/index.html">
+<meta property="og:site_name" content="LittleBugYang&#39;s Blog">
+<meta property="og:description" content="Just blogs.">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="LittleBugYang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="LittleBugYang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LittleBugYang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://littlebugyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-数据结构与算法/动态规划" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="article-date">
+  <time class="dt-published" datetime="2021-05-19T14:16:28.000Z" itemprop="datePublished">2021-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>最优子结构</li>
+<li>状态转移方程</li>
+<li>边界</li>
+</ul>
+<h1 id="闫学灿-DP-分析法"><a href="#闫学灿-DP-分析法" class="headerlink" title="闫学灿 DP 分析法"></a>闫学灿 DP 分析法</h1><p>讲例题的时候，如果我没有看过二维数组的模样的话，应该是看不懂他的优化的。</p>
+<blockquote>
+<p>DP 问题的所有优化，都是对代码作等价变形。</p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><h2 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h2><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>有 $N$ 种物品和一个容量为 $V$ 的背包。放入第 $i$ 件物品耗费的费用是 $C_i$，得到的工资是 $W_i$。每件物品放入的件数不作限制，求解将哪些物品装入背包可使工资总和最大。  </p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>现定义组合 Set(n, v)，其意义为所有合法的物品放入背包的方法的集合。其中，n 表示可放入的物品种数，v 表示该背包的容量。需要注意的是：n 表示的种数，不是已经放入的物品种数，也不是必须放入的物品种数，只是表示可选范围。则我们可以根据是否有放入第 n 种物品（其花费为 c，工资为 w），把该组合分割成两部分：<br>$$<br>\text{Set}(n,v) = \text{Set}(n-1,v) \cup\text{Set}(n, v-k<em>c)<br>$$<br>其中，$k$ 为放入第 n 种物品的数量。由于等号右边两个集合一个没有 n 号物品，而另一个有，则易得知：<br>$$<br>\text{Set}(n-1,v) \cap\text{Set}(n, v-k</em>c)=\empty<br>$$<br>现定义函数，F(n, v)，其意义为集合 Set(n, v) 中所有的组合所达成的工资中，最高的那个。k 可以从 1 取到 v/c，代表着 n 号物品放入的个数：<br>$$<br>F(n,v)= \text{maximum{}\text{F}(n-1,v),\quad\text{F}(n, v-k<em>c)+k</em>w\text{}}<br>$$<br>其中，$F(n-1, v)$ 代表没有使用到 n 号物品时的最大值，而 $F(n, v-k<em>w)$ 代表的其实是多个数，代表放入 n 号物品时的最大值：<br>$$<br>F(n,v)= \text{maximum{}\text{F}(n-1,v),\quad\text{F}(n, v-1</em>c)+1<em>w,\quad\text{F}(n, v-2</em>c)+2<em>w,\quad\text{F}(n, v-3</em>c)+3*w\cdots\text{}}<br>$$</p>
+<h3 id="朴素直观的解决方案"><a href="#朴素直观的解决方案" class="headerlink" title="朴素直观的解决方案"></a>朴素直观的解决方案</h3><p>Todo. </p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>回顾一下 F(n, v) 的表达式：<br>$$<br>F(n,v)= \text{max{}\text{F}(n-1,v),\quad\text{F}(n-1, v-1<em>c)+1</em>w,\quad\text{F}(n-1, v-2<em>c)+2</em>w,\quad\text{F}(n-1, v-3<em>c)+3</em>w\cdots\text{}}<br>$$<br>对于与与 $F(n, v)$ 相似的 $F(n, v-c)$，有如下等式：<br>$$<br>F(n,v-c)= \text{max{}\text{F}(n-1,v-c),\quad\text{F}(n-1, v-2<em>c)+1</em>w,\quad\text{F}(n-1, v-3<em>c)+2</em>w,\quad\text{F}(n-1, v-4<em>c)+3</em>w\cdots\text{}}<br>$$<br>我们可以看到，上面两式是有很多相似之处的。比如说，F(n, v) 的右边第二项与 F(n, v-c) 的右边第一项只差了 w；而 F(n, v) 的右边第三项与 F(n, v-c) 的右边第二项也只差了 w。那我们可以索性给第二个等式的左右两边都加上 w：<br>$$<br>F(n,v-c)+w= \text{max{}\text{F}(n-1,v-c)+w,\quad\text{F}(n-1, v-2<em>c)+2w,\quad\text{F}(n-1, v-3</em>c)+3<em>w\cdots\text{}}<br>$$<br>这样一来，$F(n, v-c)+w$ 就和 $F(n, v)$ 的展开式的后半部分一模一样了：<br>$$<br>\begin{aligned}<br>F(n,v)&amp;= \text{max{}\text{F}(n-1,v),\quad\text{F}(n-1, v-1</em>c)+1<em>w,\quad\text{F}(n-1, v-2</em>c)+2<em>w,\quad\text{F}(n-1, v-3</em>c)+3*w\cdots\text{}}\\<br>&amp;=\text{max{}F(n-1, v), F(n, v-c)+w\text{}}<br>\end{aligned}<br>$$<br>这里的 n/v/w 等字母的定义与闫学灿的不一样，所以很容易造成困扰，我争取抽时间改一下。</p>
+<h3 id="化简后图解"><a href="#化简后图解" class="headerlink" title="化简后图解"></a>化简后图解</h3><p>Todo.</p>
+<h3 id="其他化简"><a href="#其他化简" class="headerlink" title="其他化简"></a>其他化简</h3><p>见<a target="_blank" rel="noopener" href="https://github.com/tianyicui/pack/">背包9讲</a>。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1X741127ZM">https://www.bilibili.com/video/BV1X741127ZM</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1C7411K79w">https://www.bilibili.com/video/BV1C7411K79w</a></p>
+<h2 id="恰好装满"><a href="#恰好装满" class="headerlink" title="恰好装满"></a>恰好装满</h2><p>我无法理解关于恰好装满的描述。</p>
+<h3 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33618962/article/details/85928727">https://blog.csdn.net/qq_33618962/article/details/85928727</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.manongjc.com/article/58936.html">http://www.manongjc.com/article/58936.html</a></p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><h2 id="NC148：几步可以从头跳到尾"><a href="#NC148：几步可以从头跳到尾" class="headerlink" title="NC148：几步可以从头跳到尾"></a>NC148：几步可以从头跳到尾</h2><p>讨论中，代码过了的网友没有把所有的变量名都讲清楚，但其实也只有一个。只是我对贪婪算法和动态规划太不熟悉了。</p>
+<p>这里遍历的时候不要取到最后一个元素。刚开始我以为是这个网友不想在循环后多写一个 if 语句，但是我在写的时候想了一下，如果把最后一个元素也放进循环的话，那么最后一个元素的值就会影响到 jumpCount 是否应该自增，这是不应该的。</p>
+<p>Todo.</p>
+<h2 id="NC145：01背包"><a href="#NC145：01背包" class="headerlink" title="NC145：01背包"></a>NC145：01背包</h2><p>我之前还考虑过，是不是应该把物品按照某一属性进行排序，以便于我们是从最占地方的那个物品开始。后来我发现这样做是不符合语义的，因为能够理解 01 背包问题的关键在于——把所有的可能性划分成两派：有某个特定物品 / 没有某个特定物品。</p>
+<p>画出状态转移表之后，要计算最右下角的最终答案的话，根据推导式，应该要先算其上一层。所以，根据不同状态转移表的构建方法，我们需要逐行（或列）地从左上角出发开始计算。</p>
+<p>我真的佛了，调试了 1 个多小时，都看不出来是哪里出了问题。直至跟别人的代码一对比，发现都不初始化第一行的。我把我初始化第一行的代码注释掉之后，真的发现答案正确了。</p>
+<p>为什么！！!</p>
+<p>终于，我得到了答案……</p>
+<p>我在遍历物品的时候，从第 2 个物品开始，但是在比较其重量和体积的时候，索引却是从第 1 个物品开始的。我佛了，我以后写状态转移表，一定用多一行，泪目……</p>
+<p>Todo.</p>
+<h2 id="NC126：换钱的最少货币数"><a href="#NC126：换钱的最少货币数" class="headerlink" title="NC126：换钱的最少货币数"></a>NC126：换钱的最少货币数</h2><p>讨论区的人都是用状态转移表来做的，但是原理我还没搞懂，状态转移方程我还没有得出。</p>
+<p>我在想，我在判断是否用了某种币的时候，是不是需要先排序，然后尽量用面值最大的币去填，然后剩下的用小的填，这样不知道可不可以符合题意。没过多久我就想到一个场景：14 块钱本可以用 2 张 7 块面值的币填满，但是如果有 8 块的可选，则 14 块钱在这时候会先被 1 张 8 块填满，然后凑钱失败。</p>
+<p>所以，这个问题的状态转移方程我还真的没能找出来。</p>
+<p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/profile/407335859">馒头2020</a>的说法启发了我：<strong>若当前剩余需找零数为 m 时，考虑是否使用一张当前面值的钱</strong>。</p>
+<p>状态转移表中的每一项的值，可看作：“为凑齐该列所代表的钱，只用了该行及之前所代表的钱，最少需要几张纸币”。</p>
+<p>但是我还是写不出状态转移方程。</p>
+<blockquote>
+<p><strong>“若当前剩余需找零数为 m 时，考虑是否使用一张当前面值的钱”</strong>是指：</p>
+<ol>
+<li>若使用一张当前面值的货币，那么使用的货币数 +1，且剩余需找零数要减去当前货币面值；</li>
+<li>若不考虑使用当前面值的货币，那么货币数为使用上一种类的货币的数量且剩余找零数不需要减去。</li>
+</ol>
+<p>选出两种方法之中货币数最少的那一个就是最优解。</p>
+</blockquote>
+<p>Todo.</p>
+<p>现假设共有 N 种货币，需要凑成 M 元。可设置集合 Set{n, m} 为：在具有 n 种币种下，凑出 m 元钱的所有方案。</p>
+<p>进而可设置状态 F(n, m) 为：在具有 n 种币种下，恰好凑出 m 元钱的所有方案中所花货币数的最小值。</p>
+<p>以是否包含第 n 种币种为划分依据，可以把 Set{n, m} 划分为：</p>
+<ul>
+<li>不包含第 n 种货币的方案；</li>
+<li>包含第 n 种货币的方案：<ul>
+<li>包含了 1 张第 n 种货币的所有方案；</li>
+<li>包含了 2 张第 n 种货币的所有方案；</li>
+<li>包含了 3 张第 n 种货币的所有方案；</li>
+<li>…</li>
+<li>包含了 k 张第 n 种货币的所有方案；</li>
+</ul>
+</li>
+</ul>
+<p>可根据题意设置状态转移方程：<br>$$<br>F(n, m) = \text{min{}F(n-1, m),F(n-1, m-v_n)+1, F(n-1, m-2v_n)+2,F(n-1, m-3v_n)+3,\cdots\text{}}<br>$$<br>由于：<br>$$<br>\begin{aligned}<br>F(n, m-v) &amp;= \text{min{}F(n-1, m-v),F(n-1, m-2v_n)+1, F(n-1, m-3v_n)+2,F(n-1, m-4v_n)+3,\cdots\text{}}\\<br>F(n, m-v)+1 &amp;= \text{min{}F(n-1, m-v)+1,F(n-1, m-2v_n)+2, F(n-1, m-3v_n)+3,F(n-1, m-4v_n)+4,\cdots\text{}}<br>\end{aligned}<br>$$<br>因此，可得：<br>$$<br>F(n, m) = \text{min{}F(n-1, m),F(n, m-v)+1\text{}}<br>$$<br>需要注意的是，在某金额无法使用现有的货币种类凑齐的时候，需要给 F(n, m) 一个合适的值以代表这种情况。这里应该使用尽量大的值，这样子在 min 的比较中才会偏向于选取虽较大但合法的选择。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> std::min;</span><br><span class="line"><span class="keyword">using</span> std::sort;</span><br><span class="line"><span class="keyword">using</span> std::vector;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 最少货币数</span></span><br><span class="line"><span class="comment">     * @param arr int整型vector the array</span></span><br><span class="line"><span class="comment">     * @param aim int整型 the target</span></span><br><span class="line"><span class="comment">     * @return int整型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minMoney</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; &amp;arr, <span class="keyword">int</span> aim)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(aim + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; dp.<span class="built_in">size</span>(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[i] = INT_MAX;</span><br><span class="line">            <span class="keyword">if</span> (i &gt;= arr[<span class="number">0</span>] &amp;&amp; dp[i - arr[<span class="number">0</span>]] != INT_MAX)</span><br><span class="line">                dp[i] = dp[i - arr[<span class="number">0</span>]] + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.<span class="built_in">size</span>(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; dp.<span class="built_in">size</span>(); ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt;= arr[i])</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">int</span> excludeMoneyI = dp[j];</span><br><span class="line">                    <span class="keyword">int</span> includeMoneyI = (dp[j - arr[i]] == INT_MAX) ? INT_MAX : dp[j - arr[i]] + <span class="number">1</span>;</span><br><span class="line">                    dp[j] = <span class="built_in">min</span>(excludeMoneyI, includeMoneyI);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[dp.<span class="built_in">size</span>() - <span class="number">1</span>] == INT_MAX ? <span class="number">-1</span> : dp[dp.<span class="built_in">size</span>() - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; arr;</span><br><span class="line">    Solution solution;</span><br><span class="line">    <span class="keyword">int</span> result = solution.<span class="built_in">minMoney</span>(arr, <span class="number">20</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考-2"><a href="#参考-2" class="headerlink" title="参考"></a>参考</h3><p>参考了一下代码，理解了如何处用一个大值来辅助判断是否可凑：<a target="_blank" rel="noopener" href="https://www.imooc.com/article/25186?block_id=tuijian_wz">https://www.imooc.com/article/25186?block_id=tuijian_wz</a></p>
+<h2 id="NC34：求路径"><a href="#NC34：求路径" class="headerlink" title="NC34：求路径"></a>NC34：求路径</h2><p>这道题应该是最简单的，但是我在初始化的时候没有做好，调试花了很长时间去改进。</p>
+<h2 id="NC19：子数组的最大累加和问题"><a href="#NC19：子数组的最大累加和问题" class="headerlink" title="NC19：子数组的最大累加和问题"></a>NC19：子数组的最大累加和问题</h2><p>这个题我看了讨论之后就明白了，是以前做过的一道题。但是吧，我没能用 dp 分析法给分析出来，所以这对我来说是玄学了。</p>
+<p>设定 Set{i, j} 为当数组首尾元素分别为 i 和 j 时的所有子数组。则可把 Set{i, j} 这个集合这样划分：</p>
+<ul>
+<li>包含最后一个元素的子数组：<ul>
+<li>$a_j$</li>
+<li>$a_{j-1}, a_j$</li>
+<li>$a_{j-2}, a_{j-1}, a_j$</li>
+<li>…</li>
+<li>$a_i, a_{i+1}, \cdots, a_{j-2}, a_{j-1}, a_j$</li>
+</ul>
+</li>
+<li>不包含最后一个元素的子数组：Set{i, j-1}<ul>
+<li>包含最后一个元素的子数组：<ul>
+<li>$a_{j-1}$</li>
+<li>$a_{j-2}, a_{j-1}$</li>
+<li>$a_{j-3}, a_{j-2}, a_{j-1}$</li>
+<li>…</li>
+<li>$a_i, a_{i+1}, \cdots, a_{j-2}, a_{j-1}$</li>
+</ul>
+</li>
+<li>不包含最后一个元素的子数组：Set{i, j-2}<ul>
+<li>包含最后一个元素的子数组：</li>
+<li>不包含最后一个元素的子数组：<ul>
+<li>…</li>
+<li>…</li>
+<li>包含最后一个元素的子数组：<ul>
+<li>$a_{i+2}$</li>
+<li>$a_{i+1},a_{i+2}$</li>
+<li>$a_{i},a_{i+1},a_{i+2}$</li>
+</ul>
+</li>
+<li>不包含最后一个元素的子数组：Set{i, i+1}<ul>
+<li>包含最后一个元素的子数组：<ul>
+<li>$a_{i+1}$</li>
+<li>$a_i, a_{i+1}$</li>
+</ul>
+</li>
+<li>不包含最后一个元素的子数组：Set{i, i} = $a_i$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>如果从 $a_i$ 开始算起，一直比较大小到 Set{i, j}，无异于暴力穷举。</p>
+<p>参考了浙江工业大学的程振波的讲解，其中提到，子问题的划分依据是当前元素是否在累加和最大的连续子序列中。设置 dp[i] 为包括第 i 个元素子序列的累加和。其在视频评论下方提到要注意 dp[i] 不是最大。我看了其演示，总觉得他所讲的应该是“到目前为止最大”。</p>
+<p>我又去了百度搜索了一下，发现了一篇比较好的博客，其讲到的 dp[i] 的定义应更明确：</p>
+<blockquote>
+<p>f(i)表示以<strong>第i个数字结尾</strong>的子数组的最大和</p>
+</blockquote>
+<p>在这个思路下，对于 f(i)，也就是 dp[i] 的值，就可以通过 <code>max&#123;dp[i-1]+arr[i], arr[i]&#125;</code> 来确定。现在回过头来看程的书写，其称之为错误的“DP[i] 表示到第 i 个元素子序列累加和最大”的表述，好像也没什么问题啊~</p>
+<p>再回到闫学灿的 DP 分析法的话，好像很难以构建集合及其划分，应该是我太菜了，我到现在都没能想出来。</p>
+<p>因为 dp 的最后一个元素并不是代表着 arr[arr.size()-1] 之前出现过的最大累加和，所以在程序的前面还是要定义用于存储最大值的变量，到最后当然也不能返回 dp 数组的最后一个元素，而是要返回该变量。这一点上，跟我在闫学灿那里看到的动态规划就不太一样。</p>
+<h3 id="参考-3"><a href="#参考-3" class="headerlink" title="参考"></a>参考</h3><p>浙江工业大学，程振波，动态规划方法：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1jE411G7PD">https://www.bilibili.com/video/BV1jE411G7PD</a></p>
+<p>博客，连续子数组的最大和（基于动态规划）：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/tianzeng/p/10238286.html">https://www.cnblogs.com/tianzeng/p/10238286.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://littlebugyang.github.io/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" data-id="ckovjrco5000910xdbbklhwrn" data-title="动态规划" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/index/page/97/">&laquo; Prev</a><a class="page-number" href="/index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/index/page/96/">96</a><a class="page-number" href="/index/page/97/">97</a><span class="page-number current">98</span><a class="page-number" href="/index/page/99/">99</a><a class="page-number" href="/index/page/100/">100</a><span class="space">&hellip;</span><a class="page-number" href="/index/page/123/">123</a><a class="extend next" rel="next" href="/index/page/99/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/">electron</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%80%BB%E7%BB%93/">阅读官方文档总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/">阅读官方文档笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/">node</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/npm/">npm</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/">技术应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">硬件信息</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/%E2%80%9CLearning-JavaScript%E2%80%9D%E7%AC%94%E8%AE%B0/">“Learning JavaScript”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/YAML/">YAML</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/GitHub/">GitHub</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE/">软件设置</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/">概念</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/">约瑟夫问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/">词典</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/">Lenovo_500_FHD_Webcam</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">链表</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 LittleBugYang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

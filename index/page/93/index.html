@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>LittleBugYang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Just blogs.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LittleBugYang&#39;s Blog">
+<meta property="og:url" content="https://littlebugyang.github.io/index/page/93/index.html">
+<meta property="og:site_name" content="LittleBugYang&#39;s Blog">
+<meta property="og:description" content="Just blogs.">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="LittleBugYang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="LittleBugYang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LittleBugYang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://littlebugyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-数据结构与算法/leetcode" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" class="article-date">
+  <time class="dt-published" datetime="2021-05-19T14:16:28.000Z" itemprop="datePublished">2021-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/">leetcode</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="69-x-的平方根"><a href="#69-x-的平方根" class="headerlink" title="69. x 的平方根"></a>69. x 的平方根</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sqrtx/">69. x 的平方根</a></p>
+<p>这道题花了我非常多的时间。几乎所有的时间都用来确定边界了，剩下的其他时间的几乎所有时间，用来解决溢出问题。</p>
+<p>没错，对于这道题我只干了两件事。</p>
+<h1 id="387-字符串中的第一个唯一字符"><a href="#387-字符串中的第一个唯一字符" class="headerlink" title="387. 字符串中的第一个唯一字符"></a>387. 字符串中的第一个唯一字符</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/first-unique-character-in-a-string/">387. 字符串中的第一个唯一字符</a></p>
+<p>这道题我是看了题解才懂的。</p>
+<p>在官方回答下面，第一条评论是用 Java 写的，用数组替代了 map，但是我总觉得他的代码不能够找到“第一个”只出现一次的字符。于是我自己写了一个 C++ 版本的，确实不能过；但是他的 Java 版本的我粘贴过来后是可通过的。这就让我很奇怪，我仔细对比了一下，才发现，在第二个循环处，我是遍历桶，而正确的做法是再一次遍历数组。</p>
+<p>我的错误代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">firstUniqChar</span><span class="params">(string s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> alphas[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); ++i)</span><br><span class="line">        ++alphas[s.<span class="built_in">at</span>(i) - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i)</span><br><span class="line">        <span class="keyword">if</span> (alphas[i] == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正确代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">firstUniqChar</span><span class="params">(string s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> alphas[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); ++i)</span><br><span class="line">        ++alphas[s.<span class="built_in">at</span>(i) - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); ++i)</span><br><span class="line">        <span class="keyword">if</span> (alphas[s.<span class="built_in">at</span>(i) - <span class="string">&#x27;a&#x27;</span>] == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="169-多数元素"><a href="#169-多数元素" class="headerlink" title="169. 多数元素"></a>169. 多数元素</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/majority-element/">169. 多数元素</a></p>
+<p>Boyer-Moore 的投票法惊呆我，评论区的文字证明也惊呆我了。</p>
+<h1 id="191-位1的个数"><a href="#191-位1的个数" class="headerlink" title="191. 位1的个数"></a>191. 位1的个数</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-1-bits/">191. 位1的个数</a></p>
+<p>位运算真的佛了。解释中的方法二提到的 <code>n &amp; (n-1)</code> 就已经令人难以接受了，居然还有那么变态的 BITCOUNT 方法。</p>
+<h1 id="190-颠倒二进制位"><a href="#190-颠倒二进制位" class="headerlink" title="190. 颠倒二进制位"></a>190. 颠倒二进制位</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-bits/">190. 颠倒二进制位</a></p>
+<p>又是这种骚操作，还真的要好好看下才行。</p>
+<h1 id="237-删除链表中的节点"><a href="#237-删除链表中的节点" class="headerlink" title="237. 删除链表中的节点"></a>237. 删除链表中的节点</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/">237. 删除链表中的节点</a></p>
+<p>怎么说呢，这道题，有点令人哭笑不得。</p>
+<h1 id="202-快乐数"><a href="#202-快乐数" class="headerlink" title="202. 快乐数"></a>202. 快乐数</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/happy-number/">202. 快乐数</a></p>
+<p>这道题应该用快慢指针来解决如何确定是否隐入循环的问题。</p>
+<p>与指针的题目不同的地方在于，这里没有指针，所以慢指针往下走的话，是没有 next 这种结构可以依托的，只能够利用慢指针 slowResult 当前的值再生成一个候选快乐数。这就需要 slowResult 初始化不为 0，否则会隐入死循环：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isHappy</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> slowResult = n;</span><br><span class="line">        <span class="keyword">int</span> fastResult = n;</span><br><span class="line">        <span class="keyword">bool</span> moveSlowResult = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            n = <span class="built_in">calc</span>(n);</span><br><span class="line">            <span class="keyword">if</span> (moveSlowResult)</span><br><span class="line">                slowResult = <span class="built_in">calc</span>(slowResult);</span><br><span class="line">            fastResult = n;</span><br><span class="line">            moveSlowResult = !moveSlowResult;</span><br><span class="line">            <span class="keyword">if</span> (slowResult == fastResult)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 为了避免报错</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">calc</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (n != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            sum += (n % <span class="number">10</span>) * (n % <span class="number">10</span>);</span><br><span class="line">            n /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="172-阶乘后的零"><a href="#172-阶乘后的零" class="headerlink" title="172. 阶乘后的零"></a>172. 阶乘后的零</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/">172. 阶乘后的零</a></p>
+<p>这种数字游戏的题我确实不擅长。</p>
+<p>但是我觉得我的代码还行：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trailingZeroes</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> powerFive = <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">int</span> zerosCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (powerFive &lt;= n)</span><br><span class="line">        &#123;</span><br><span class="line">            zerosCount += (n / powerFive);</span><br><span class="line">            powerFive *= <span class="number">5</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> zerosCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="326-3的幂"><a href="#326-3的幂" class="headerlink" title="326. 3的幂"></a>326. 3的幂</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/power-of-three/">326. 3的幂</a></p>
+<p>官解的硬编码是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfThree</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n &gt; <span class="number">0</span> &amp;&amp; <span class="number">1162261467</span> % n == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我不知道为什么这个幂的因数只有 3 的其他幂。</p>
+<p>这个问题的答案好像仔细思考一下就出来了：</p>
+<ul>
+<li>3 是质数，除了 1 和 3，其没有任何其他的因数了。</li>
+<li>该幂是由多个 3 相乘而得来的。</li>
+<li>该幂可拆分为：3x3x3x3x3x3x3x…x3x3x3x3x3x3x3x3，无论我们将其如何组何：3x3x3x(3x3)x3x3x…x(3x3)x3x(3x3x3)x3x3，其得到的只能是 3 或 3 的其他幂的组合。</li>
+</ul>
+<p>但是我不想这样硬编码去写，所以这个值的计算就在运行时解决吧：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPowerOfThree</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> maxPowerThree = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">while</span> (maxPowerThree &lt; INT_MAX)</span><br><span class="line">            maxPowerThree *= <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">return</span> maxPowerThree % n == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="412-Fizz-Buzz"><a href="#412-Fizz-Buzz" class="headerlink" title="412. Fizz Buzz"></a>412. Fizz Buzz</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fizz-buzz/">412. Fizz Buzz</a></p>
+<p>虽然过了，但是不知道其他方法是怎么实现的。</p>
+<h1 id="268-丢失的数字"><a href="#268-丢失的数字" class="headerlink" title="268. 丢失的数字"></a>268. 丢失的数字</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/missing-number/">268. 丢失的数字</a></p>
+<p>这是我过得最快的一道没那么简单的题，利用累加和公式。</p>
+<h1 id="204-计数质数"><a href="#204-计数质数" class="headerlink" title="204. 计数质数"></a>204. 计数质数</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-primes/">204. 计数质数</a></p>
+<p>如何理解埃式筛从 $x\cdot x$ 开始标记的做法：</p>
+<ul>
+<li>从 $x\cdot x$ 开始标记并不是只标记 $x$ 的幂的位置。</li>
+<li>在 $x\cdot x$ 之前，一定有比 $x$ 更小的质数把该更小质数的所有倍数位置都标记了。</li>
+<li>而这个比 $x\cdot x$ 小，却比 $x$ 大（起码 1 倍以上，因为标记为合数的不包括 $x$ 本身）的合数的质因数，除了 $x$ 之外，一定还有其他的质数，因为每个合数都可以写成几个质数相乘的形式，参考：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%B4%A8%E5%9B%A0%E6%95%B0/6192269">https://baike.baidu.com/item/%E8%B4%A8%E5%9B%A0%E6%95%B0/6192269</a></li>
+<li>对于“一定有比 $x$ 更小的质数把该更小质数的所有倍数位置都标记了”这个说法，2 是例外，因为在 2 之前，并没有其他的合数。好在 2 和 2x2 之间的 3 本来就是质数，所以从 $x\cdot x$ 开始标记，对于 $x=2$ 来说，并没有漏掉任何合数。</li>
+</ul>
+<p>但是在我动手去写的时候，我才发现，原来是不需要计算该数是否为质数的：所有的合数都有质因数，所以从 2 开始，对每个质数的倍数都标记为合数，则可以覆盖所有的合数。</p>
+<p>另外，还有处理 0、1 的情况，我刚开始的时候，为了极致地减少使用空间，只申请了 n-2 的大小的 vector，所以，当 n 为 0 或 1 的时候，申请 n-2 的大小的 vector 就会抛出异常。</p>
+<p>总之，在来回对比中，我的代码就完全变成了 leetcode 官解的模样。</p>
+<h1 id="350-两个数组的交集-II"><a href="#350-两个数组的交集-II" class="headerlink" title="350. 两个数组的交集 II"></a>350. 两个数组的交集 II</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/">350. 两个数组的交集 II</a></p>
+<p>这道题刚开始的时候我以为是跟字符串匹配算法类似的，没想到是集合模拟题。</p>
+<p>不知道除了用哈希，还能用什么方法。</p>
+<h1 id="242-有效的字母异位词"><a href="#242-有效的字母异位词" class="headerlink" title="242. 有效的字母异位词"></a>242. 有效的字母异位词</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-anagram/">242. 有效的字母异位词</a></p>
+<p>不知道除了用三个循环+哈希，还能用什么别的办法。</p>
+<h1 id="28-实现-strStr"><a href="#28-实现-strStr" class="headerlink" title="28. 实现 strStr()"></a>28. 实现 strStr()</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-strstr/">28. 实现 strStr()</a></p>
+<p>我想借这个机会自己实现 KMP 算法，没想到，一上来就掉坑了：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> std::string;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> *<span class="title">buildNext</span><span class="params">(string pattern)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> *next = <span class="keyword">new</span> <span class="keyword">int</span>[pattern.<span class="built_in">size</span>()];</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> k = next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span> (j &lt; pattern.<span class="built_in">size</span>() - <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">0</span> &gt; k || pattern[j] == pattern[k])</span><br><span class="line">                next[++j] = ++k;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                k = next[k];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">strStr</span><span class="params">(string haystack, string needle)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (needle.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (haystack.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> *next = <span class="built_in">buildNext</span>(needle);</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = haystack.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> m = needle.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">while</span> (i &lt; n &amp;&amp; j &lt; m)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">0</span> &gt; j || haystack[i] == needle[j])</span><br><span class="line">            &#123;</span><br><span class="line">                ++i;</span><br><span class="line">                ++j;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">delete</span>[] next;</span><br><span class="line">        <span class="keyword">return</span> (i - j &gt; n - m) ? <span class="number">-1</span> : i - j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在 strStr() 函数中，刚开始我打算少声明几个变量，直接用 <code>(i &lt; haystack.size() &amp;&amp; j &lt; needle.size())</code> 作为 while 循环的条件语句，但是没有想到这里也能翻车。</p>
+<p>因为 size() 返回的是无符号类型，而其与 i/j 比较时，如果 i/j 为负数，比如说 -1，则该 -1 会被转化为无符号数，再与 size() 们比较；而 -1 转化为无符号数会变得很大很大……这道题中一开始，j 就要小于 0（对应首次对比失败的情况），所以循环只会执行一次，这就使得程序无法正常结束。</p>
+<p>难怪之前遍历向量的时候，编译器总是不让我用 int i = 0，改成 unsigned int i = 0 才肯罢休，原来是这个原因……</p>
+<p>这首题不能够一开始就把 i/j 声明成 unsigned int，因为 j 是有小于 0 的时候的。</p>
+<h1 id="110-平衡二叉树"><a href="#110-平衡二叉树" class="headerlink" title="110. 平衡二叉树"></a>110. 平衡二叉树</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/balanced-binary-tree/">110. 平衡二叉树</a></p>
+<p>写了非递归的，超时。官解的递归，又看不懂，唉。</p>
+<p>官解的自底向上的递归，用了 height 为 -1 以代表节点失衡。对于空节点，设置其高度为 0；对于单个节点，设置其高度为 1。这样，代码中就可以用 root 的高度是否大于 0 来判断树是否为平衡的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isBalanced</span><span class="params">(TreeNode *root)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">height</span>(root) &gt;= <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">height</span><span class="params">(TreeNode *root)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> leftHeight = <span class="built_in">height</span>(root-&gt;left);</span><br><span class="line">        <span class="keyword">int</span> rightHeight = <span class="built_in">height</span>(root-&gt;right);</span><br><span class="line">        <span class="keyword">if</span> (leftHeight == <span class="number">-1</span> || rightHeight == <span class="number">-1</span> || <span class="built_in">abs</span>(leftHeight - rightHeight) &lt; <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(leftHeight, rightHeight) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>我写的迭代版本也过了，参考官解的，用了后序遍历：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isBalancedIterative</span><span class="params">(TreeNode *root)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        map&lt;TreeNode *, <span class="keyword">int</span>&gt; nodeHeight;</span><br><span class="line">        nodeHeight[root] = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        vector&lt;TreeNode *&gt; queue;</span><br><span class="line">        queue.<span class="built_in">push_back</span>(root);</span><br><span class="line">        </span><br><span class="line">        map&lt;TreeNode *, TreeNode *&gt; nodeParent;</span><br><span class="line">        nodeParent[root] = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> headIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (queue.<span class="built_in">size</span>() != headIndex)</span><br><span class="line">        &#123;</span><br><span class="line">            TreeNode *curr = queue[headIndex];</span><br><span class="line">            <span class="keyword">if</span> (curr-&gt;left)</span><br><span class="line">            &#123;</span><br><span class="line">                queue.<span class="built_in">push_back</span>(curr-&gt;left);</span><br><span class="line">                nodeParent[curr-&gt;left] = curr;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (curr-&gt;right)</span><br><span class="line">            &#123;</span><br><span class="line">                queue.<span class="built_in">push_back</span>(curr-&gt;right);</span><br><span class="line">                nodeParent[curr-&gt;right] = curr;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ++headIndex;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;TreeNode *&gt; stack;</span><br><span class="line">        stack.<span class="built_in">push_back</span>(root);</span><br><span class="line">        <span class="built_in">findSuccessor</span>(stack);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            TreeNode *x = stack[stack.<span class="built_in">size</span>() - <span class="number">1</span>];</span><br><span class="line">            stack.<span class="built_in">pop_back</span>();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// update height</span></span><br><span class="line">            <span class="keyword">int</span> leftHeight = nodeHeight[x-&gt;left];</span><br><span class="line">            <span class="keyword">int</span> rightHeight = nodeHeight[x-&gt;right];</span><br><span class="line">            <span class="keyword">int</span> balanceFactor = leftHeight - rightHeight;</span><br><span class="line">            <span class="keyword">if</span> (balanceFactor &gt; <span class="number">1</span> || balanceFactor &lt; <span class="number">-1</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            nodeHeight[x] = <span class="built_in">max</span>(leftHeight, rightHeight) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (stack.<span class="built_in">empty</span>())</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nodeParent[x] != stack[stack.<span class="built_in">size</span>() - <span class="number">1</span>])</span><br><span class="line">                <span class="built_in">findSuccessor</span>(stack);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">findSuccessor</span><span class="params">(vector&lt;TreeNode *&gt; &amp;s)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 保证 s 至少有一个节点</span></span><br><span class="line">        <span class="keyword">while</span> (TreeNode *x = s[s.<span class="built_in">size</span>() - <span class="number">1</span>])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (x-&gt;left)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (x-&gt;right)</span><br><span class="line">                    s.<span class="built_in">push_back</span>(x-&gt;right);</span><br><span class="line">                s.<span class="built_in">push_back</span>(x-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                s.<span class="built_in">push_back</span>(x-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">        s.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>我的空间复杂度肯定输了，用了不止一个 vector。时间复杂度，好像也没好到哪里去，只不过是丢掉了递归这么一顶帽子而已。</p>
+<h1 id="108-将有序数组转换为二叉搜索树"><a href="#108-将有序数组转换为二叉搜索树" class="headerlink" title="108. 将有序数组转换为二叉搜索树"></a>108. 将有序数组转换为二叉搜索树</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/">108. 将有序数组转换为二叉搜索树</a></p>
+<p>我佛了，为什么不是构建平衡树啊……</p>
+<p>未证明解法：</p>
+<ul>
+<li>把输入的有序数组分成两半，以中间的数组作为根节点，另外两半作为该根节点的左右部分节点；</li>
+<li>递归地把左右两半的有序数组再分成两半，再以其中间节点作为根节点，并作为上一步中得到的左右子树的根节点</li>
+</ul>
+<h1 id="102-二叉树的层序遍历"><a href="#102-二叉树的层序遍历" class="headerlink" title="102. 二叉树的层序遍历"></a>102. 二叉树的层序遍历</h1><p>历尽千辛万苦是做出来了，但是没有想到官解这么简单。我还是太菜了。一定要回头来补这道题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://littlebugyang.github.io/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/" data-id="ckovjrco1000410xd4wxmfjky" data-title="leetcode" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/index/page/92/">&laquo; Prev</a><a class="page-number" href="/index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/index/page/91/">91</a><a class="page-number" href="/index/page/92/">92</a><span class="page-number current">93</span><a class="page-number" href="/index/page/94/">94</a><a class="page-number" href="/index/page/95/">95</a><span class="space">&hellip;</span><a class="page-number" href="/index/page/123/">123</a><a class="extend next" rel="next" href="/index/page/94/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/">electron</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%80%BB%E7%BB%93/">阅读官方文档总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/">阅读官方文档笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/">node</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/npm/">npm</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/">技术应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">硬件信息</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/%E2%80%9CLearning-JavaScript%E2%80%9D%E7%AC%94%E8%AE%B0/">“Learning JavaScript”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/YAML/">YAML</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/GitHub/">GitHub</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE/">软件设置</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/">概念</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/">约瑟夫问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/">词典</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/">Lenovo_500_FHD_Webcam</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">链表</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 LittleBugYang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

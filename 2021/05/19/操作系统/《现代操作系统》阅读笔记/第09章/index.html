@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>第09章 | LittleBugYang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="9 SECURITY 9.1 THE SECURITY ENVIRONMENT9.1.1 Threats9.1.2 Attackers9.2 OPERATING SYSTEMS SECURITY9.2.1 Can We Build Secure Systems?9.2.2 Trusted Computing Base9.3 CONTROLLING ACCESS TO RESOURCES9.3.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第09章">
+<meta property="og:url" content="https://littlebugyang.github.io/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC09%E7%AB%A0/index.html">
+<meta property="og:site_name" content="LittleBugYang&#39;s Blog">
+<meta property="og:description" content="9 SECURITY 9.1 THE SECURITY ENVIRONMENT9.1.1 Threats9.1.2 Attackers9.2 OPERATING SYSTEMS SECURITY9.2.1 Can We Build Secure Systems?9.2.2 Trusted Computing Base9.3 CONTROLLING ACCESS TO RESOURCES9.3.1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-19T14:16:28.000Z">
+<meta property="article:modified_time" content="2021-05-19T14:16:28.000Z">
+<meta property="article:author" content="LittleBugYang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="LittleBugYang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LittleBugYang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://littlebugyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-操作系统/《现代操作系统》阅读笔记/第09章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC09%E7%AB%A0/" class="article-date">
+  <time class="dt-published" datetime="2021-05-19T14:16:28.000Z" itemprop="datePublished">2021-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>►<a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      第09章
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>9 SECURITY</p>
+<h1 id="9-1-THE-SECURITY-ENVIRONMENT"><a href="#9-1-THE-SECURITY-ENVIRONMENT" class="headerlink" title="9.1 THE SECURITY ENVIRONMENT"></a>9.1 THE SECURITY ENVIRONMENT</h1><h2 id="9-1-1-Threats"><a href="#9-1-1-Threats" class="headerlink" title="9.1.1 Threats"></a>9.1.1 Threats</h2><h2 id="9-1-2-Attackers"><a href="#9-1-2-Attackers" class="headerlink" title="9.1.2 Attackers"></a>9.1.2 Attackers</h2><h1 id="9-2-OPERATING-SYSTEMS-SECURITY"><a href="#9-2-OPERATING-SYSTEMS-SECURITY" class="headerlink" title="9.2 OPERATING SYSTEMS SECURITY"></a>9.2 OPERATING SYSTEMS SECURITY</h1><h2 id="9-2-1-Can-We-Build-Secure-Systems"><a href="#9-2-1-Can-We-Build-Secure-Systems" class="headerlink" title="9.2.1 Can We Build Secure Systems?"></a>9.2.1 Can We Build Secure Systems?</h2><h2 id="9-2-2-Trusted-Computing-Base"><a href="#9-2-2-Trusted-Computing-Base" class="headerlink" title="9.2.2 Trusted Computing Base"></a>9.2.2 Trusted Computing Base</h2><h1 id="9-3-CONTROLLING-ACCESS-TO-RESOURCES"><a href="#9-3-CONTROLLING-ACCESS-TO-RESOURCES" class="headerlink" title="9.3 CONTROLLING ACCESS TO RESOURCES"></a>9.3 CONTROLLING ACCESS TO RESOURCES</h1><h2 id="9-3-1-Protection-Domains"><a href="#9-3-1-Protection-Domains" class="headerlink" title="9.3.1 Protection Domains"></a>9.3.1 Protection Domains</h2><h2 id="9-3-2-Access-Control-Lists"><a href="#9-3-2-Access-Control-Lists" class="headerlink" title="9.3.2 Access Control Lists"></a>9.3.2 Access Control Lists</h2><h2 id="9-3-3-Capabilities"><a href="#9-3-3-Capabilities" class="headerlink" title="9.3.3 Capabilities"></a>9.3.3 Capabilities</h2><h1 id="9-4-FORMAL-MODELS-OF-SECURE-SYSTEMS"><a href="#9-4-FORMAL-MODELS-OF-SECURE-SYSTEMS" class="headerlink" title="9.4 FORMAL MODELS OF SECURE SYSTEMS"></a>9.4 FORMAL MODELS OF SECURE SYSTEMS</h1><h2 id="9-4-1-Multilevel-Security"><a href="#9-4-1-Multilevel-Security" class="headerlink" title="9.4.1 Multilevel Security"></a>9.4.1 Multilevel Security</h2><h2 id="9-4-2-Covert-Channels"><a href="#9-4-2-Covert-Channels" class="headerlink" title="9.4.2 Covert Channels"></a>9.4.2 Covert Channels</h2><h1 id="9-5-BASICS-OF-CRYPTOGRAPHY"><a href="#9-5-BASICS-OF-CRYPTOGRAPHY" class="headerlink" title="9.5 BASICS OF CRYPTOGRAPHY"></a>9.5 BASICS OF CRYPTOGRAPHY</h1><h2 id="9-5-1-Secret-Key-Cryptography"><a href="#9-5-1-Secret-Key-Cryptography" class="headerlink" title="9.5.1 Secret-Key Cryptography"></a>9.5.1 Secret-Key Cryptography</h2><h2 id="9-5-2-Public-Key-Cryptography"><a href="#9-5-2-Public-Key-Cryptography" class="headerlink" title="9.5.2 Public-Key Cryptography"></a>9.5.2 Public-Key Cryptography</h2><h2 id="9-5-3-One-Way-Functions"><a href="#9-5-3-One-Way-Functions" class="headerlink" title="9.5.3 One-Way Functions"></a>9.5.3 One-Way Functions</h2><h2 id="9-5-4-Digital-Signatures"><a href="#9-5-4-Digital-Signatures" class="headerlink" title="9.5.4 Digital Signatures"></a>9.5.4 Digital Signatures</h2><h2 id="9-5-5-Trusted-Platform-Modules"><a href="#9-5-5-Trusted-Platform-Modules" class="headerlink" title="9.5.5 Trusted Platform Modules"></a>9.5.5 Trusted Platform Modules</h2><h1 id="9-6-AUTHENTICATION"><a href="#9-6-AUTHENTICATION" class="headerlink" title="9.6 AUTHENTICATION"></a>9.6 AUTHENTICATION</h1><h2 id="9-6-1-Authentication-Using-a-Physical-Object"><a href="#9-6-1-Authentication-Using-a-Physical-Object" class="headerlink" title="9.6.1 Authentication Using a Physical Object"></a>9.6.1 Authentication Using a Physical Object</h2><h2 id="9-6-2-Authentication-Using-Biometrics"><a href="#9-6-2-Authentication-Using-Biometrics" class="headerlink" title="9.6.2 Authentication Using Biometrics"></a>9.6.2 Authentication Using Biometrics</h2><h1 id="9-7-EXPLOITING-SOFTWARE"><a href="#9-7-EXPLOITING-SOFTWARE" class="headerlink" title="9.7 EXPLOITING SOFTWARE"></a>9.7 EXPLOITING SOFTWARE</h1><h2 id="9-7-1-Buffer-Overflow-Attacks"><a href="#9-7-1-Buffer-Overflow-Attacks" class="headerlink" title="9.7.1 Buffer Overflow Attacks"></a>9.7.1 Buffer Overflow Attacks</h2><h2 id="9-7-2-Format-String-Attacks"><a href="#9-7-2-Format-String-Attacks" class="headerlink" title="9.7.2 Format String Attacks"></a>9.7.2 Format String Attacks</h2><h2 id="9-7-3-Dangling-Pointers"><a href="#9-7-3-Dangling-Pointers" class="headerlink" title="9.7.3 Dangling Pointers"></a>9.7.3 Dangling Pointers</h2><h2 id="9-7-4-Null-Pointer-Dereference-Attacks"><a href="#9-7-4-Null-Pointer-Dereference-Attacks" class="headerlink" title="9.7.4 Null Pointer Dereference Attacks"></a>9.7.4 Null Pointer Dereference Attacks</h2><h2 id="9-7-5-Integer-Overflow-Attacks"><a href="#9-7-5-Integer-Overflow-Attacks" class="headerlink" title="9.7.5 Integer Overflow Attacks"></a>9.7.5 Integer Overflow Attacks</h2><h2 id="9-7-6-Command-Injection-Attacks"><a href="#9-7-6-Command-Injection-Attacks" class="headerlink" title="9.7.6 Command Injection Attacks"></a>9.7.6 Command Injection Attacks</h2><h2 id="9-7-7-Time-of-Check-to-Time-of-Use-Attacks"><a href="#9-7-7-Time-of-Check-to-Time-of-Use-Attacks" class="headerlink" title="9.7.7 Time of Check to Time of Use Attacks"></a>9.7.7 Time of Check to Time of Use Attacks</h2><h1 id="9-8-INSIDER-ATTACKS"><a href="#9-8-INSIDER-ATTACKS" class="headerlink" title="9.8 INSIDER ATTACKS"></a>9.8 INSIDER ATTACKS</h1><h2 id="9-8-1-Logic-Bombs"><a href="#9-8-1-Logic-Bombs" class="headerlink" title="9.8.1 Logic Bombs"></a>9.8.1 Logic Bombs</h2><h2 id="9-8-2-Back-Doors"><a href="#9-8-2-Back-Doors" class="headerlink" title="9.8.2 Back Doors"></a>9.8.2 Back Doors</h2><h2 id="9-8-3-Login-Spoofing"><a href="#9-8-3-Login-Spoofing" class="headerlink" title="9.8.3 Login Spoofing"></a>9.8.3 Login Spoofing</h2><h1 id="9-9-MALWARE"><a href="#9-9-MALWARE" class="headerlink" title="9.9 MALWARE"></a>9.9 MALWARE</h1><h2 id="9-9-1-Trojan-Horses"><a href="#9-9-1-Trojan-Horses" class="headerlink" title="9.9.1 Trojan Horses"></a>9.9.1 Trojan Horses</h2><h2 id="9-9-2-Viruses"><a href="#9-9-2-Viruses" class="headerlink" title="9.9.2 Viruses"></a>9.9.2 Viruses</h2><h2 id="9-9-3-Worms"><a href="#9-9-3-Worms" class="headerlink" title="9.9.3 Worms"></a>9.9.3 Worms</h2><h2 id="9-9-4-Spyware"><a href="#9-9-4-Spyware" class="headerlink" title="9.9.4 Spyware"></a>9.9.4 Spyware</h2><h2 id="9-9-5-Rootkits"><a href="#9-9-5-Rootkits" class="headerlink" title="9.9.5 Rootkits"></a>9.9.5 Rootkits</h2><h1 id="9-10-DEFENSES"><a href="#9-10-DEFENSES" class="headerlink" title="9.10 DEFENSES"></a>9.10 DEFENSES</h1><h2 id="9-10-1-Firewalls"><a href="#9-10-1-Firewalls" class="headerlink" title="9.10.1 Firewalls"></a>9.10.1 Firewalls</h2><h2 id="9-10-2-Antivirus-and-Anti-Antivirus-Techniques"><a href="#9-10-2-Antivirus-and-Anti-Antivirus-Techniques" class="headerlink" title="9.10.2 Antivirus and Anti-Antivirus Techniques"></a>9.10.2 Antivirus and Anti-Antivirus Techniques</h2><h2 id="9-10-3-Code-Signing"><a href="#9-10-3-Code-Signing" class="headerlink" title="9.10.3 Code Signing"></a>9.10.3 Code Signing</h2><h2 id="9-10-4-Jailing"><a href="#9-10-4-Jailing" class="headerlink" title="9.10.4 Jailing"></a>9.10.4 Jailing</h2><h2 id="9-10-5-Model-Based-Intrusion-Detection"><a href="#9-10-5-Model-Based-Intrusion-Detection" class="headerlink" title="9.10.5 Model-Based Intrusion Detection"></a>9.10.5 Model-Based Intrusion Detection</h2><h2 id="9-10-6-Encapsulating-Mobile-Code"><a href="#9-10-6-Encapsulating-Mobile-Code" class="headerlink" title="9.10.6 Encapsulating Mobile Code"></a>9.10.6 Encapsulating Mobile Code</h2><h2 id="9-10-7-Java-Security"><a href="#9-10-7-Java-Security" class="headerlink" title="9.10.7 Java Security"></a>9.10.7 Java Security</h2><h1 id="9-11-RESEARCH-ON-SECURITY"><a href="#9-11-RESEARCH-ON-SECURITY" class="headerlink" title="9.11 RESEARCH ON SECURITY"></a>9.11 RESEARCH ON SECURITY</h1><h1 id="9-12-SUMMARY"><a href="#9-12-SUMMARY" class="headerlink" title="9.12 SUMMARY"></a>9.12 SUMMARY</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://littlebugyang.github.io/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC09%E7%AB%A0/" data-id="ckovjrcp1001610xd4fsy6tfv" data-title="第09章" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC08%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          第08章
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E7%AC%AC10%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">第10章</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/">electron</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%80%BB%E7%BB%93/">阅读官方文档总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/">阅读官方文档笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/">node</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/npm/">npm</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/">技术应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">硬件信息</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/%E2%80%9CLearning-JavaScript%E2%80%9D%E7%AC%94%E8%AE%B0/">“Learning JavaScript”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/YAML/">YAML</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/GitHub/">GitHub</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE/">软件设置</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/">概念</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/">约瑟夫问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/">词典</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/">Lenovo_500_FHD_Webcam</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">链表</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 LittleBugYang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

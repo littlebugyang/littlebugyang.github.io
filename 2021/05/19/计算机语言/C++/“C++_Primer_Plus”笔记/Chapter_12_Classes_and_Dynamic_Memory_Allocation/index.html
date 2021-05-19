@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Chapter_12_Classes_and_Dynamic_Memory_Allocation | LittleBugYang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="动态内存和类一个用于复习的例子和静态类成员书本用一个 StringBad 类作为引导。该类的声明是这样的： 1234567891011121314151617#include &lt;iostream&gt;#ifndef STRNGBAD_H_#define STRNGBAD_H_class StringBad&amp;#123;private:	char * str; &#x2F;&#x2F; pointer to st">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter_12_Classes_and_Dynamic_Memory_Allocation">
+<meta property="og:url" content="https://littlebugyang.github.io/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_12_Classes_and_Dynamic_Memory_Allocation/index.html">
+<meta property="og:site_name" content="LittleBugYang&#39;s Blog">
+<meta property="og:description" content="动态内存和类一个用于复习的例子和静态类成员书本用一个 StringBad 类作为引导。该类的声明是这样的： 1234567891011121314151617#include &lt;iostream&gt;#ifndef STRNGBAD_H_#define STRNGBAD_H_class StringBad&amp;#123;private:	char * str; &#x2F;&#x2F; pointer to st">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-19T14:16:29.000Z">
+<meta property="article:modified_time" content="2021-05-19T14:16:29.000Z">
+<meta property="article:author" content="LittleBugYang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="LittleBugYang's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LittleBugYang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://littlebugyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-计算机语言/C++/“C++_Primer_Plus”笔记/Chapter_12_Classes_and_Dynamic_Memory_Allocation" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_12_Classes_and_Dynamic_Memory_Allocation/" class="article-date">
+  <time class="dt-published" datetime="2021-05-19T14:16:29.000Z" itemprop="datePublished">2021-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a>►<a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a>►<a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Chapter_12_Classes_and_Dynamic_Memory_Allocation
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="动态内存和类"><a href="#动态内存和类" class="headerlink" title="动态内存和类"></a>动态内存和类</h1><h2 id="一个用于复习的例子和静态类成员"><a href="#一个用于复习的例子和静态类成员" class="headerlink" title="一个用于复习的例子和静态类成员"></a>一个用于复习的例子和静态类成员</h2><p>书本用一个 StringBad 类作为引导。该类的声明是这样的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> STRNGBAD_H_</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STRNGBAD_H_</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringBad</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">char</span> * str; <span class="comment">// pointer to string</span></span><br><span class="line">	<span class="keyword">int</span> len; <span class="comment">// length of string</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> num_strings; <span class="comment">// number of objects</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">StringBad</span>(<span class="keyword">const</span> <span class="keyword">char</span> * s);</span><br><span class="line">	<span class="built_in">StringBad</span>();</span><br><span class="line">	~<span class="built_in">StringBad</span>();</span><br><span class="line">	<span class="keyword">friend</span> std::ostream &amp; <span class="keyword">operator</span>&lt;&lt;(std::ostream &amp; os,</span><br><span class="line">	<span class="keyword">const</span> StringBad &amp; st);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，我们不能够在类声明中初始化静态变量，但是我不知道为什么要把这个变量设为私有的，这样一来，它是怎么被外部用 <code>StringBad::num_strings</code> 访问的呢？而且其初始化还要加上变量类型，虽然不需要 <code>static</code> 关键字，但看起来就好像从没有被声明过一样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> StringBad::num_strings = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在类的声明，只是描述了应该分配多少内存，但是却不分配内存。对于静态变量，其必须要在类声明之外被初始化，因为静态变量是单独于任何对象进行存储的。</p>
+<p>初始化应该在方法文件（methods file）中，而不是在类声明文件（class declaration file）中。因为类声明文件可能会被包含进多个地方，但是静态变量只能有一个，如果跟着类声明文件 included 到多个地方的话，就会出现多个初始化语句，会出错。</p>
+<p>但是，如果静态成员是有 const 限定符的整型数的话，又或者是枚举类型的话，则可以直接写在类声明中。</p>
+<p>在类中，用 delete 关键字删除某个对象，只会释放对象占据的内存空间，但是并不会释放该对象的成员所指向的内存空间。要彻底地删除变量，释放空间，必须利用析构函数（destructor）。</p>
+<h2 id="特殊的成员函数"><a href="#特殊的成员函数" class="headerlink" title="特殊的成员函数"></a>特殊的成员函数</h2><p>C++ 在用户没有定义以下函数的情况下，会提供默认版本：</p>
+<ul>
+<li>构造函数</li>
+<li>析构函数</li>
+<li>复制构造函数</li>
+<li>赋值运算符</li>
+<li>地址运算符（默认情况下返回调用对象的地址，也就是 <code>this</code>）</li>
+</ul>
+<p>C++11 还提供了两个特殊成员函数：move constructor 和 move assignment operator。</p>
+<h3 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h3><p>如果你一个构造函数都不定义，C++ 会提供一个默认构造函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">className::<span class="built_in">className</span>()&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>默认构造函数不是指 C++ 自动生成的构造函数，而是构造时不需要任何参数的构造函数。需要参数的构造函数也可以是默认构造函数，前提是所有参数都有默认值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">className::<span class="built_in">className</span>(<span class="keyword">int</span> n = <span class="number">0</span>)&#123;k = n;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>默认构造函数只能有一个。</p>
+<h3 id="复制构造函数"><a href="#复制构造函数" class="headerlink" title="复制构造函数"></a>复制构造函数</h3><p>复制构造函数是用来复制一个对象的内容到一个新创建的对象中去的。在初始化的时候会用到，包括通过值传递参数给函数时，但是不包括普通的赋值。</p>
+<p>只要是创造新对象且初始化为现有的同类对象时，复制构造函数就会被调用；只要是通过值传递参数给函数时，或者函数返回一个对象时，复制构造函数就会被调用。</p>
+<p>编译器在生成临时对象时也会调用复制构造函数，即便不同的编译器表现会有所不同，但是以值传参和函数返回时，都会调用复制构造函数。</p>
+<p>默认的复制构造函数，执行成员对成员的非静态成员复制，也就是按成员复制（memberwise copying），有时也叫浅复制（shallow copying），每个成员都是复制值。如果成员本身是一个类对象的话，那么这个成员的复制是通过其类定义的复制构造函数来执行的。</p>
+<h2 id="例子中的问题出在哪里"><a href="#例子中的问题出在哪里" class="headerlink" title="例子中的问题出在哪里"></a>例子中的问题出在哪里</h2><p>书中给出的 StringBad 的例子很 bad：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> std::endl;</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;Starting an inner block.\\n&quot;</span>;</span><br><span class="line">		<span class="function">StringBad <span class="title">headline1</span><span class="params">(<span class="string">&quot;Celery Stalks at Midnight&quot;</span>)</span></span>;   <span class="comment">// 创建新的 StringBad</span></span><br><span class="line">		<span class="function">StringBad <span class="title">headline2</span><span class="params">(<span class="string">&quot;Lettuce Prey&quot;</span>)</span></span>;                <span class="comment">// 创建新的 StringBad</span></span><br><span class="line">		<span class="function">StringBad <span class="title">sports</span><span class="params">(<span class="string">&quot;Spinach Leaves Bowl for Dollars&quot;</span>)</span></span>;<span class="comment">// 创建新的 StringBad</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;headline1: &quot;</span> &lt;&lt; headline1 &lt;&lt; endl;         <span class="comment">// 正常输出</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;headline2: &quot;</span> &lt;&lt; headline2 &lt;&lt; endl;         <span class="comment">// 正常输出</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;sports: &quot;</span> &lt;&lt; sports &lt;&lt; endl;               <span class="comment">// 正常输出</span></span><br><span class="line">		<span class="built_in">callme1</span>(headline1);                                 <span class="comment">// 通过引用传参，一切正常</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;headline1: &quot;</span> &lt;&lt; headline1 &lt;&lt; endl;         <span class="comment">// 正常输出</span></span><br><span class="line">		<span class="built_in">callme2</span>(headline2);                                 <span class="comment">// 通过值传参，调用默认复制构造函数</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;headline2: &quot;</span> &lt;&lt; headline2 &lt;&lt; endl;         <span class="comment">// 退出 callme2 后，临时变量的析构删除了 headline2 的字符内容，headline2 受损</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;Initialize one object to another:\\n&quot;</span>;</span><br><span class="line">		StringBad sailor = sports;                          <span class="comment">// 调用默认复制构造函数，sports 和 sailor 的字符指针指向了同一块内存</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;sailor: &quot;</span> &lt;&lt; sailor &lt;&lt; endl;               <span class="comment">// 正常输出</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;Assign one object to another:\\n&quot;</span>;</span><br><span class="line">		StringBad knot;                                     <span class="comment">// 调用默认构造函数</span></span><br><span class="line">		knot = headline1;                                   <span class="comment">// 调用默认赋值运算符函数，knot 和 headline1 的字符串指针指向了同一块内存</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;knot: &quot;</span> &lt;&lt; knot &lt;&lt; endl;                   <span class="comment">// 正常输出</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;Exiting the block.\\n&quot;</span>;</span><br><span class="line">	&#125; <span class="comment">// 正常删除 knot，正常删除 sailor，异常删除 sports，异常删除 headline2，异常删除 headline1</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;End of main()\\n&quot;</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加自定义的复制构造函数以解决问题"><a href="#添加自定义的复制构造函数以解决问题" class="headerlink" title="添加自定义的复制构造函数以解决问题"></a>添加自定义的复制构造函数以解决问题</h3><p>应该要深复制（deep copy）。</p>
+<p>要定义复制构造函数的原因是：有些类成员是用 new 初始化的指针，而不是数据本身。</p>
+<h2 id="StringBad-的更多问题：赋值运算符"><a href="#StringBad-的更多问题：赋值运算符" class="headerlink" title="StringBad 的更多问题：赋值运算符"></a>StringBad 的更多问题：赋值运算符</h2><h3 id="赋值运算符的使用时间及其用途"><a href="#赋值运算符的使用时间及其用途" class="headerlink" title="赋值运算符的使用时间及其用途"></a>赋值运算符的使用时间及其用途</h3><p>首先来看一个初始化：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBad metoo = knot;</span><br></pre></td></tr></table></figure>
+
+<p>metoo 是新创建的对象，被赋予了 knot 的值，所以复制构造函数是一定会用到的；但是在不同的环境下，是否使用了赋值运算符是不确定的：</p>
+<ul>
+<li>可能性一：该语句的执行被分成了两部分，首先使用复制构造函数创建一个临时对象，然后把该临时对象赋值给 metoo。</li>
+<li>可能性二：直接使用复制构造函数把 knot 的内容复制给 metoo。</li>
+</ul>
+<p>隐式的赋值运算符，像隐式的复制构造函数那样，执行成员对成员的复制。如果某成员是某类对象，则调用该类的赋值运算符函数。同样地，静态数据成员不受影响。</p>
+<h3 id="StringBad-的赋值哪里出错了"><a href="#StringBad-的赋值哪里出错了" class="headerlink" title="StringBad 的赋值哪里出错了"></a>StringBad 的赋值哪里出错了</h3><p>出错的地方在：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StringBad knot;</span><br><span class="line">knot = headline1;</span><br></pre></td></tr></table></figure>
+
+<p>首先调用了默认构造函数，接着使用赋值运算符给 knot 赋值，调用了默认的赋值运算符，knot 的字符指针和 headline1 的一样，指向了同一块内存地址。</p>
+<h3 id="修复赋值运算符"><a href="#修复赋值运算符" class="headerlink" title="修复赋值运算符"></a>修复赋值运算符</h3><p>自定义能够执行深复制的赋值运算符，跟自定义复制构造函数几乎一样，其中的不同点是：</p>
+<ul>
+<li>目标对象的成员指针可能本来就指向了某内存块，所以需要先释放</li>
+<li>要应对“自己赋值给自己”的情况，不加以规避的话，会导致内容丢失</li>
+<li>为了能够模拟链式赋值，运算符函数要返回调用对象的引用</li>
+</ul>
+<p>应对自己赋值自己，可以这样做：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">StringBad &amp; StringBad::<span class="keyword">operator</span>=(<span class="keyword">const</span> StringBad &amp; st)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span> == &amp;st) <span class="comment">// object assigned to itself</span></span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>; <span class="comment">// all done</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="一个新的、提升过后的-String-类"><a href="#一个新的、提升过后的-String-类" class="headerlink" title="一个新的、提升过后的 String 类"></a>一个新的、提升过后的 String 类</h1><h2 id="修改后的默认构造函数"><a href="#修改后的默认构造函数" class="headerlink" title="修改后的默认构造函数"></a>修改后的默认构造函数</h2><p>新的默认构造函数是这样的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String::<span class="built_in">String</span>()</span><br><span class="line">&#123;</span><br><span class="line">	len = <span class="number">0</span>;</span><br><span class="line">	str = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1</span>];</span><br><span class="line">	str[<span class="number">0</span>] = <span class="string">&#x27;\\0&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之所以用 char[1] 而不用 char，是因为前者能够匹配析构函数中的 <code>delete [] str;</code>。构造函数中假如用 <code>str = 0;</code> 的话，则 <code>delete [] str;</code> 的后果是不可预知的。</p>
+<p>其中，<code>str = 0;</code> 是让 str 变成空指针的一种写法。在 C++98 中，0 可以是数字 0，也可以是空指针，这就让人分不清楚。有时候有人用 <code>(void *) 0</code> 来表示这是指针类型的 0，也有些人用 C 语言中的 <code>NULL</code> 来表示，但这些都不是好办法。C++11 提供了新的关键字：<code>nullptr</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> * str = <span class="literal">nullptr</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="比较成员"><a href="#比较成员" class="headerlink" title="比较成员"></a>比较成员</h2><p>书中例子利用友元和 C 字符串判断大小的方法来实现 String 对象的大小比较：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> String &amp;st, <span class="keyword">const</span> String &amp;st2);</span><br><span class="line"><span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span>&gt;(<span class="keyword">const</span> String &amp;st1, <span class="keyword">const</span> String &amp;st2);</span><br><span class="line"><span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> String &amp;st, <span class="keyword">const</span> String &amp;st2);</span><br></pre></td></tr></table></figure>
+
+<p>由于书中的 String 实现了单参数构造函数，所以上面的比较方法支持 C 风格的字符串与 String 进行比较：<code>if (&quot;love&quot; == answer)</code> 等价于 <code>if (operator==(String(&quot;love&quot;), answer)</code></p>
+<h2 id="通过方括号标记访问字符"><a href="#通过方括号标记访问字符" class="headerlink" title="通过方括号标记访问字符"></a>通过方括号标记访问字符</h2><p>书中例子有两个关于方括号标记的方法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> &amp; <span class="keyword">operator</span> [] (<span class="keyword">int</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> &amp; <span class="keyword">operator</span>[] (<span class="keyword">int</span>) <span class="keyword">const</span>;</span><br></pre></td></tr></table></figure>
+
+<p>方括号运算符是二元运算符，需要两个操作数。一般来说，C++ 二元运算符，像加减号这样的，把运算符放在两个操作数中间，但是方括号运算符不是。方括号运算符第一个括号的左边是第一个操作数，而方括号运算符的两个括号中间所存放的内容，才是第二个操作数。比如说，<code>cities[0]</code>，<code>cities</code> 是第一个操作数，而 <code>0</code> 是第二个操作数。</p>
+<p>某类重载方括号运算符，将会写这样的函数定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">className::<span class="keyword">operator</span>[](<span class="keyword">int</span> i)&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而对象调用方法的时候，如，<code>object[4]</code>，将等价于：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">object.<span class="keyword">operator</span>[](<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<p>书中例子返回对象自己私有的字符：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> &amp; String::<span class="keyword">operator</span>[](<span class="keyword">int</span> i)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> str[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样一来，返回的是对字符变量的引用，也就是说，外部调用该方法，不仅可以读取该值，而且可以修改该值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; object[<span class="number">4</span>];</span><br><span class="line">object[<span class="number">4</span>] = <span class="string">&#x27;r&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>修改该值是通过类方法 <code>operator[]()</code> 的，可以通过，但是违反了 OOP 的隐藏值的宗旨。如果想要避免值被外部修改，则需要在类声明的 operator 的函数原型前，加上 <code>const</code> 限定符，该方法来自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/gatieme/article/details/17592187">CSDN 的文章</a>。</p>
+<p>在需要一个常量对象的时候，可能会定义一个常量字符串类：<code>const String answer(&quot;futile&quot;);</code>。在这种情况下，使用 <code>cout &lt;&lt; answer[1];</code> 是不行的，如果只有 <code>char &amp; operator[](int);</code> 的话。</p>
+<p>因为 <code>answer</code> 是 <code>const</code>，所以 <code>answer[1]</code>，也就是方法 <code>answer.operator[](1)</code>，必须保证它不会修改私有内容，则需要使用到另外的重载运算符方法：<code>const char &amp; String::operator[](int) const;</code>。这样一来，前缀 const 可使该放法与 char &amp; String::operator 区分开。但是具体的前缀和后缀的作用，需要结合之前的关于 const 限定符的内容才能理解。</p>
+<h2 id="静态类成员函数"><a href="#静态类成员函数" class="headerlink" title="静态类成员函数"></a>静态类成员函数</h2><p>定义静态类成员函数时，static 关键字只需要在函数声明中出现，而不需要在函数定义中标明，除非后者与前者相统一。</p>
+<p>定义静态类成员函数有两个结果：</p>
+<ol>
+<li>定义静态类成员函数不能被对象调用，其甚至没有 this 指针。如果定义静态类成员函数在 public 域，则外部可以这样调用：<code>className::static_function()</code>。</li>
+<li>静态类成员函数与特定对象无关，所以它没有自己的私有数据，只能使用静态数据成员。</li>
+</ol>
+<p>静态类成员函数适用于设置面向同类全体对象的 flag，比如说，控制对象的输出格式等等。</p>
+<h2 id="关于重载赋值符号的更多内容"><a href="#关于重载赋值符号的更多内容" class="headerlink" title="关于重载赋值符号的更多内容"></a>关于重载赋值符号的更多内容</h2><p>在使用 String 类的时候，经常会碰到这种情况，需要用到 C 风格字符串对 String 类进行赋值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String name;</span><br><span class="line"><span class="keyword">char</span> temp[<span class="number">40</span>];</span><br><span class="line">cin.<span class="built_in">getline</span>(temp, <span class="number">40</span>);</span><br><span class="line">name = temp;</span><br></pre></td></tr></table></figure>
+
+<p>假设现在 String 已经有如下方法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>(<span class="keyword">const</span> <span class="keyword">char</span> *);</span><br><span class="line">String &amp; String::<span class="keyword">operator</span>=(<span class="keyword">const</span> String &amp;);</span><br></pre></td></tr></table></figure>
+
+<p>则代码可以成功运转，将 <code>temp</code> 的内容复制到 <code>name</code> 中。但这是通过调用上面列出的两个方法得到的，更有效的方法是，再定义一个赋值运算符：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String &amp; String::<span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="keyword">char</span> *);</span><br></pre></td></tr></table></figure>
+
+<p>书中使用类的例子，有这样一段：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!cin || temp[<span class="number">0</span>] == <span class="string">&#x27;\\0&#x27;</span>)</span><br><span class="line">	<span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码用于检测是否读取到了空行。因为之前的 istream.get() 在读到空行的时候，不会把 istream 对象置为 false，但首字符为 null character；新的 istream.get() 读到空行的话，istream 对象会为 false。所以，这个判断条件的前半部分是适用于当前 C++ 标准的，而后半部分适用于之前的实现方法。</p>
+<h1 id="在构造函数中使用-new-时需要记住的事情"><a href="#在构造函数中使用-new-时需要记住的事情" class="headerlink" title="在构造函数中使用 new 时需要记住的事情"></a>在构造函数中使用 new 时需要记住的事情</h1><p>在构造函数中使用 new 时，需要记住以下几点：</p>
+<ul>
+<li>用 new 初始化了指针，则在析构函数中对指针用 delete。</li>
+<li>用 new [] 初始化了指针，则在析构函数中对指针用 delete []。</li>
+<li>如果有好几个构造函数，则应该统一它们使用 new 的方法：要么全为 new，要么全为 new []。因为析构函数只有一个，且必须兼容这几个构造函数。<ul>
+<li>例外：构造函数中可以用空指针初始化指针变量（0 或者 nullptr），因为对空指针应用 delete 或者 delete [] 都是可以的</li>
+</ul>
+</li>
+<li>要定义一个复制构造函数，用于深拷贝。</li>
+<li>要重载赋值运算符，用于深拷贝。<ul>
+<li>重载运算符时，方法应该检查是否为自我赋值，再释放之前的指针，然后复制数据，最后返回调用对象本身的引用（函数返回类型应为 <code>className &amp;</code>，而返回语句是 <code>return *this;</code> 即可）。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Don’ts-和-Dos"><a href="#Don’ts-和-Dos" class="headerlink" title="Don’ts 和 Dos"></a>Don’ts 和 Dos</h2><h2 id="对有类成员的类对象按成员复制"><a href="#对有类成员的类对象按成员复制" class="headerlink" title="对有类成员的类对象按成员复制"></a>对有类成员的类对象按成员复制</h2><p>复制对象时，如果其成员也是对象，且使用了动态内存分配，则按成员复制默认会调用该成员对象的复制构造函数和赋值运算符方法，而不需要对该对象写复制构造函数或赋值运算符。</p>
+<p>若该对象有其他的成员的复制需要用到复制构造函数和赋值运算符，则除了写必须的针对其他成员的代码之外，那些本身就带有复制构造函数和赋值运算符方法的成员，也需要显式地被复制。</p>
+<h1 id="函数返回对象时的观察"><a href="#函数返回对象时的观察" class="headerlink" title="函数返回对象时的观察"></a>函数返回对象时的观察</h1><p>函数要返回对象的话，可以有四种选择：</p>
+<ol>
+<li>返回对象的引用（a reference to an object）</li>
+<li>返回常量对象的引用（a constant reference to an object）</li>
+<li>返回对象（an object）</li>
+<li>返回常量对象（a constant object）</li>
+</ol>
+<h2 id="返回常量对象的引用"><a href="#返回常量对象的引用" class="headerlink" title="返回常量对象的引用"></a>返回常量对象的引用</h2><p>假设已实现了 Vector 类，为了实现如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Vector <span class="title">force1</span><span class="params">(<span class="number">50</span>,<span class="number">60</span>)</span></span>;</span><br><span class="line"><span class="function">Vector <span class="title">force2</span><span class="params">(<span class="number">10</span>,<span class="number">70</span>)</span></span>;</span><br><span class="line">Vector max;</span><br><span class="line">max = <span class="built_in">Max</span>(force1, force2);</span><br></pre></td></tr></table></figure>
+
+<p>还需要定义 Max 函数，有如下两个选择：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// version 1</span></span><br><span class="line"><span class="function">Vector <span class="title">Max</span><span class="params">(<span class="keyword">const</span> Vector &amp; v1, <span class="keyword">const</span> Vector &amp; v2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v1.<span class="built_in">magval</span>() &gt; v2.<span class="built_in">magval</span>())</span><br><span class="line">		<span class="keyword">return</span> v1;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> v2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// version 2</span></span><br><span class="line"><span class="function"><span class="keyword">const</span> Vector &amp; <span class="title">Max</span><span class="params">(<span class="keyword">const</span> Vector &amp; v1, <span class="keyword">const</span> Vector &amp; v2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v1.<span class="built_in">magval</span>() &gt; v2.<span class="built_in">magval</span>())</span><br><span class="line">		<span class="keyword">return</span> v1;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> v2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>两者都可以实现正确的效果。但是就效率而言，还是版本 2 更好。</p>
+<p>因为版本 1 返回的是对象，所以在执行返回语句的时候，会隐式调用复制构造函数；而版本 2 返回的是该函数之外已经存在的 v1 和 v2 所引用的变量，所以不需要调用复制构造函数。</p>
+<p>同时，书中还提到了一个令我很不解的原因：因为 v1 和 v2 都是常量引用，所以返回值也必须是常量。我认为，v1 和 v2 是常量引用，是因为该函数内部并没有改变其值，但是这意味着不允许函数之外的代码改变其值吗？我需要写一些代码来验证：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">12</span>;</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">13</span>;</span><br><span class="line">  std::cout &lt;&lt; <span class="built_in">max</span>(a, b);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数定义为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span> &amp;<span class="title">max</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;v1, <span class="keyword">const</span> <span class="keyword">int</span> &amp;v2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (v1 &gt; v2)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> v1;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> v2;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>经测试，的确如果返回类型没有 const 限定符的话，连编译都过不了，提示错误为：</p>
+<blockquote>
+<p>error: binding reference of type ‘int&amp;’ to ‘const int’ discards qualifiers</p>
+</blockquote>
+<p>或者可以理解为：假设 v1 和 v2 的实参本来就是常量，在函数返回之后若是成了非常量，出门就被修改了，那就使得常量名存实亡了。</p>
+<h2 id="返回非常量对象的引用"><a href="#返回非常量对象的引用" class="headerlink" title="返回非常量对象的引用"></a>返回非常量对象的引用</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">s1</span><span class="params">(<span class="string">&quot;Good stuff&quot;</span>)</span></span>;</span><br><span class="line">String s2, s3;</span><br><span class="line">s3 = s2 = s1;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码中，赋值运算符返回 String 对象还是 String 引用都是可以的。不过返回 String 引用的话可以减少调用复制构造函数的次数，效率得以提高。</p>
+<p>拿 s2 = s1 来说，实质上是 s2.operator=(s1)，其把 s1 的内容复制到了 s2 中，该方法返回 s2 的引用。而该方法不返回常量引用的理由是：该方法修改了 s2。</p>
+<p>还有一种不返回常量引用的场景：重载 <code>&lt;&lt;</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; s1 &lt;&lt; <span class="string">&quot;is coming!&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>此处第二句相当于 <code>operator&lt;&lt;(cout, s1)</code>，为了实现链式输出，该表达式的结果必须是一个 ostream 的对象，也就是说，<code>operator&lt;&lt;(cout, s1)</code> 应该返回一个 ostream 对象。而 ostream 并没有公开的构造函数，所以返回新的 ostream 对象不可行，只能返回 cout 的引用。该重载运算符函数不加 const 的原因是：该函数修改了 cout。</p>
+<p>这里让我不解的是，难道方法中修改了变量，就不能够以 const 为限定符返回其引用吗？我又需要代码来验证了：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span> &amp;<span class="title">max</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  v2 = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> v2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">12</span>;</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">13</span>;</span><br><span class="line">  std::cout &lt;&lt; <span class="built_in">max</span>(a, b);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译是可以通过的，也就是说，即便修改了 v2，返回值还是可以加上 const 限定符的。</p>
+<p>我猜想，这里不能够使用 const 限定符的意图是，让表达式同时可以成为左操作数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">max</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  v2 = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> v2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">12</span>;</span><br><span class="line">  <span class="keyword">int</span> b = <span class="number">13</span>;</span><br><span class="line">  <span class="built_in">max</span>(a, b) = <span class="number">2</span>;</span><br><span class="line">  std::cout &lt;&lt; b;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="返回对象"><a href="#返回对象" class="headerlink" title="返回对象"></a>返回对象</h2><p>要返回的对象如果仅仅是 local 该函数，那么就不可能返回其引用。因为在函数结束之后，该对象就被销毁了，而返回给调用函数的，就是一个不知道引用了个啥的引用。此时，必须返回对象，一个新的对象。</p>
+<p>通常来说，在重载算术运算符时会用到：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Vector <span class="title">force1</span><span class="params">(<span class="number">50</span>,<span class="number">60</span>)</span></span>;</span><br><span class="line"><span class="function">Vector <span class="title">force2</span><span class="params">(<span class="number">10</span>,<span class="number">70</span>)</span></span>;</span><br><span class="line">Vector net;</span><br><span class="line">net = force1 + force2;</span><br></pre></td></tr></table></figure>
+
+<p>对 operator+() 的调用，既不能改变 force1，也不能改变 force2，而需要一个全新的变量。</p>
+<h2 id="返回常量对象"><a href="#返回常量对象" class="headerlink" title="返回常量对象"></a>返回常量对象</h2><p>函数仅仅返回对象的时候，下面三个语句都是可行的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net = force1 + force2; <span class="comment">// 1: three Vector objects</span></span><br><span class="line">force1 + force2 = net; <span class="comment">// 2: dyslectic programming</span></span><br><span class="line">cout &lt;&lt; (force1 + force2 = net).<span class="built_in">magval</span>() &lt;&lt; endl; <span class="comment">// 3: demented programming</span></span><br></pre></td></tr></table></figure>
+
+<p>第一句还好，但是后面的两句就非常奇怪。实际上后面两句也是合法的，force1 + force2 返回的是一个复制构造函数创建的临时变量，而第二句相当于把 net 的内容复制到临时变量中，然后临时变量再被丢弃；第三句中也是一样，只不过临时变量在被丢弃之前还调用了一次 magval() 方法。</p>
+<p>尽管合法，但是后两个语句没有意义，而且，很可能是错误书写。为了避免这样的写法，也为了提醒程序员所犯下的错误，我们应该把 operator+() 的返回类型加上 const 限定符，这样，表达式 <code>force1 + force2</code> 就不能够像后两个语句那样成为左操作数了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>如果函数返回一个本地对象，则不可以返回引用，只能返回对象。</li>
+<li>如果函数返回其类没有公开构造函数的对象，则必须返回引用（如 ostream）。</li>
+<li>像重载赋值运算符这样的函数，可以选择返回对象还是引用，返回引用时效率更高。</li>
+</ul>
+<h1 id="使用对象指针"><a href="#使用对象指针" class="headerlink" title="使用对象指针"></a>使用对象指针</h1><p>如果 value 的类型为 Type_name，则以下的语句：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class_name * pclass = <span class="keyword">new</span> <span class="built_in">Class_name</span>(value);</span><br></pre></td></tr></table></figure>
+
+<p>调用了以下的构造函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Class_name</span>(Type_name);</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="built_in">Class_name</span>(<span class="keyword">const</span> Type_name &amp;);</span><br></pre></td></tr></table></figure>
+
+<p>以下的语句，调用了默认构造函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class_name * ptr = <span class="keyword">new</span> Class_name;</span><br></pre></td></tr></table></figure>
+
+<h2 id="再次观察-new-和-delete"><a href="#再次观察-new-和-delete" class="headerlink" title="再次观察 new 和 delete"></a>再次观察 new 和 delete</h2><p>如果一个对象是通过 new 来创建的，则其析构函数是在对该对象显式使用 delete 语句之后才被调用。</p>
+<h2 id="指针和对象总结"><a href="#指针和对象总结" class="headerlink" title="指针和对象总结"></a>指针和对象总结</h2><h2 id="再看一次-Placement-new"><a href="#再看一次-Placement-new" class="headerlink" title="再看一次 Placement new"></a>再看一次 Placement new</h2><p>placement new 是 new 的变种，实质上是重载了的 new 运算符函数，其作用是在指定的区域内划分内存。</p>
+<p>对于使用 new 创建的对象，在使用完后，只需要对其使用 delete 即可回收内存；而对于使用 placement new 创建的对象，则需要显式调用其析构函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ClassName * pc1 = <span class="built_in"><span class="keyword">new</span></span> (buffer) ClassName;</span><br><span class="line">pc1-&gt;~<span class="built_in">ClassName</span>();</span><br></pre></td></tr></table></figure>
+
+<p>注意：不能够对使用 placement new 创建的对象使用 delete。因为 delete 是和 new 一起使用的，而  使用 placement new 创建对象时，是 placement new 而不是 new 给变量赋予了内存地址，所以强行 delete 上面的 pc1 会引起运行时错误（runtime error）。</p>
+<p>在显式析构用 placement new 创建的对象时，应该按照其创建顺序的逆序来进行。因为后面的对象可能依赖于前面的对象，所以先析构后面的对象。</p>
+<h1 id="复习技术"><a href="#复习技术" class="headerlink" title="复习技术"></a>复习技术</h1><h2 id="重载-lt-lt-运算符"><a href="#重载-lt-lt-运算符" class="headerlink" title="重载 &lt;&lt; 运算符"></a>重载 &lt;&lt; 运算符</h2><p>定义为非成员函数。</p>
+<p>如果要输出的数据可以通过公共方法获得，则不需要定义友元函数；若数据无法通过公共方法获得，则需要在类声明中声明友元函数。</p>
+<h2 id="转换函数"><a href="#转换函数" class="headerlink" title="转换函数"></a>转换函数</h2><p>将值转换为类类型，需要单参数构造函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">c_name</span> (type_name);</span><br></pre></td></tr></table></figure>
+
+<p>将类对象转换为值，需要转换函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">operator</span> <span class="title">type_name</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>尽管上面的函数都没有返回类型，但是这两个函数的确返回了应该要返回的类型。</p>
+<p>可以在函数原型前面添加 explicit 关键字以免除隐式转换带来的危害。</p>
+<h2 id="使用了-new-的构造函数"><a href="#使用了-new-的构造函数" class="headerlink" title="使用了 new 的构造函数"></a>使用了 new 的构造函数</h2><ul>
+<li>如果构造用了 new，则析构要用 delete</li>
+<li>如果析构 delete 了指针，则构造要用 new 或者 nullptr 初始化该指针</li>
+<li>分清楚 new 和 new []，它们分别要使用 delete 和 delete [] 以对应</li>
+<li>构造函数用了 new，则要合理定义复制构造函数</li>
+<li>构造函数用了 new，则要合理定义赋值运算符重载</li>
+</ul>
+<h1 id="模拟队列"><a href="#模拟队列" class="headerlink" title="模拟队列"></a>模拟队列</h1><h2 id="队列类"><a href="#队列类" class="headerlink" title="队列类"></a>队列类</h2><h3 id="队列类接口"><a href="#队列类接口" class="headerlink" title="队列类接口"></a>队列类接口</h3><h3 id="队列类实现"><a href="#队列类实现" class="headerlink" title="队列类实现"></a>队列类实现</h3><p>数组不宜用于实现队列，除非是循环数査。</p>
+<p>链表更适合用于实现队列。</p>
+<p>在类中定义结构体、枚举，甚至是另一个类，都使其范围为类内。如果以上内容都是在 private 区域内声明的，则其仅仅只能在类内使用；若在 public 区域，则可以由外部加上范围运算符以调用。</p>
+<h3 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h3><p>对于类内的常量，不能够在构造函数内赋值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> qsize;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Queue::<span class="built_in">Queue</span>(<span class="keyword">int</span> qs)</span><br><span class="line">&#123;</span><br><span class="line">	qsize = qs; <span class="comment">// not acceptable!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尽管在声明中，未给出该变量初始值，但是在构造函数中也不能给其赋予一个变量的值。</p>
+<p>在概念上，构造函数在执行区块内的代码之前，就创建了对象。因此，在调用构造函数之后，程序就已经给成员变量分配好地址了。如果要初始化常量变量，只能在构造函数执行区块内代码（分配地址）之前。C++ 中可以使用成员初始化列表（member initializer list）实现这个目的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Queue::<span class="built_in">Queue</span>(<span class="keyword">int</span> qs) : <span class="built_in">qsize</span>(qs)</span><br><span class="line">&#123;</span><br><span class="line">	items = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该特性不仅可以用于给常量初始化，对于其他成员也是可行的，比如说，初始化引用变量：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Queue::<span class="built_in">Queue</span>(<span class="keyword">int</span> qs) : <span class="built_in">qsize</span>(qs), <span class="built_in">front</span>(<span class="literal">NULL</span>), <span class="built_in">rear</span>(<span class="literal">NULL</span>), <span class="built_in">items</span>(<span class="number">0</span>)</span><br><span class="line">&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，只有构造函数才可以使用这个特性。</p>
+<p>对于常量数据和引用，必须通过成员初始化列表，才能够实现初始化；而至于其他的数据，是否使用这种形式初始化并无关紧要。然而，如果成员为类对象的话，使用成员初始化列表进行初始化会更加高效。</p>
+<p>在概念上，成员初始化列表是在对象创建时发生的，而且在大括号中的语句被执行前。使用成员初始化列表需要注意以下几点：</p>
+<ul>
+<li>只能在构造函数上使用</li>
+<li>只能通过这个方法初始化常量成员</li>
+<li>只能通过这个方法初始化引用成员</li>
+</ul>
+<p>数据成员是按在类声明中的顺序进行初始化的，与列表中的顺序无关。</p>
+<p>C++11 允许类声明内初始化：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Classy</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mem1 = <span class="number">10</span>; <span class="comment">// in-class initialization</span></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> mem2 = <span class="number">20</span>; <span class="comment">// in-class initialization</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其等价于：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Classy::<span class="built_in">Classy</span>() : <span class="built_in">mem1</span>(<span class="number">10</span>), <span class="built_in">mem2</span>(<span class="number">20</span>) &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其他的定义了的列表初始化可以覆盖其值，比如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Classy::<span class="built_in">Classy</span>(<span class="keyword">int</span> n) : <span class="built_in">mem1</span>(n) &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样一来，mem1 为 n，而 mem2 依然为 20。</p>
+<h3 id="其他类方法？"><a href="#其他类方法？" class="headerlink" title="其他类方法？"></a>其他类方法？</h3><p>定义了队列类，我们可能还需要定义复制构造函数和重载赋值运算符函数。</p>
+<p>尽管我们可以保证自己不写赋值语句且不调用复制构造函数，但是我们还是可以通过以下的方法来规避风险：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">Queue</span>(<span class="keyword">const</span> Queue &amp; q) : <span class="built_in">qsize</span>(<span class="number">0</span>) &#123; &#125; <span class="comment">// preemptive definition</span></span><br><span class="line">	Queue &amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Queue &amp; q) &#123; <span class="keyword">return</span> *<span class="keyword">this</span>;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>因为以上两个方法都是私有的，在外部是无法访问的，所以下面的代码是无效的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Queue <span class="title">snick</span><span class="params">(nip)</span></span>; <span class="comment">// not allowed</span></span><br><span class="line">tuck = nip; <span class="comment">// not allowed</span></span><br></pre></td></tr></table></figure>
+
+<p>C++11 中还提供 delete 关键字以使方法失效。</p>
+<p>但是复制构造函数还可以通过以值传参调用，但如果保证以引用传参的话，就可以避免调用。</p>
+<h2 id="顾客类"><a href="#顾客类" class="headerlink" title="顾客类"></a>顾客类</h2><h2 id="模拟-ATM"><a href="#模拟-ATM" class="headerlink" title="模拟 ATM"></a>模拟 ATM</h2><p>现假设每个小时会来 10 个客人，则每分钟会来多少个客人呢？答案明显是 10 / 60 = 1 / 6 个人。但是现实生活中并没有 1 / 6 个人，所以要换种说法：则每隔多少分钟会来一个客人呢？答案是每隔  60 / 10 = 6 分钟，会有一个客人到来。</p>
+<p>那客人到来时是 6 分钟里面的哪一分钟呢？显然，每一分钟都有可能等到客人，6 分钟内，在某一分钟客人到达 ，该事件的可能性是 1 / 6。</p>
+<p>在模拟 ATM 的程序中，每个循环模拟每一分钟，则我们需要利用随机数，模拟一个成功率为 1/6 的随机事件。书中是这样做的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">newcustomer</span><span class="params">(<span class="keyword">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (std::<span class="built_in">rand</span>() * x / RAND_MAX &lt; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，x 代表每隔多少分钟才会来一个客人。函数中的表达式有点难理解，但其实只要化成分数形式，就能看懂了：<br>$$<br>\frac{\text{std::rand()}}{\text{RAND_MAX}}&lt;\frac{1}{x}<br>$$</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://littlebugyang.github.io/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_12_Classes_and_Dynamic_Memory_Allocation/" data-id="ckovjrcph001u10xd5ezjgyub" data-title="Chapter_12_Classes_and_Dynamic_Memory_Allocation" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_11_Working_with_Classes/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Chapter_11_Working_with_Classes
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/05/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C++/%E2%80%9CC++_Primer_Plus%E2%80%9D%E7%AC%94%E8%AE%B0/Chapter_13_Class_Inheritance/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Chapter_13_Class_Inheritance</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/">electron</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%80%BB%E7%BB%93/">阅读官方文档总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/electron/%E9%98%85%E8%AF%BB%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0/">阅读官方文档笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/">node</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/node/npm/">npm</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/">技术应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《现代操作系统》阅读笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/">redis</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">硬件信息</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/">docker</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E6%80%BB%E7%BB%93/">“C++_Primer_Plus”总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/C/%E2%80%9CC-Primer-Plus%E2%80%9D%E7%AC%94%E8%AE%B0/">“C++_Primer_Plus”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/JavaScript/%E2%80%9CLearning-JavaScript%E2%80%9D%E7%AC%94%E8%AE%B0/">“Learning JavaScript”笔记</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/YAML/">YAML</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/GitHub/">GitHub</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE/">软件设置</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A6%82%E5%BF%B5/">概念</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/">约瑟夫问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%AF%8D%E5%85%B8/">词典</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/Lenovo_500_FHD_Webcam/">Lenovo_500_FHD_Webcam</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8/">链表</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 LittleBugYang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
